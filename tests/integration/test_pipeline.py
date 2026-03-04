@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from importlib import import_module
 from pathlib import Path
+from typing import Callable, cast
 from unittest.mock import patch
 
 import yaml
 
-from main import run
+run = cast(Callable[..., Path], import_module("main").run)
 
 
 class _FakeResponse:

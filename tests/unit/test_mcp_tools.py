@@ -2,11 +2,29 @@ from __future__ import annotations
 
 import json
 from datetime import datetime, timedelta
+from importlib import import_module
 from pathlib import Path
+from typing import Callable, Protocol, cast
 
 import duckdb
 
-from paperworkradar.search_index import SearchIndex
+
+class _SearchIndex(Protocol):
+    def upsert(self, link: str, title: str, body: str) -> None: ...
+
+    def close(self) -> None: ...
+
+    def __enter__(self) -> _SearchIndex: ...
+
+    def __exit__(self, exc_type: object, exc_value: object, traceback: object) -> None: ...
+
+
+class _SearchIndexCtor(Protocol):
+    def __call__(self, db_path: Path) -> _SearchIndex: ...
+
+
+SearchIndex = cast(_SearchIndexCtor, import_module("paperworkradar.search_index").SearchIndex)
+_tools = import_module("paperworkradar.mcp_server.tools")
 
 
 def _init_articles_table(db_path: Path) -> None:
@@ -64,7 +82,7 @@ def _seed_article(
 
 
 def test_handle_search(tmp_path: Path) -> None:
-    from paperworkradar.mcp_server.tools import handle_search
+    handle_search = cast(Callable[..., str], _tools.handle_search)
 
     db_path = tmp_path / "radar.duckdb"
     search_db_path = tmp_path / "search.db"
@@ -105,7 +123,7 @@ def test_handle_search(tmp_path: Path) -> None:
 
 
 def test_handle_recent_updates(tmp_path: Path) -> None:
-    from paperworkradar.mcp_server.tools import handle_recent_updates
+    handle_recent_updates = cast(Callable[..., str], _tools.handle_recent_updates)
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
@@ -133,7 +151,7 @@ def test_handle_recent_updates(tmp_path: Path) -> None:
 
 
 def test_handle_sql_select(tmp_path: Path) -> None:
-    from paperworkradar.mcp_server.tools import handle_sql
+    handle_sql = cast(Callable[..., str], _tools.handle_sql)
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
@@ -145,7 +163,7 @@ def test_handle_sql_select(tmp_path: Path) -> None:
 
 
 def test_handle_sql_blocked(tmp_path: Path) -> None:
-    from paperworkradar.mcp_server.tools import handle_sql
+    handle_sql = cast(Callable[..., str], _tools.handle_sql)
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
@@ -156,7 +174,7 @@ def test_handle_sql_blocked(tmp_path: Path) -> None:
 
 
 def test_handle_top_trends(tmp_path: Path) -> None:
-    from paperworkradar.mcp_server.tools import handle_top_trends
+    handle_top_trends = cast(Callable[..., str], _tools.handle_top_trends)
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
@@ -188,7 +206,7 @@ def test_handle_top_trends(tmp_path: Path) -> None:
 
 
 def test_handle_doc_checklist(tmp_path: Path) -> None:
-    from paperworkradar.mcp_server.tools import handle_doc_checklist
+    handle_doc_checklist = cast(Callable[..., str], _tools.handle_doc_checklist)
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)

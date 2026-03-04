@@ -2,14 +2,42 @@ from __future__ import annotations
 
 import json
 from datetime import datetime, timezone
+from importlib import import_module
 from pathlib import Path
-from typing import cast
-
-from paperworkradar.models import Article
-from paperworkradar.raw_logger import RawLogger
+from typing import Protocol, cast
 
 
-def _make_article(*, title: str = "Sample title", summary: str = "요약") -> Article:
+class _Article(Protocol):
+    title: str
+
+
+class _ArticleCtor(Protocol):
+    def __call__(
+        self,
+        *,
+        title: str,
+        link: str,
+        summary: str,
+        published: datetime,
+        source: str,
+        category: str,
+        matched_entities: dict[str, list[str]],
+    ) -> _Article: ...
+
+
+class _RawLogger(Protocol):
+    def log(self, articles: list[_Article], *, source_name: str) -> Path: ...
+
+
+class _RawLoggerCtor(Protocol):
+    def __call__(self, raw_dir: Path) -> _RawLogger: ...
+
+
+Article = cast(_ArticleCtor, import_module("paperworkradar.models").Article)
+RawLogger = cast(_RawLoggerCtor, import_module("paperworkradar.raw_logger").RawLogger)
+
+
+def _make_article(*, title: str = "Sample title", summary: str = "요약") -> _Article:
     return Article(
         title=title,
         link="https://example.com/article",

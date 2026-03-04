@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 from typing import Callable, Protocol, cast
 
-from paperworkradar.mcp_server.tools import (
+from .tools import (
     handle_doc_checklist,
     handle_recent_updates,
     handle_search,

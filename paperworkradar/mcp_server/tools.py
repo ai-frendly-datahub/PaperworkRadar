@@ -9,8 +9,8 @@ from typing import cast
 
 import duckdb
 
-from paperworkradar.nl_query import parse_query
-from paperworkradar.search_index import SearchIndex
+from ..nl_query import parse_query
+from ..search_index import SearchIndex
 
 _ALLOWED_SQL = re.compile(r"^\s*(SELECT|WITH|EXPLAIN)\b", re.IGNORECASE)
 

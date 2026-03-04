@@ -7,7 +7,17 @@ from typing import Protocol, cast
 
 import yaml
 
-from paperworkradar.config_loader import load_settings
+
+
+class _Settings(Protocol):
+    search_db_path: Path
+
+
+class _LoadSettings(Protocol):
+    def __call__(self, config_path: Path | None = None) -> _Settings: ...
+
+
+load_settings = cast(_LoadSettings, import_module("paperworkradar.config_loader").load_settings)
 
 
 class _SearchResult(Protocol):
