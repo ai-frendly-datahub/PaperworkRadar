@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>서류/행정 레이더 - Report</title>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
+
+    <style>
+      :root{
+        --bg0:#05070c;
+        --bg1:#070b14;
+        --panel0:rgba(10, 16, 30, .72);
+        --panel1:rgba(14, 22, 42, .72);
+        --panel2:rgba(14, 22, 42, .92);
+        --line:rgba(150, 190, 255, .14);
+        --line2:rgba(150, 190, 255, .22);
+        --shadow:0 18px 60px rgba(0,0,0,.44);
+        --text:#e9eefb;
+        --muted:rgba(233, 238, 251, .72);
+        --faint:rgba(233, 238, 251, .52);
+        --brand:#33d6c5;
+        --brand2:#19a7c3;
+        --accent:#f6c84c;
+        --danger:#ff5b6e;
+
+        --radius:16px;
+        --radius2:22px;
+        --max:1180px;
+
+        --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans:"Pretendard Variable","Pretendard", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+
+        --focus: 0 0 0 3px rgba(51, 214, 197, .20), 0 0 0 1px rgba(51, 214, 197, .70);
+      }
+
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        font-family:var(--sans);
+        color:var(--text);
+        background:
+          radial-gradient(1200px 700px at 18% -8%, rgba(25,167,195,.28), transparent 58%),
+          radial-gradient(1100px 600px at 92% 8%, rgba(246,200,76,.18), transparent 60%),
+          radial-gradient(900px 520px at 52% 110%, rgba(51,214,197,.18), transparent 62%),
+          linear-gradient(180deg, var(--bg0), var(--bg1) 55%, #04060a);
+        overflow-x:hidden;
+      }
+
+      a{color:inherit; text-decoration:none}
+      a:hover{text-decoration:none}
+      ::selection{background:rgba(51,214,197,.24)}
+      .skip{
+        position:absolute;
+        left:-999px;
+        top:12px;
+        padding:10px 12px;
+        border-radius:12px;
+        background:rgba(14, 22, 42, .98);
+        border:1px solid var(--line2);
+        color:var(--text);
+        z-index:9999;
+      }
+      .skip:focus{left:12px; box-shadow:var(--focus); outline:none}
+
+      .wrap{max-width:var(--max); margin:0 auto; padding:20px 16px 64px}
+      .topbar{
+        position:sticky; top:0; z-index:50;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: linear-gradient(180deg, rgba(5,7,12,.92), rgba(5,7,12,.55));
+        border-bottom:1px solid rgba(150,190,255,.10);
+      }
+      .topbar-inner{max-width:var(--max); margin:0 auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:14px}
+      .brand{
+        display:flex; align-items:center; gap:10px;
+        min-width:220px;
+      }
+      .mark{
+        width:34px; height:34px; border-radius:12px;
+        background:
+          radial-gradient(18px 18px at 32% 28%, rgba(255,255,255,.18), transparent 55%),
+          linear-gradient(145deg, rgba(51,214,197,.95), rgba(25,167,195,.78) 55%, rgba(246,200,76,.72));
+        box-shadow: 0 10px 30px rgba(0,0,0,.45);
+        border:1px solid rgba(255,255,255,.10);
+      }
+      .brand-title{
+        line-height:1.05;
+        font-weight:750;
+        letter-spacing:-.02em;
+      }
+      .brand-sub{
+        display:block;
+        font-family:var(--mono);
+        font-size:12px;
+        color:var(--faint);
+        margin-top:4px;
+      }
+      .nav{
+        display:flex; flex-wrap:wrap; gap:8px;
+        justify-content:flex-end;
+      }
+      .pill{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:9px 12px;
+        border-radius:999px;
+        border:1px solid rgba(150,190,255,.14);
+        background:rgba(10,16,30,.45);
+        color:var(--muted);
+        font-size:13px;
+        transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+        user-select:none;
+      }
+      .pill:hover{
+        transform: translateY(-1px);
+        border-color: rgba(51,214,197,.34);
+        background: rgba(10,16,30,.70);
+        color: rgba(233,238,251,.88);
+      }
+      .pill:focus-visible{outline:none; box-shadow:var(--focus)}
+
+      .hero{
+        padding:24px 0 12px;
+        display:grid;
+        grid-template-columns: 1.25fr .75fr;
+        gap:18px;
+        align-items:stretch;
+      }
+      .hero-card{
+        border-radius: var(--radius2);
+        background: linear-gradient(180deg, var(--panel2), rgba(14,22,42,.58));
+        border: 1px solid rgba(150,190,255,.14);
+        box-shadow: var(--shadow);
+        padding:18px 18px 16px;
+        position:relative;
+        overflow:hidden;
+      }
+      .hero-card:before{
+        content:"";
+        position:absolute;
+        inset:-2px;
+        background:
+          radial-gradient(280px 160px at 12% 18%, rgba(51,214,197,.18), transparent 60%),
+          radial-gradient(240px 140px at 82% 22%, rgba(246,200,76,.12), transparent 58%),
+          radial-gradient(300px 170px at 46% 110%, rgba(25,167,195,.14), transparent 62%);
+        filter: blur(10px);
+        opacity:.9;
+        pointer-events:none;
+      }
+      .hero-body{position:relative}
+      .kicker{
+        display:inline-flex; align-items:center; gap:10px;
+        font-family:var(--mono);
+        font-size:12px;
+        color:rgba(233,238,251,.72);
+        letter-spacing:.06em;
+        text-transform:uppercase;
+      }
+      .dot{
+        width:8px; height:8px; border-radius:999px;
+        background: var(--brand);
+        box-shadow:0 0 0 4px rgba(51,214,197,.12);
+      }
+      h1{
+        margin:10px 0 0;
+        font-weight:820;
+        letter-spacing:-.03em;
+        font-size: clamp(28px, 3.2vw, 40px);
+        line-height:1.08;
+      }
+      .lede{
+        margin:10px 0 0;
+        color: var(--muted);
+        font-size:15px;
+        line-height:1.55;
+        max-width: 72ch;
+      }
+      .meta{
+        margin:14px 0 0;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px 12px;
+        color: rgba(233,238,251,.70);
+        font-size:13px;
+      }
+      .meta span{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid rgba(150,190,255,.12);
+        background: rgba(10,16,30,.40);
+      }
+      .mono{font-family:var(--mono)}
+      .accent{color: rgba(246,200,76,.96)}
+      .ok{color: rgba(51,214,197,.92)}
+      .bad{color: rgba(255,91,110,.92)}
+
+      .stats{
+        border-radius: var(--radius2);
+        background: linear-gradient(180deg, rgba(10,16,30,.64), rgba(10,16,30,.36));
+        border: 1px solid rgba(150,190,255,.12);
+        box-shadow: 0 12px 40px rgba(0,0,0,.34);
+        padding:16px;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:12px;
+      }
+      .stat{
+        border-radius: 14px;
+        background: rgba(14,22,42,.45);
+        border: 1px solid rgba(150,190,255,.12);
+        padding:12px 12px 10px;
+        min-height: 76px;
+      }
+      .stat .label{
+        color: rgba(233,238,251,.66);
+        font-size:12px;
+        font-family: var(--mono);
+        letter-spacing:.03em;
+      }
+      .stat .value{
+        margin-top:8px;
+        font-weight:800;
+        letter-spacing:-.02em;
+        font-size: 20px;
+        line-height:1.1;
+      }
+      .stat .hint{
+        margin-top:6px;
+        color: rgba(233,238,251,.60);
+        font-size:12px;
+        line-height:1.35;
+      }
+
+      .grid{
+        margin-top:14px;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:14px;
+      }
+      .panel{
+        border-radius: var(--radius2);
+        background: linear-gradient(180deg, var(--panel0), var(--panel1));
+        border: 1px solid rgba(150,190,255,.12);
+        box-shadow: 0 16px 55px rgba(0,0,0,.38);
+        overflow:hidden;
+      }
+      .panel-hd{
+        padding:14px 16px;
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:12px;
+        border-bottom:1px solid rgba(150,190,255,.10);
+        background: rgba(10,16,30,.20);
+      }
+      .panel-title{
+        margin:0;
+        font-weight:780;
+        letter-spacing:-.02em;
+        font-size:14px;
+      }
+      .panel-sub{
+        margin:6px 0 0;
+        color: rgba(233,238,251,.64);
+        font-size:12px;
+        line-height:1.35;
+        font-family: var(--mono);
+      }
+      .panel-bd{padding:14px 16px 16px}
+      .chart-wrap{position:relative; height: 290px}
+      .chart-wrap.tall{height: 320px}
+      canvas{max-width:100%}
+
+      .notice{
+        margin-top:14px;
+        border-radius: var(--radius2);
+        border: 1px solid rgba(255,91,110,.28);
+        background: linear-gradient(180deg, rgba(255,91,110,.14), rgba(10,16,30,.56));
+        box-shadow: 0 18px 55px rgba(0,0,0,.34);
+        padding:14px 16px;
+      }
+      .notice h2{
+        margin:0;
+        font-size:14px;
+        font-weight:800;
+        letter-spacing:-.02em;
+      }
+      .notice p{
+        margin:8px 0 0;
+        color: rgba(233,238,251,.74);
+        font-size:13px;
+        line-height:1.5;
+      }
+      .notice ul{
+        margin:10px 0 0;
+        padding-left: 18px;
+        color: rgba(233,238,251,.72);
+        font-size:13px;
+        line-height:1.55;
+      }
+
+      .section{
+        margin-top:16px;
+      }
+      .section-hd{
+        display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+        margin: 20px 0 10px;
+      }
+      .section-hd h2{
+        margin:0;
+        font-size: 16px;
+        font-weight:820;
+        letter-spacing:-.02em;
+      }
+      .section-hd .right{
+        display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+      }
+      .muted{color: rgba(233,238,251,.68)}
+      .small{font-size:12px}
+      .kbd{
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(233,238,251,.72);
+        background: rgba(10,16,30,.52);
+        border:1px solid rgba(150,190,255,.14);
+        padding:6px 10px;
+        border-radius:999px;
+      }
+
+      .articles{
+        display:grid;
+        grid-template-columns: 1fr;
+        gap:10px;
+      }
+      .card{
+        border-radius: 18px;
+        background: rgba(14,22,42,.46);
+        border: 1px solid rgba(150,190,255,.12);
+        padding: 12px 12px 11px;
+        transition: transform .18s ease, border-color .18s ease, background .18s ease;
+        display:flex;
+        gap:10px;
+        align-items:flex-start;
+      }
+      .card:hover{
+        transform: translateY(-1px);
+        border-color: rgba(51,214,197,.22);
+        background: rgba(14,22,42,.62);
+      }
+      .card:focus-within{box-shadow: var(--focus)}
+      .card .left{flex:1; min-width:0}
+      .title{
+        margin:0;
+        font-weight:780;
+        letter-spacing:-.02em;
+        font-size: 14px;
+        line-height:1.35;
+      }
+      .title a{
+        display:inline-block;
+        outline:none;
+      }
+      .title a:focus-visible{outline:none}
+      .desc{
+        margin:8px 0 0;
+        color: rgba(233,238,251,.68);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .row{
+        margin-top:10px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        align-items:center;
+        color: rgba(233,238,251,.64);
+        font-size: 12px;
+      }
+      .chip{
+        display:inline-flex; align-items:center;
+        gap:8px;
+        padding:6px 10px;
+        border-radius:999px;
+        border: 1px solid rgba(150,190,255,.12);
+        background: rgba(10,16,30,.38);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+      .chip strong{font-weight:800; color: rgba(233,238,251,.86)}
+      .chip.brand{
+        border-color: rgba(51,214,197,.18);
+        background: rgba(51,214,197,.10);
+      }
+      .actions{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+      }
+      .btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        padding:10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(150,190,255,.14);
+        background: rgba(10,16,30,.46);
+        color: rgba(233,238,251,.86);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: -.01em;
+        transition: transform .18s ease, border-color .18s ease, background .18s ease;
+        cursor:pointer;
+        user-select:none;
+        min-width: 84px;
+      }
+      .btn:hover{
+        transform: translateY(-1px);
+        border-color: rgba(246,200,76,.30);
+        background: rgba(10,16,30,.68);
+      }
+      .btn:focus-visible{outline:none; box-shadow: var(--focus)}
+      .btn.primary{
+        border-color: rgba(51,214,197,.22);
+        background: linear-gradient(135deg, rgba(51,214,197,.22), rgba(25,167,195,.12));
+      }
+      .btn.primary:hover{border-color: rgba(51,214,197,.36)}
+      .btn[aria-disabled="true"]{opacity:.6; cursor:not-allowed}
+
+      .footer{
+        margin-top:24px;
+        padding-top:14px;
+        border-top: 1px solid rgba(150,190,255,.10);
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px 14px;
+        justify-content:space-between;
+        align-items:center;
+        color: rgba(233,238,251,.62);
+        font-size: 12px;
+      }
+      .footer a{color: rgba(233,238,251,.74)}
+      .footer a:hover{color: rgba(51,214,197,.90)}
+
+      @media (max-width: 980px){
+        .hero{grid-template-columns: 1fr; }
+        .stats{grid-template-columns: 1fr 1fr}
+        .grid{grid-template-columns: 1fr}
+      }
+      @media (max-width: 560px){
+        .topbar-inner{align-items:flex-start}
+        .brand{min-width: 0}
+        .nav{justify-content:flex-start}
+        .stats{grid-template-columns: 1fr}
+        .card{flex-direction:column}
+        .actions{justify-content:flex-start}
+        .btn{width:100%}
+        .chart-wrap{height: 260px}
+        .chart-wrap.tall{height: 300px}
+      }
+      @media (prefers-reduced-motion: reduce){
+        *{scroll-behavior:auto !important}
+        .pill,.card,.btn{transition:none !important}
+        .pill:hover,.card:hover,.btn:hover{transform:none !important}
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+
+    <header class="topbar" role="banner">
+      <div class="topbar-inner">
+        <div class="brand" aria-label="Report identity">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <div class="brand-title">서류/행정 레이더</div>
+            <span class="brand-sub">editorial report - charts + feed</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Jump links">
+          <a class="pill" href="#charts">Charts</a>
+          <a class="pill" href="#entities">Entities</a>
+          <a class="pill" href="#articles">Articles</a>
+          
+          <a class="pill" href="#errors" aria-label="Jump to errors (3)">Errors</a>
+          
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="wrap" role="main">
+      <section class="hero" aria-label="Overview">
+        <div class="hero-card">
+          <div class="hero-body">
+            <div class="kicker">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="mono">RADAR</span>
+              <span class="mono muted">/</span>
+              <span class="mono accent">서류/행정 레이더</span>
+            </div>
+
+            <h1>서류/행정 레이더</h1>
+            <p class="lede">
+              A fast, reusable HTML report for lightweight Radar projects: entity distribution, article velocity,
+              and source mix, alongside a clean reading list.
+            </p>
+
+            <div class="meta" aria-label="Key facts">
+              <span><span class="mono muted">articles</span><span class="mono ok">20</span></span>
+              <span><span class="mono muted">entities</span><span class="mono accent">1</span></span>
+              <span><span class="mono muted">errors</span><span class="mono bad">3</span></span>
+              <span title="Generated time"><span class="mono muted">generated</span><span class="mono">2026-03-05 03:52 UTC</span></span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="stats" aria-label="Quick stats">
+          <div class="stat">
+            <div class="label">ARTICLES</div>
+            <div class="value">0</div>
+            <div class="hint">Total items in this run</div>
+          </div>
+          <div class="stat">
+            <div class="label">UNIQUE ENTITIES</div>
+            <div class="value">1</div>
+            <div class="hint">Distinct extracted names</div>
+          </div>
+          <div class="stat">
+            <div class="label">TOP ENTITY</div>
+            <div class="value">
+              
+                
+                TaxDocs
+              
+            </div>
+            <div class="hint">Most frequent across articles</div>
+          </div>
+          <div class="stat">
+            <div class="label">SOURCES</div>
+            <div class="value">10</div>
+            <div class="hint">Auto-counted for charts</div>
+          </div>
+        </aside>
+      </section>
+
+      
+      <section id="errors" class="notice" role="alert" aria-label="Errors">
+        <h2>Errors detected (3)</h2>
+        <p>Some sources or steps reported errors. The report still renders with partial data.</p>
+        <ul>
+          
+          <li><span class="mono">IRS Tax Forms: 404 Client Error: Not Found for url: https://www.irs.gov/forms-and-instructions</span></li>
+          
+          <li><span class="mono">Social Security Administration Updates: 403 Client Error: Forbidden for url: https://www.ssa.gov/agency/updates/</span></li>
+          
+          <li><span class="mono">Data.go.kr Government Data: (&#39;Connection aborted.&#39;, ConnectionResetError(10054, &#39;현재 연결은 원격 호스트에 의해 강제로 끊겼습니다&#39;, None, 10054, None))</span></li>
+          
+        </ul>
+      </section>
+      
+
+      <section id="charts" class="section" aria-label="Charts">
+        <div class="section-hd">
+          <h2>Visuals</h2>
+          <div class="right">
+            <span class="kbd">Chart.js</span>
+            <span class="kbd">dark editorial</span>
+            <span class="kbd">responsive</span>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="panel" aria-label="Entity distribution">
+            <header class="panel-hd">
+              <div>
+                <p class="panel-title">Entity Distribution</p>
+                <p class="panel-sub">Top entities by frequency</p>
+              </div>
+              <div class="pill" aria-hidden="true">bar</div>
+            </header>
+            <div class="panel-bd">
+              <div class="chart-wrap" role="img" aria-label="Bar chart showing entity frequency">
+                <canvas id="chartEntities"></canvas>
+              </div>
+              <noscript>
+                <p class="muted small">Charts require JavaScript. Enable JS to see entity distribution.</p>
+              </noscript>
+            </div>
+          </article>
+
+          <article class="panel" aria-label="Article timeline">
+            <header class="panel-hd">
+              <div>
+                <p class="panel-title">Article Timeline</p>
+                <p class="panel-sub">Daily volume inferred from article dates</p>
+              </div>
+              <div class="pill" aria-hidden="true">line</div>
+            </header>
+            <div class="panel-bd">
+              <div class="chart-wrap tall" role="img" aria-label="Line chart showing article volume over time">
+                <canvas id="chartTimeline"></canvas>
+              </div>
+              <noscript>
+                <p class="muted small">Charts require JavaScript. Enable JS to see the timeline.</p>
+              </noscript>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid" style="margin-top:14px">
+          <article class="panel" aria-label="Source distribution">
+            <header class="panel-hd">
+              <div>
+                <p class="panel-title">Source Distribution</p>
+                <p class="panel-sub">Share of articles by source</p>
+              </div>
+              <div class="pill" aria-hidden="true">pie</div>
+            </header>
+            <div class="panel-bd">
+              <div class="chart-wrap" role="img" aria-label="Pie chart showing article share by source">
+                <canvas id="chartSources"></canvas>
+              </div>
+              <noscript>
+                <p class="muted small">Charts require JavaScript. Enable JS to see source breakdown.</p>
+              </noscript>
+            </div>
+          </article>
+
+          <article class="panel" aria-label="Notes">
+            <header class="panel-hd">
+              <div>
+                <p class="panel-title">Reading Notes</p>
+                <p class="panel-sub">Fast scan guidance</p>
+              </div>
+              <div class="pill" aria-hidden="true">tips</div>
+            </header>
+            <div class="panel-bd">
+              <p class="muted" style="margin:0; line-height:1.6; font-size:13px">
+                Use the entity chart to spot concentration, the timeline to detect bursts, and the source mix to
+                gauge coverage bias. The article list keeps metadata compact for quick triage.
+              </p>
+              <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px">
+                <span class="chip brand"><strong>Teal</strong> momentum</span>
+                <span class="chip"><strong>Amber</strong> signal</span>
+                <span class="chip"><strong>Mono</strong> data</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="entities" class="section" aria-label="Entity table">
+        <div class="section-hd">
+          <h2>Entities</h2>
+          <div class="right">
+            <span class="kbd">top 12 shown in chart</span>
+            <span class="kbd">full list in data</span>
+          </div>
+        </div>
+
+        <article class="panel">
+          <header class="panel-hd">
+            <div>
+              <p class="panel-title">Entity Counts</p>
+              <p class="panel-sub">Rendered as a compact list for accessibility</p>
+            </div>
+            <div class="pill" aria-hidden="true">list</div>
+          </header>
+          <div class="panel-bd">
+            
+              <div class="articles" aria-label="Entity count list">
+                
+                <div class="card" role="group" aria-label="Entity TaxDocs has count 1">
+                  <div class="left">
+                    <p class="title"><span class="mono">TaxDocs</span></p>
+                    <div class="row">
+                      <span class="chip brand"><strong>count</strong> 1</span>
+                    </div>
+                  </div>
+                  <div class="actions">
+                    <span class="btn" aria-disabled="true" title="Entity details not available in lightweight template">Details</span>
+                  </div>
+                </div>
+                
+              </div>
+            
+          </div>
+        </article>
+      </section>
+
+      <section id="articles" class="section" aria-label="Articles">
+        <div class="section-hd">
+          <h2>Articles</h2>
+          <div class="right">
+            <span class="kbd">cards</span>
+            <span class="kbd">source + date</span>
+            <span class="kbd">fast scan</span>
+          </div>
+        </div>
+
+        <article class="panel">
+          <header class="panel-hd">
+            <div>
+              <p class="panel-title">Reading List</p>
+              <p class="panel-sub">Click through to the original source</p>
+            </div>
+            <div class="pill" aria-hidden="true">20</div>
+          </header>
+          <div class="panel-bd">
+            
+            <div class="articles" aria-label="Article list">
+              
+              <div class="card" role="article" aria-label="Article: Anthropic CEO Dario Amodei calls OpenAI’s messaging around military deal ‘straight up lies,’ report says">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/anthropic-ceo-dario-amodei-calls-openais-messaging-around-military-deal-straight-up-lies-report-says/" target="_blank" rel="noopener noreferrer">Anthropic CEO Dario Amodei calls OpenAI’s messaging around military deal ‘straight up lies,’ report says</a>
+                  </p>
+
+                  
+                  <p class="desc">Anthropic gave up its contract with the Pentagon over AI safety disagreements -- then, OpenAI swooped in.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/anthropic-ceo-dario-amodei-calls-openais-messaging-around-military-deal-straight-up-lies-report-says/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Apple Music to add Transparency Tags to distinguish AI music, says report">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/apple-music-to-add-transparency-tags-to-distinguish-ai-music-says-report/" target="_blank" rel="noopener noreferrer">Apple Music to add Transparency Tags to distinguish AI music, says report</a>
+                  </p>
+
+                  
+                  <p class="desc">The label or distributor has to opt in to tagging their music as AI, so it&#39;s unclear how effective this intervention will be.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/apple-music-to-add-transparency-tags-to-distinguish-ai-music-says-report/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Google settles with Epic Games, drops its Play Store commissions to 20%">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/google-settles-with-epic-games-drops-its-play-store-commissions-to-20/" target="_blank" rel="noopener noreferrer">Google settles with Epic Games, drops its Play Store commissions to 20%</a>
+                  </p>
+
+                  
+                  <p class="desc">Google has dropped its commission, charging a 20% service fee and an optional 5% to use its billing services. It will also offer a new process for third-party app stores.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/google-settles-with-epic-games-drops-its-play-store-commissions-to-20/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: His house burned down. He used the insurance money to build PopSockets.">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/video/his-house-burned-down-he-used-the-insurance-money-to-build-popsockets/" target="_blank" rel="noopener noreferrer">His house burned down. He used the insurance money to build PopSockets.</a>
+                  </p>
+
+                  
+                  <p class="desc">Does&amp;#160;a&amp;#160;consumer hardware&amp;#160;company need to get on the&amp;#160;VC treadmill to&amp;#160;succeed?&amp;#160;Eleven years and 290 million products sold across 115 countries later,&amp;#160;PopSockets&amp;#160;has proven that&amp;#160;...</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/video/his-house-burned-down-he-used-the-insurance-money-to-build-popsockets/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: US and EU police shut down LeakBase, a site accused of sharing stolen passwords and hacking tools">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/u-s-and-eu-police-shut-down-leakbase-a-site-accused-of-sharing-stolen-passwords-and-hacking-tools/" target="_blank" rel="noopener noreferrer">US and EU police shut down LeakBase, a site accused of sharing stolen passwords and hacking tools</a>
+                  </p>
+
+                  
+                  <p class="desc">Authorities say LeakBase was &#34;one of the world’s largest online forums for cybercriminals,&#34; and maintained an archive of hacked databases containing hundreds of millions of passwords.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/u-s-and-eu-police-shut-down-leakbase-a-site-accused-of-sharing-stolen-passwords-and-hacking-tools/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: MacBook Neo, iPhone 17e, and everything else Apple announced this week">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/everything-apple-announced-macbook-neo-iphone-17e-ipad-air/" target="_blank" rel="noopener noreferrer">MacBook Neo, iPhone 17e, and everything else Apple announced this week</a>
+                  </p>
+
+                  
+                  <p class="desc">From a new iPhone to a budget-friendly MacBook, Apple announced a series of new products this week.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/everything-apple-announced-macbook-neo-iphone-17e-ipad-air/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Google Search rolls out Gemini’s Canvas in AI Mode to all US users">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/https-techcrunch-com-2026-03-04-google-search-rolls-out-geminis-canvas-in-ai-mode-to-all-us-users/" target="_blank" rel="noopener noreferrer">Google Search rolls out Gemini’s Canvas in AI Mode to all US users</a>
+                  </p>
+
+                  
+                  <p class="desc">Canvas in AI Mode is available to U.S. users in English for creating plans, projects, apps, and more.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/https-techcrunch-com-2026-03-04-google-search-rolls-out-geminis-canvas-in-ai-mode-to-all-us-users/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Decagon completes first tender offer at $4.5B valuation">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/" target="_blank" rel="noopener noreferrer">Decagon completes first tender offer at $4.5B valuation</a>
+                  </p>
+
+                  
+                  <p class="desc">The AI-powered customer support startup is the latest example of a fast-growing, young company that&#39;s providing employee liquidity.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                    <span class="chip brand"><strong>entities</strong> 1</span>
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: The US military is still using Claude — but defense-tech clients are fleeing">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/" target="_blank" rel="noopener noreferrer">The US military is still using Claude — but defense-tech clients are fleeing</a>
+                  </p>
+
+                  
+                  <p class="desc">As the U.S. continues its aerial attack on Iran, Anthropic models are being used for many targeting decisions.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: X taps William Shatner to give out invites to its payments service, X Money">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/x-taps-william-shatner-to-give-out-invites-to-its-payments-service-x-money/" target="_blank" rel="noopener noreferrer">X taps William Shatner to give out invites to its payments service, X Money</a>
+                  </p>
+
+                  
+                  <p class="desc">42 X users donated to William Shatner&#39;s charity in exchange for an early invite to X Money beta.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/x-taps-william-shatner-to-give-out-invites-to-its-payments-service-x-money/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Host a Side Event during TechCrunch Founder Summit Week in Boston">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/host-a-side-event-during-techcrunch-founder-summit-week-in-boston/" target="_blank" rel="noopener noreferrer">Host a Side Event during TechCrunch Founder Summit Week in Boston</a>
+                  </p>
+
+                  
+                  <p class="desc">Want to tap into the energy of 1,100+ startup founders, investors, and tech leaders descending on Boston for the Founder Summit 2026 on June 9? Host your own Side Event during “Founder Summit Week,” happening June 4-10!</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/host-a-side-event-during-techcrunch-founder-summit-week-in-boston/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: TikTok won’t add end-to-end encryption to direct messages, report says">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/tiktok-wont-add-end-to-end-encryption-to-direct-messages-report-says/" target="_blank" rel="noopener noreferrer">TikTok won’t add end-to-end encryption to direct messages, report says</a>
+                  </p>
+
+                  
+                  <p class="desc">The social media giant says that end-to-end encryption would make users less safe.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/tiktok-wont-add-end-to-end-encryption-to-direct-messages-report-says/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Father sues Google, claiming Gemini chatbot drove son into fatal delusion">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/father-sues-google-claiming-gemini-chatbot-drove-son-into-fatal-delusion/" target="_blank" rel="noopener noreferrer">Father sues Google, claiming Gemini chatbot drove son into fatal delusion</a>
+                  </p>
+
+                  
+                  <p class="desc">A father is suing Google and Alphabet, alleging its Gemini chatbot reinforced his son’s delusional belief it was his AI wife and coached him toward suicide and a planned airport attack.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/father-sues-google-claiming-gemini-chatbot-drove-son-into-fatal-delusion/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Meet the MacBook Neo, Apple’s colorful answer to the Chromebook, starting at $599">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/meet-the-macbook-neo-apples-colorful-answer-to-the-chromebook-starting-at-599/" target="_blank" rel="noopener noreferrer">Meet the MacBook Neo, Apple’s colorful answer to the Chromebook, starting at $599</a>
+                  </p>
+
+                  
+                  <p class="desc">Apple is offering the MacBook Neo at a more affordable price point by using an A18 Pro chip, which is used in the iPhone 16 Pro.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/meet-the-macbook-neo-apples-colorful-answer-to-the-chromebook-starting-at-599/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: One startup’s pitch to provide more reliable AI answers: Crowdsource the chatbots">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/one-startups-pitch-to-provide-more-reliable-ai-answers-crowdsource-the-chatbots/" target="_blank" rel="noopener noreferrer">One startup’s pitch to provide more reliable AI answers: Crowdsource the chatbots</a>
+                  </p>
+
+                  
+                  <p class="desc">CollectivIQ looks to give users more accurate answers to their AI queries by showing them responses that pull information from ChatGPT, Gemini, Claude, Grok — and up to 10 other models — all at the same time.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/one-startups-pitch-to-provide-more-reliable-ai-answers-crowdsource-the-chatbots/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Who needs data centers in space when they can float offshore?">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/who-needs-data-centers-in-space-when-they-can-float-offshore/" target="_blank" rel="noopener noreferrer">Who needs data centers in space when they can float offshore?</a>
+                  </p>
+
+                  
+                  <p class="desc">Offshore wind developer Aikido will deploy a small data center beneath a floating offshore wind turbine later this year.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/who-needs-data-centers-in-space-when-they-can-float-offshore/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Eight Sleep raises $50M at $1.5B valuation">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/04/eight-sleep-raises-50m-at-1-5b-valuation/" target="_blank" rel="noopener noreferrer">Eight Sleep raises $50M at $1.5B valuation</a>
+                  </p>
+
+                  
+                  <p class="desc">Eight Sleep said it was free-cash-flow positive in 2025 and plans to use the new funding for new products, global expansions, and clinical validation.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-04</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/04/eight-sleep-raises-50m-at-1-5b-valuation/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Why AI startups are selling the same equity at two different prices">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/03/why-ai-startups-are-selling-the-same-equity-at-two-different-prices/" target="_blank" rel="noopener noreferrer">Why AI startups are selling the same equity at two different prices</a>
+                  </p>
+
+                  
+                  <p class="desc">Some AI founders are using a novel valuation mechanism to manufacture unicorn status.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-03</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/03/why-ai-startups-are-selling-the-same-equity-at-two-different-prices/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: A suite of government hacking tools targeting iPhones is now being used by cybercriminals">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/03/a-suite-of-government-hacking-tools-targeting-iphones-is-now-being-used-by-cybercriminals/" target="_blank" rel="noopener noreferrer">A suite of government hacking tools targeting iPhones is now being used by cybercriminals</a>
+                  </p>
+
+                  
+                  <p class="desc">Security researchers say exploits used by governments to hack into iPhones have been found to be used by cybercriminals. They warned of an emerging market for &#34;secondhand&#34; exploits.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-03</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/03/a-suite-of-government-hacking-tools-targeting-iphones-is-now-being-used-by-cybercriminals/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+              <div class="card" role="article" aria-label="Article: Alibaba’s Qwen tech lead steps down after major AI push">
+                <div class="left">
+                  <p class="title">
+                    <a href="https://techcrunch.com/2026/03/03/alibabas-qwen-tech-lead-steps-down-after-major-ai-push/" target="_blank" rel="noopener noreferrer">Alibaba’s Qwen tech lead steps down after major AI push</a>
+                  </p>
+
+                  
+                  <p class="desc">Reactions rippled through Alibaba&#39;s Qwen team after tech lead Junyang Lin stepped down following a major model launch.</p>
+                  
+
+                  <div class="row" aria-label="Article metadata">
+                    <span class="chip"><strong>source</strong> TechCrunch</span>
+                    
+                    <span class="chip"><strong>date</strong> <span class="mono">2026-03-03</span></span>
+                    
+                    
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <a class="btn primary" href="https://techcrunch.com/2026/03/03/alibabas-qwen-tech-lead-steps-down-after-major-ai-push/" target="_blank" rel="noopener noreferrer" aria-label="Open article">Open</a>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer" role="contentinfo">
+        <div>
+          <span class="mono">category</span>
+          <span class="muted">/</span>
+          <span>서류/행정 레이더</span>
+        </div>
+        <div>
+          <a href="#content" class="mono" aria-label="Back to top">back to top</a>
+        </div>
+      </footer>
+
+      <script id="articles-data" type="application/json">[{"link": "https://techcrunch.com/2026/03/04/anthropic-ceo-dario-amodei-calls-openais-messaging-around-military-deal-straight-up-lies-report-says/", "matched_entities": {}, "published": "2026-03-04T13:40:05", "published_at": "2026-03-04T13:40:05", "source": "TechCrunch", "summary": "Anthropic gave up its contract with the Pentagon over AI safety disagreements -- then, OpenAI swooped in.", "title": "Anthropic CEO Dario Amodei calls OpenAI\u2019s messaging around military deal \u2018straight up lies,\u2019 report says"}, {"link": "https://techcrunch.com/2026/03/04/apple-music-to-add-transparency-tags-to-distinguish-ai-music-says-report/", "matched_entities": {}, "published": "2026-03-04T12:43:58", "published_at": "2026-03-04T12:43:58", "source": "TechCrunch", "summary": "The label or distributor has to opt in to tagging their music as AI, so it\u0027s unclear how effective this intervention will be.", "title": "Apple Music to add Transparency Tags to distinguish AI music, says report"}, {"link": "https://techcrunch.com/2026/03/04/google-settles-with-epic-games-drops-its-play-store-commissions-to-20/", "matched_entities": {}, "published": "2026-03-04T11:05:12", "published_at": "2026-03-04T11:05:12", "source": "TechCrunch", "summary": "Google has dropped its commission, charging a 20% service fee and an optional 5% to use its billing services. It will also offer a new process for third-party app stores.", "title": "Google settles with Epic Games, drops its Play Store commissions to 20%"}, {"link": "https://techcrunch.com/video/his-house-burned-down-he-used-the-insurance-money-to-build-popsockets/", "matched_entities": {}, "published": "2026-03-04T10:34:26", "published_at": "2026-03-04T10:34:26", "source": "TechCrunch", "summary": "Does\u0026#160;a\u0026#160;consumer hardware\u0026#160;company need to get on the\u0026#160;VC treadmill to\u0026#160;succeed?\u0026#160;Eleven years and 290 million products sold across 115 countries later,\u0026#160;PopSockets\u0026#160;has proven that\u0026#160;the bootstrapped, low-dilution path more\u0026#160;viable\u0026#160;than the industry gives it credit for.\u0026#160;The global consumer hardware brand was built on less than $500k, no institutional capital, and a philosophy professor\u0026#8217;s determination.\u0026#160; Watch as founder and former CEO [\u0026#8230;]", "title": "His house burned down. He used the insurance money to build\u00a0PopSockets."}, {"link": "https://techcrunch.com/2026/03/04/u-s-and-eu-police-shut-down-leakbase-a-site-accused-of-sharing-stolen-passwords-and-hacking-tools/", "matched_entities": {}, "published": "2026-03-04T10:01:55", "published_at": "2026-03-04T10:01:55", "source": "TechCrunch", "summary": "Authorities say LeakBase was \"one of the world\u2019s largest online forums for cybercriminals,\" and maintained an archive of hacked databases containing hundreds of millions of passwords.", "title": "US and EU police shut down LeakBase, a site accused of sharing stolen passwords and hacking tools"}, {"link": "https://techcrunch.com/2026/03/04/everything-apple-announced-macbook-neo-iphone-17e-ipad-air/", "matched_entities": {}, "published": "2026-03-04T10:00:43", "published_at": "2026-03-04T10:00:43", "source": "TechCrunch", "summary": "From a new iPhone to a budget-friendly MacBook, Apple announced a series of new products this week.", "title": "MacBook Neo, iPhone 17e, and everything else Apple announced this week"}, {"link": "https://techcrunch.com/2026/03/04/https-techcrunch-com-2026-03-04-google-search-rolls-out-geminis-canvas-in-ai-mode-to-all-us-users/", "matched_entities": {}, "published": "2026-03-04T09:50:58", "published_at": "2026-03-04T09:50:58", "source": "TechCrunch", "summary": "Canvas in AI Mode is available to U.S. users in English for creating plans, projects, apps, and more.", "title": "Google Search rolls out Gemini\u2019s Canvas in AI Mode to all US users"}, {"link": "https://techcrunch.com/2026/03/04/decagon-completes-first-tender-offer-at-4-5b-valuation/", "matched_entities": {"TaxDocs": ["irs"]}, "published": "2026-03-04T09:32:53", "published_at": "2026-03-04T09:32:53", "source": "TechCrunch", "summary": "The AI-powered customer support startup is the latest example of a fast-growing, young company that\u0027s providing employee liquidity.", "title": "Decagon completes first tender offer at $4.5B valuation"}, {"link": "https://techcrunch.com/2026/03/04/the-us-military-is-still-using-claude-but-defense-tech-clients-are-fleeing/", "matched_entities": {}, "published": "2026-03-04T08:20:01", "published_at": "2026-03-04T08:20:01", "source": "TechCrunch", "summary": "As the U.S. continues its aerial attack on Iran, Anthropic models are being used for many targeting decisions.", "title": "The US military is still using Claude \u2014 but defense-tech clients are fleeing"}, {"link": "https://techcrunch.com/2026/03/04/x-taps-william-shatner-to-give-out-invites-to-its-payments-service-x-money/", "matched_entities": {}, "published": "2026-03-04T07:34:21", "published_at": "2026-03-04T07:34:21", "source": "TechCrunch", "summary": "42 X users donated to William Shatner\u0027s charity in exchange for an early invite to X Money beta.", "title": "X taps William Shatner to give out invites to its payments service, X Money"}, {"link": "https://techcrunch.com/2026/03/04/host-a-side-event-during-techcrunch-founder-summit-week-in-boston/", "matched_entities": {}, "published": "2026-03-04T07:00:00", "published_at": "2026-03-04T07:00:00", "source": "TechCrunch", "summary": "Want to tap into the energy of 1,100+ startup founders, investors, and tech leaders descending on Boston for the Founder Summit 2026 on June 9? Host your own Side Event during \u201cFounder Summit Week,\u201d happening June 4-10!", "title": "Host a Side Event during TechCrunch Founder Summit Week in Boston"}, {"link": "https://techcrunch.com/2026/03/04/tiktok-wont-add-end-to-end-encryption-to-direct-messages-report-says/", "matched_entities": {}, "published": "2026-03-04T06:15:31", "published_at": "2026-03-04T06:15:31", "source": "TechCrunch", "summary": "The social media giant says that end-to-end encryption would make users less safe.", "title": "TikTok won\u2019t add end-to-end encryption to direct messages, report says"}, {"link": "https://techcrunch.com/2026/03/04/father-sues-google-claiming-gemini-chatbot-drove-son-into-fatal-delusion/", "matched_entities": {}, "published": "2026-03-04T05:58:36", "published_at": "2026-03-04T05:58:36", "source": "TechCrunch", "summary": "A father is suing Google and Alphabet, alleging its Gemini chatbot reinforced his son\u2019s delusional belief it was his AI wife and coached him toward suicide and a planned airport attack.", "title": "Father sues Google, claiming Gemini chatbot drove son into fatal delusion"}, {"link": "https://techcrunch.com/2026/03/04/meet-the-macbook-neo-apples-colorful-answer-to-the-chromebook-starting-at-599/", "matched_entities": {}, "published": "2026-03-04T05:57:17", "published_at": "2026-03-04T05:57:17", "source": "TechCrunch", "summary": "Apple is offering the MacBook Neo at a more affordable price point by using an A18 Pro chip, which is used in the iPhone 16 Pro.", "title": "Meet the MacBook Neo, Apple\u2019s colorful answer to the Chromebook, starting at $599"}, {"link": "https://techcrunch.com/2026/03/04/one-startups-pitch-to-provide-more-reliable-ai-answers-crowdsource-the-chatbots/", "matched_entities": {}, "published": "2026-03-04T05:00:00", "published_at": "2026-03-04T05:00:00", "source": "TechCrunch", "summary": "CollectivIQ looks to give users more accurate answers to their AI queries by showing them responses that pull information from ChatGPT, Gemini, Claude, Grok \u2014 and up to 10 other models \u2014 all at the same time.", "title": "One startup\u2019s pitch to provide more reliable AI answers: Crowdsource the chatbots"}, {"link": "https://techcrunch.com/2026/03/04/who-needs-data-centers-in-space-when-they-can-float-offshore/", "matched_entities": {}, "published": "2026-03-04T03:00:00", "published_at": "2026-03-04T03:00:00", "source": "TechCrunch", "summary": "Offshore wind developer Aikido will deploy a small data center beneath a floating offshore wind turbine later this year.", "title": "Who needs data centers in space when they can float offshore?"}, {"link": "https://techcrunch.com/2026/03/04/eight-sleep-raises-50m-at-1-5b-valuation/", "matched_entities": {}, "published": "2026-03-04T02:00:00", "published_at": "2026-03-04T02:00:00", "source": "TechCrunch", "summary": "Eight Sleep said it was free-cash-flow positive in 2025 and plans to use the new funding for new products, global expansions, and clinical validation.", "title": "Eight Sleep raises $50M at $1.5B valuation"}, {"link": "https://techcrunch.com/2026/03/03/why-ai-startups-are-selling-the-same-equity-at-two-different-prices/", "matched_entities": {}, "published": "2026-03-03T15:31:25", "published_at": "2026-03-03T15:31:25", "source": "TechCrunch", "summary": "Some AI founders are using a novel valuation mechanism to manufacture unicorn status.", "title": "Why AI startups are selling the same equity at two different prices"}, {"link": "https://techcrunch.com/2026/03/03/a-suite-of-government-hacking-tools-targeting-iphones-is-now-being-used-by-cybercriminals/", "matched_entities": {}, "published": "2026-03-03T14:27:31", "published_at": "2026-03-03T14:27:31", "source": "TechCrunch", "summary": "Security researchers say exploits used by governments to hack into iPhones have been found to be used by cybercriminals. They warned of an emerging market for \"secondhand\" exploits.", "title": "A suite of government hacking tools targeting iPhones is now being used by cybercriminals"}, {"link": "https://techcrunch.com/2026/03/03/alibabas-qwen-tech-lead-steps-down-after-major-ai-push/", "matched_entities": {}, "published": "2026-03-03T14:16:36", "published_at": "2026-03-03T14:16:36", "source": "TechCrunch", "summary": "Reactions rippled through Alibaba\u0027s Qwen team after tech lead Junyang Lin stepped down following a major model launch.", "title": "Alibaba\u2019s Qwen tech lead steps down after major AI push"}]</script>
+      <script id="entities-data" type="application/json">{"TaxDocs": 1}</script>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+      <script>
+        (function () {
+          const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          function readJson(id, fallback) {
+            const el = document.getElementById(id);
+            if (!el) return fallback;
+            const txt = (el.textContent || "").trim();
+            if (!txt) return fallback;
+            try { return JSON.parse(txt); } catch (e) { return fallback; }
+          }
+
+          const articles = readJson("articles-data", []);
+          const entityCountsRaw = readJson("entities-data", {});
+
+          function normalizeEntityPairs(raw) {
+            if (!raw) return [];
+            if (Array.isArray(raw)) {
+              if (raw.length && Array.isArray(raw[0]) && raw[0].length >= 2) {
+                return raw.map(p => [String(p[0]), Number(p[1]) || 0]);
+              }
+              if (raw.length && typeof raw[0] === "object") {
+                return raw.map(o => [String(o.name || o.entity || ""), Number(o.count || o.value || 0) || 0]).filter(p => p[0]);
+              }
+              return [];
+            }
+            if (typeof raw === "object") {
+              return Object.entries(raw).map(([k, v]) => [String(k), Number(v) || 0]);
+            }
+            return [];
+          }
+
+          function getArticleDate(a) {
+            const v = a && (a.published_at || a.published || a.date || a.datetime || a.publishedAt || a.publishedAtISO);
+            if (!v) return null;
+
+            const s = String(v);
+            const direct = new Date(s);
+            if (!isNaN(direct.getTime())) return direct;
+
+            const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+            if (m) {
+              const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+              if (!isNaN(d.getTime())) return d;
+            }
+            return null;
+          }
+
+          function toDayKey(d) {
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, "0");
+            const day = String(d.getDate()).padStart(2, "0");
+            return y + "-" + m + "-" + day;
+          }
+
+          function buildTimeline(items) {
+            const map = new Map();
+            for (const a of items) {
+              const d = getArticleDate(a);
+              if (!d) continue;
+              const k = toDayKey(d);
+              map.set(k, (map.get(k) || 0) + 1);
+            }
+            const keys = Array.from(map.keys()).sort();
+            return { labels: keys, values: keys.map(k => map.get(k) || 0) };
+          }
+
+          function buildSources(items) {
+            const map = new Map();
+            for (const a of items) {
+              const s = (a && (a.source || a.source_name || a.publisher || a.feed || a.domain)) ? String(a.source || a.source_name || a.publisher || a.feed || a.domain) : "unknown";
+              const key = s.trim() || "unknown";
+              map.set(key, (map.get(key) || 0) + 1);
+            }
+            const pairs = Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+            const top = pairs.slice(0, 10);
+            const rest = pairs.slice(10).reduce((acc, p) => acc + p[1], 0);
+            const labels = top.map(p => p[0]);
+            const values = top.map(p => p[1]);
+            if (rest > 0) { labels.push("other"); values.push(rest); }
+            return { labels, values };
+          }
+
+          function palette(n) {
+            const base = [
+              "rgba(51,214,197,.86)",  // teal
+              "rgba(25,167,195,.78)",  // blue-teal
+              "rgba(246,200,76,.86)",  // amber
+              "rgba(120,162,255,.78)", // soft blue
+              "rgba(255,91,110,.74)",  // red
+              "rgba(160,118,255,.70)", // violet (small)
+              "rgba(95,222,132,.70)",  // green
+              "rgba(255,154,74,.70)",  // orange
+              "rgba(226,93,255,.62)",  // magenta
+              "rgba(233,238,251,.46)"  // gray
+            ];
+            const out = [];
+            for (let i = 0; i < n; i++) out.push(base[i % base.length]);
+            return out;
+          }
+
+          function chartDefaults() {
+            return {
+              color: "rgba(233,238,251,.78)",
+              borderColor: "rgba(150,190,255,.14)",
+              font: { family: '"Pretendard Variable","Pretendard",system-ui,-apple-system,Segoe UI,sans-serif', size: 12 },
+              animation: reducedMotion ? false : { duration: 650, easing: "easeOutQuart" }
+            };
+          }
+
+          if (!window.Chart) return;
+
+          Chart.defaults.maintainAspectRatio = false;
+          Chart.defaults.responsive = true;
+          Chart.defaults.plugins.legend.labels.boxWidth = 10;
+          Chart.defaults.plugins.legend.labels.boxHeight = 10;
+          Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+          const defaults = chartDefaults();
+          Chart.defaults.color = defaults.color;
+          Chart.defaults.borderColor = defaults.borderColor;
+          Chart.defaults.font = defaults.font;
+          Chart.defaults.animation = defaults.animation;
+
+          const entityPairs = normalizeEntityPairs(entityCountsRaw)
+            .filter(p => p[0] && Number.isFinite(p[1]))
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 12);
+
+          const timeline = buildTimeline(articles);
+          const sources = buildSources(articles);
+
+          const entityCanvas = document.getElementById("chartEntities");
+          if (entityCanvas && entityPairs.length) {
+            const labels = entityPairs.map(p => p[0]);
+            const values = entityPairs.map(p => p[1]);
+            new Chart(entityCanvas.getContext("2d"), {
+              type: "bar",
+              data: {
+                labels,
+                datasets: [{
+                  label: "count",
+                  data: values,
+                  backgroundColor: "rgba(51,214,197,.26)",
+                  borderColor: "rgba(51,214,197,.72)",
+                  borderWidth: 1.2,
+                  borderRadius: 10,
+                  maxBarThickness: 44
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: "rgba(10,16,30,.92)",
+                    borderColor: "rgba(150,190,255,.20)",
+                    borderWidth: 1,
+                    titleColor: "rgba(233,238,251,.92)",
+                    bodyColor: "rgba(233,238,251,.84)"
+                  }
+                },
+                scales: {
+                  x: {
+                    grid: { display: false },
+                    ticks: { color: "rgba(233,238,251,.68)" }
+                  },
+                  y: {
+                    beginAtZero: true,
+                    grid: { color: "rgba(150,190,255,.10)" },
+                    ticks: { color: "rgba(233,238,251,.64)" }
+                  }
+                }
+              }
+            });
+          }
+
+          const timelineCanvas = document.getElementById("chartTimeline");
+          if (timelineCanvas && timeline.labels.length) {
+            new Chart(timelineCanvas.getContext("2d"), {
+              type: "line",
+              data: {
+                labels: timeline.labels,
+                datasets: [{
+                  label: "articles/day",
+                  data: timeline.values,
+                  tension: 0.28,
+                  fill: true,
+                  borderColor: "rgba(246,200,76,.84)",
+                  backgroundColor: "rgba(246,200,76,.12)",
+                  pointRadius: 2.8,
+                  pointHoverRadius: 4.2,
+                  pointBackgroundColor: "rgba(246,200,76,.84)",
+                  pointBorderColor: "rgba(10,16,30,.92)",
+                  pointBorderWidth: 1.2
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: "rgba(10,16,30,.92)",
+                    borderColor: "rgba(150,190,255,.20)",
+                    borderWidth: 1
+                  }
+                },
+                scales: {
+                  x: {
+                    grid: { display: false },
+                    ticks: {
+                      color: "rgba(233,238,251,.68)",
+                      maxRotation: 0,
+                      autoSkip: true,
+                      maxTicksLimit: 9
+                    }
+                  },
+                  y: {
+                    beginAtZero: true,
+                    grid: { color: "rgba(150,190,255,.10)" },
+                    ticks: { color: "rgba(233,238,251,.64)" }
+                  }
+                }
+              }
+            });
+          }
+
+          const sourcesCanvas = document.getElementById("chartSources");
+          if (sourcesCanvas && sources.labels.length) {
+            const colors = palette(sources.labels.length);
+            new Chart(sourcesCanvas.getContext("2d"), {
+              type: "doughnut",
+              data: {
+                labels: sources.labels,
+                datasets: [{
+                  label: "articles",
+                  data: sources.values,
+                  backgroundColor: colors.map(c => c.replace(")", ", .24)").replace("rgba", "rgba")),
+                  borderColor: colors.map(c => c.replace(")", ", .80)").replace("rgba", "rgba")),
+                  borderWidth: 1.1,
+                  hoverOffset: 6
+                }]
+              },
+              options: {
+                cutout: "62%",
+                plugins: {
+                  legend: {
+                    position: "bottom",
+                    labels: { color: "rgba(233,238,251,.72)", padding: 14 }
+                  },
+                  tooltip: {
+                    backgroundColor: "rgba(10,16,30,.92)",
+                    borderColor: "rgba(150,190,255,.20)",
+                    borderWidth: 1
+                  }
+                }
+              }
+            });
+          }
+        })();
+      </script>
+    </main>
+  </body>
+</html>
