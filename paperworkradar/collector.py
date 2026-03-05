@@ -8,6 +8,7 @@ from typing import List, Tuple, cast
 import feedparser
 import requests
 
+from .collectors.gov24_collector import collect_gov24
 from .models import Article, Source
 
 
@@ -38,8 +39,27 @@ def _collect_single(
     limit: int,
     timeout: int,
 ) -> List[Article]:
-    if source.type.lower() != "rss":
-        raise ValueError(f"Unsupported source type '{source.type}'. Only 'rss' is supported in the template.")
+    source_type = source.type.lower()
+    if source_type == "rss":
+        return _collect_rss(source, category=category, limit=limit, timeout=timeout)
+
+    if source_type in {"api", "api_source"}:
+        if "gov24" in source.url.lower() or "gov24" in source.name.lower() or "odcloud.kr" in source.url.lower():
+            return collect_gov24(source, category=category, limit=limit, timeout=timeout)
+        raise ValueError(f"Unsupported API source '{source.name}'. Gov24 API sources are supported.")
+
+    raise ValueError(
+        f"Unsupported source type '{source.type}'. Supported types are 'rss', 'api', and 'api_source'."
+    )
+
+
+def _collect_rss(
+    source: Source,
+    *,
+    category: str,
+    limit: int,
+    timeout: int,
+) -> List[Article]:
 
     response = requests.get(source.url, timeout=timeout)
     response.raise_for_status()
