@@ -7,10 +7,13 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 env:
   RADAR_CATEGORY: paperwork
   TZ: Asia/Seoul
+  GOV24_API_KEY: ${{ secrets.GOV24_API_KEY }}
 
 concurrency:
   group: radar-collection
@@ -35,7 +38,13 @@ jobs:
 
       - name: Run Radar
         run: |
-          python main.py --category "${{ env.RADAR_CATEGORY }}" --recent-days 7 --keep-days 90
+          python main.py --category "${{ env.RADAR_CATEGORY }}" --recent-days 7 --keep-days 90 --generate-report
+
+      - name: Auto-commit data updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update paperworkradar data"
+          file_pattern: data/*.duckdb
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -55,3 +64,12 @@ jobs:
           path: data/radar_data.duckdb
           retention-days: 7
           if-no-files-found: ignore
+
+      - name: Archive reports (backup)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-reports-${{ github.run_number }}
+          path: reports/
+          retention-days: 7
+          if-no-files-found: warn
