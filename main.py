@@ -6,6 +6,7 @@ from typing import cast
 
 from paperworkradar.analyzer import apply_entity_rules
 from paperworkradar.collector import collect_sources
+from paperworkradar.common.validators import validate_article
 from paperworkradar.config_loader import load_category_config, load_settings
 from paperworkradar.raw_logger import RawLogger
 from paperworkradar.reporter import generate_report
@@ -43,12 +44,25 @@ def run(
 
     analyzed = apply_entity_rules(collected, category_cfg.entities)
 
+    # Validate articles for data quality
+    validated_articles = []
+    validation_errors = []
+    for article in analyzed:
+        is_valid, validation_msgs = validate_article(article)
+        if is_valid:
+            validated_articles.append(article)
+        else:
+            validation_errors.append(f"{article.link}: {', '.join(validation_msgs)}")
+
+    if validation_errors:
+        errors.extend(validation_errors)
+
     storage = RadarStorage(settings.database_path)
-    storage.upsert_articles(analyzed)
+    storage.upsert_articles(validated_articles)
     _ = storage.delete_older_than(keep_days)
 
     with SearchIndex(settings.search_db_path) as search_idx:
-        for article in analyzed:
+        for article in validated_articles:
             search_idx.upsert(article.link, article.title, article.summary)
 
     recent_articles = storage.recent_articles(category_cfg.category_name, days=recent_days)
@@ -58,6 +72,7 @@ def run(
         "sources": len(category_cfg.sources),
         "collected": len(collected),
         "matched": sum(1 for a in collected if a.matched_entities),
+        "validated": len(validated_articles),
         "window_days": recent_days,
     }
 
