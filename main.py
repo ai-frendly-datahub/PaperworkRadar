@@ -28,7 +28,9 @@ def run(
     settings = load_settings(config_path)
     category_cfg = load_category_config(category, categories_dir=categories_dir)
 
-    print(f"[Radar] Collecting '{category_cfg.display_name}' from {len(category_cfg.sources)} sources...")
+    print(
+        f"[Radar] Collecting '{category_cfg.display_name}' from {len(category_cfg.sources)} sources..."
+    )
     collected, errors = collect_sources(
         category_cfg.sources,
         category=category_cfg.category_name,
@@ -92,13 +94,33 @@ def run(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Lightweight Radar template runner")
-    _ = parser.add_argument("--category", required=True, help="Category name matching a YAML in config/categories/")
-    _ = parser.add_argument("--config", type=Path, default=None, help="Path to config/config.yaml (optional)")
-    _ = parser.add_argument("--categories-dir", type=Path, default=None, help="Custom directory for category YAML files")
-    _ = parser.add_argument("--per-source-limit", type=int, default=30, help="Max items to pull from each source")
-    _ = parser.add_argument("--recent-days", type=int, default=7, help="Window (days) to show in the report")
-    _ = parser.add_argument("--timeout", type=int, default=15, help="HTTP timeout per request (seconds)")
-    _ = parser.add_argument("--keep-days", type=int, default=90, help="Retention window for stored items")
+    _ = parser.add_argument(
+        "--category", required=True, help="Category name matching a YAML in config/categories/"
+    )
+    _ = parser.add_argument(
+        "--config", type=Path, default=None, help="Path to config/config.yaml (optional)"
+    )
+    _ = parser.add_argument(
+        "--categories-dir", type=Path, default=None, help="Custom directory for category YAML files"
+    )
+    _ = parser.add_argument(
+        "--per-source-limit", type=int, default=30, help="Max items to pull from each source"
+    )
+    _ = parser.add_argument(
+        "--recent-days", type=int, default=7, help="Window (days) to show in the report"
+    )
+    _ = parser.add_argument(
+        "--timeout", type=int, default=15, help="HTTP timeout per request (seconds)"
+    )
+    _ = parser.add_argument(
+        "--keep-days", type=int, default=90, help="Retention window for stored items"
+    )
+    _ = parser.add_argument(
+        "--generate-report",
+        action="store_true",
+        default=False,
+        help="Generate HTML report after collection",
+    )
     return parser.parse_args()
 
 
