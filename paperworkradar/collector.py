@@ -4,10 +4,11 @@ import html
 import time
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
-from typing import List, Tuple, cast
+from typing import Optional, List, Tuple, cast
 
 import feedparser
 import requests
+from pybreaker import CircuitBreakerError
 from tenacity import (
     retry,
     retry_if_exception_type,
@@ -17,6 +18,7 @@ from tenacity import (
 
 from .collectors.gov24_collector import collect_gov24
 from .models import Article, Source
+from .resilience import get_circuit_breaker_manager
 
 
 _DEFAULT_HEADERS: dict[str, str] = {
@@ -56,12 +58,22 @@ def collect_sources(
     """Fetch items from all configured sources, returning articles and errors."""
     articles: List[Article] = []
     errors: List[str] = []
+    manager = get_circuit_breaker_manager()
 
     for source in sources:
         try:
+            breaker = manager.get_breaker(source.name)
             articles.extend(
-                _collect_single(source, category=category, limit=limit_per_source, timeout=timeout)
+                breaker.call(
+                    _collect_single,
+                    source,
+                    category=category,
+                    limit=limit_per_source,
+                    timeout=timeout,
+                )
             )
+        except CircuitBreakerError:
+            errors.append(f"{source.name}: Circuit breaker open (source unavailable)")
         except Exception as exc:  # noqa: BLE001 - surface errors to the caller
             errors.append(f"{source.name}: {exc}")
 
@@ -138,7 +150,7 @@ def _as_text(value: object) -> str:
     return ""
 
 
-def _extract_datetime(entry: dict[str, object]) -> datetime | None:
+def _extract_datetime(entry: dict[str, object]) -> Optional[datetime]:
     """Parse a feed entry date into a timezone-aware datetime."""
     published_parsed = entry.get("published_parsed")
     if isinstance(published_parsed, tuple):

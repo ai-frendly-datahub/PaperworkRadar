@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 import time
 from datetime import datetime, timezone
-from typing import Any
+from typing import Optional, Any
 from urllib.parse import parse_qs, urlparse
 
 import requests
@@ -87,7 +87,7 @@ def _extract_records(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return records
 
 
-def _to_article(record: dict[str, Any], *, source: Source, category: str) -> Article | None:
+def _to_article(record: dict[str, Any], *, source: Source, category: str) -> Optional[Article]:
     title = _first_text(record, "serviceName", "서비스명", "name")
     if not title:
         return None
@@ -142,7 +142,7 @@ def _as_float(value: str, *, default: float) -> float:
         return default
 
 
-def _parse_datetime(raw: str) -> datetime | None:
+def _parse_datetime(raw: str) -> Optional[datetime]:
     if not raw:
         return None
     normalized = raw.strip().replace("Z", "+00:00")
