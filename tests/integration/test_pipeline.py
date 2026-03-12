@@ -84,7 +84,7 @@ def test_full_pipeline_creates_all_outputs(tmp_path: Path) -> None:
 </channel></rss>
 """
 
-    with patch("paperworkradar.collector.requests.get", return_value=_FakeResponse(rss_payload)):
+    with patch("paperworkradar.collector.requests.Session.get", return_value=_FakeResponse(rss_payload)):
         output_path = run(
             category="test_cat",
             config_path=config_path,
