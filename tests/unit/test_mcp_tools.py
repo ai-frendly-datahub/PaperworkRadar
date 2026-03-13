@@ -1,31 +1,12 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
-from importlib import import_module
 from pathlib import Path
-from typing import Protocol, cast
 
 import duckdb
 
-
-class _SearchIndex(Protocol):
-    def upsert(self, link: str, title: str, body: str) -> None: ...
-
-    def close(self) -> None: ...
-
-    def __enter__(self) -> _SearchIndex: ...
-
-    def __exit__(self, exc_type: object, exc_value: object, traceback: object) -> None: ...
-
-
-class _SearchIndexCtor(Protocol):
-    def __call__(self, db_path: Path) -> _SearchIndex: ...
-
-
-SearchIndex = cast(_SearchIndexCtor, import_module("paperworkradar.search_index").SearchIndex)
-_tools = import_module("paperworkradar.mcp_server.tools")
+from paperworkradar.search_index import SearchIndex
 
 
 def _init_articles_table(db_path: Path) -> None:
@@ -68,7 +49,7 @@ def _seed_article(
             """,
             [
                 article_id,
-                "paperwork",
+                "coffee",
                 "Test Source",
                 title,
                 link,
@@ -83,52 +64,52 @@ def _seed_article(
 
 
 def test_handle_search(tmp_path: Path) -> None:
-    handle_search = cast(Callable[..., str], _tools.handle_search)
+    from mcp_server.tools import handle_search
 
     db_path = tmp_path / "radar.duckdb"
     search_db_path = tmp_path / "search.db"
     _init_articles_table(db_path)
 
-    now = datetime.now(tz=UTC)
+    now = datetime.now(UTC)
     recent_link = "https://example.com/recent"
     old_link = "https://example.com/old"
 
     _seed_article(
         db_path=db_path,
         article_id=1,
-        title="Recent filing requirement",
+        title="Recent coffee demand",
         link=recent_link,
         collected_at=now - timedelta(days=2),
     )
     _seed_article(
         db_path=db_path,
         article_id=2,
-        title="Old filing requirement",
+        title="Old coffee demand",
         link=old_link,
         collected_at=now - timedelta(days=20),
     )
 
     with SearchIndex(search_db_path) as idx:
-        idx.upsert(recent_link, "Recent filing requirement", "Tax filing deadline update")
-        idx.upsert(old_link, "Old filing requirement", "Old filing process")
+        idx.upsert(recent_link, "Recent coffee demand", "Demand is rising")
+        idx.upsert(old_link, "Old coffee demand", "Demand was low")
 
     output = handle_search(
         search_db_path=search_db_path,
         db_path=db_path,
-        query="last 7 days filing",
+        query="last 7 days coffee",
         limit=10,
     )
 
-    assert "Recent filing requirement" in output
-    assert "Old filing requirement" not in output
+    assert "Recent coffee demand" in output
+    assert "Old coffee demand" not in output
 
 
 def test_handle_recent_updates(tmp_path: Path) -> None:
-    handle_recent_updates = cast(Callable[..., str], _tools.handle_recent_updates)
+    from mcp_server.tools import handle_recent_updates
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
-    now = datetime.now(tz=UTC)
+    now = datetime.now(UTC)
 
     _seed_article(
         db_path=db_path,
@@ -152,7 +133,7 @@ def test_handle_recent_updates(tmp_path: Path) -> None:
 
 
 def test_handle_sql_select(tmp_path: Path) -> None:
-    handle_sql = cast(Callable[..., str], _tools.handle_sql)
+    from mcp_server.tools import handle_sql
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
@@ -164,7 +145,7 @@ def test_handle_sql_select(tmp_path: Path) -> None:
 
 
 def test_handle_sql_blocked(tmp_path: Path) -> None:
-    handle_sql = cast(Callable[..., str], _tools.handle_sql)
+    from mcp_server.tools import handle_sql
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
@@ -175,11 +156,11 @@ def test_handle_sql_blocked(tmp_path: Path) -> None:
 
 
 def test_handle_top_trends(tmp_path: Path) -> None:
-    handle_top_trends = cast(Callable[..., str], _tools.handle_top_trends)
+    from mcp_server.tools import handle_top_trends
 
     db_path = tmp_path / "radar.duckdb"
     _init_articles_table(db_path)
-    now = datetime.now(tz=UTC)
+    now = datetime.now(UTC)
 
     _seed_article(
         db_path=db_path,
@@ -187,7 +168,7 @@ def test_handle_top_trends(tmp_path: Path) -> None:
         title="a",
         link="https://example.com/a",
         collected_at=now - timedelta(days=1),
-        entities={"TaxDocs": ["tax filing", "irs"], "Deadline": ["deadline"]},
+        entities={"Region": ["ethiopia", "kenya"], "Roaster": ["blue bottle"]},
     )
     _seed_article(
         db_path=db_path,
@@ -195,44 +176,20 @@ def test_handle_top_trends(tmp_path: Path) -> None:
         title="b",
         link="https://example.com/b",
         collected_at=now - timedelta(days=1),
-        entities={"TaxDocs": ["tax form"]},
+        entities={"Region": ["brazil"]},
     )
 
     output = handle_top_trends(db_path=db_path, days=7, limit=10)
 
-    assert "TaxDocs" in output
+    assert "Region" in output
     assert "3" in output
-    assert "Deadline" in output
+    assert "Roaster" in output
     assert "1" in output
 
 
-def test_handle_doc_checklist(tmp_path: Path) -> None:
-    handle_doc_checklist = cast(Callable[..., str], _tools.handle_doc_checklist)
+def test_handle_price_watch_stub() -> None:
+    from mcp_server.tools import handle_price_watch
 
-    db_path = tmp_path / "radar.duckdb"
-    _init_articles_table(db_path)
-    now = datetime.now(tz=UTC)
+    output = handle_price_watch(threshold=10.0)
 
-    _seed_article(
-        db_path=db_path,
-        article_id=1,
-        title="Tax filing update",
-        link="https://example.com/tax",
-        collected_at=now - timedelta(days=1),
-        entities={"TaxDocs": ["tax filing"], "Deadline": ["due date"]},
-    )
-    _seed_article(
-        db_path=db_path,
-        article_id=2,
-        title="Visa permit notice",
-        link="https://example.com/visa",
-        collected_at=now - timedelta(days=2),
-        entities={"Visa": ["work permit"]},
-    )
-
-    output = handle_doc_checklist(db_path=db_path, days=30, limit=5)
-
-    assert "Document checklist (last 30 days):" in output
-    assert "[TaxDocs]" in output
-    assert "Tax filing update (Test Source)" in output
-    assert "[Visa]" in output
+    assert "Not available in template project" in output

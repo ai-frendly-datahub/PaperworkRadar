@@ -7,16 +7,7 @@ from typing import Protocol, cast
 
 import yaml
 
-
-class _Settings(Protocol):
-    search_db_path: Path
-
-
-class _LoadSettings(Protocol):
-    def __call__(self, config_path: Path | None = None) -> _Settings: ...
-
-
-load_settings = cast(_LoadSettings, import_module("paperworkradar.config_loader").load_settings)
+from paperworkradar.config_loader import load_settings
 
 
 class _SearchResult(Protocol):
@@ -42,7 +33,7 @@ class _SearchIndexCtor(Protocol):
     def __call__(self, db_path: Path) -> _SearchIndex: ...
 
 
-SearchIndex = cast(_SearchIndexCtor, import_module("paperworkradar.search_index").SearchIndex)
+SearchIndex = cast(_SearchIndexCtor, import_module("radar.search_index").SearchIndex)
 
 
 def test_index_creation_creates_tables_fts_and_triggers(tmp_path: Path) -> None:
@@ -72,17 +63,17 @@ def test_upsert_and_search_returns_matching_results(tmp_path: Path) -> None:
     index = SearchIndex(tmp_path / "search_index.db")
     index.upsert(
         link="https://example.com/a",
-        title="Visa process update",
-        body="The visa processing timeline has changed.",
+        title="Bordeaux market update",
+        body="The bordeaux wine market has shown strong demand.",
     )
 
-    results = index.search("visa")
+    results = index.search("bordeaux")
     index.close()
 
     assert len(results) == 1
     assert results[0].link == "https://example.com/a"
-    assert results[0].title == "Visa process update"
-    assert "<b>visa</b>" in results[0].snippet.lower()
+    assert results[0].title == "Bordeaux market update"
+    assert "<b>bordeaux</b>" in results[0].snippet.lower()
     assert isinstance(results[0].rank, float)
 
 
@@ -91,10 +82,10 @@ def test_search_returns_empty_list_when_no_match(tmp_path: Path) -> None:
     index.upsert(
         link="https://example.com/a",
         title="Coffee market update",
-        body="No admin content here.",
+        body="No wine content here.",
     )
 
-    results = index.search("visa")
+    results = index.search("bordeaux")
     index.close()
 
     assert results == []
@@ -104,11 +95,11 @@ def test_search_supports_korean_text(tmp_path: Path) -> None:
     index = SearchIndex(tmp_path / "search_index.db")
     index.upsert(
         link="https://example.com/ko",
-        title="비자 서류 뉴스",
-        body="비자 서류 요건이 변경되었습니다.",
+        title="보르도 와인 뉴스",
+        body="보르도 와인 생산량이 증가했습니다.",
     )
 
-    results = index.search("비자 서류")
+    results = index.search("보르도 와인")
     index.close()
 
     assert len(results) == 1
@@ -137,10 +128,10 @@ def test_search_respects_limit_parameter(tmp_path: Path) -> None:
         index.upsert(
             link=f"https://example.com/{idx}",
             title=f"Document {idx}",
-            body="visa paperwork term",
+            body="bordeaux wine term",
         )
 
-    results = index.search("visa", limit=2)
+    results = index.search("bordeaux", limit=2)
     index.close()
 
     assert len(results) == 2
@@ -168,16 +159,16 @@ def test_search_ranking_places_more_relevant_document_first(tmp_path: Path) -> N
     index = SearchIndex(tmp_path / "search_index.db")
     index.upsert(
         link="https://example.com/high",
-        title="Visa permit from Korea",
-        body="Visa permit from Korea details. Visa permit checklist and permit timeline.",
+        title="Merlot from France",
+        body="Merlot from France is a celebrated wine style. Merlot France pairing tips.",
     )
     index.upsert(
         link="https://example.com/low",
-        title="Visa overview",
-        body="This article mentions visa once.",
+        title="Merlot overview",
+        body="This article mentions merlot once.",
     )
 
-    results = index.search("visa OR permit", limit=2)
+    results = index.search("merlot OR france", limit=2)
     index.close()
 
     assert len(results) == 2

@@ -2,50 +2,22 @@ from __future__ import annotations
 
 import json
 from datetime import UTC, datetime
-from importlib import import_module
 from pathlib import Path
-from typing import Protocol, cast
+from typing import cast
+
+from paperworkradar.models import Article
+from paperworkradar.raw_logger import RawLogger
 
 
-class _Article(Protocol):
-    title: str
-
-
-class _ArticleCtor(Protocol):
-    def __call__(
-        self,
-        *,
-        title: str,
-        link: str,
-        summary: str,
-        published: datetime,
-        source: str,
-        category: str,
-        matched_entities: dict[str, list[str]],
-    ) -> _Article: ...
-
-
-class _RawLogger(Protocol):
-    def log(self, articles: list[_Article], *, source_name: str) -> Path: ...
-
-
-class _RawLoggerCtor(Protocol):
-    def __call__(self, raw_dir: Path) -> _RawLogger: ...
-
-
-Article = cast(_ArticleCtor, import_module("paperworkradar.models").Article)
-RawLogger = cast(_RawLoggerCtor, import_module("paperworkradar.raw_logger").RawLogger)
-
-
-def _make_article(*, title: str = "Sample title", summary: str = "요약") -> _Article:
+def _make_article(*, title: str = "Sample title", summary: str = "요약") -> Article:
     return Article(
         title=title,
         link="https://example.com/article",
         summary=summary,
         published=datetime(2026, 3, 4, 10, 0, tzinfo=UTC),
         source="RSS Source",
-        category="paperwork",
-        matched_entities={"TaxDocs": ["tax filing"]},
+        category="coffee",
+        matched_entities={"brands": ["Blue Bottle"]},
     )
 
 
@@ -122,3 +94,47 @@ def test_log_with_empty_articles_creates_empty_file(tmp_path: Path) -> None:
 
     assert output_path.exists()
     assert output_path.read_text(encoding="utf-8") == ""
+
+
+def test_log_prevents_duplicate_links_on_rerun(tmp_path: Path) -> None:
+    logger = RawLogger(tmp_path)
+    article1 = _make_article(title="Article 1", summary="First")
+    article2 = _make_article(title="Article 2", summary="Second")
+
+    article1.link = "https://example.com/article1"
+    article2.link = "https://example.com/article2"
+
+    output_path = logger.log([article1, article2], source_name="source", run_id="run1")
+    _ = logger.log([article1, article2], source_name="source", run_id="run1")
+
+    lines = output_path.read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 2
+    assert json.loads(lines[0])["title"] == "Article 1"
+    assert json.loads(lines[1])["title"] == "Article 2"
+
+
+def test_log_with_run_id_changes_filename(tmp_path: Path) -> None:
+    logger = RawLogger(tmp_path)
+    article = _make_article()
+
+    output_path1 = logger.log([article], source_name="source", run_id="run1")
+    output_path2 = logger.log([article], source_name="source", run_id="run2")
+
+    assert output_path1.name == "source_run1.jsonl"
+    assert output_path2.name == "source_run2.jsonl"
+    assert output_path1.exists()
+    assert output_path2.exists()
+
+
+def test_log_without_run_id_appends_to_same_file(tmp_path: Path) -> None:
+    logger = RawLogger(tmp_path)
+    article1 = _make_article(title="Article 1")
+    article2 = _make_article(title="Article 2")
+
+    output_path1 = logger.log([article1], source_name="source")
+    output_path2 = logger.log([article2], source_name="source")
+
+    assert output_path1.name == output_path2.name
+    assert output_path1 == output_path2
+    lines = output_path1.read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 2
