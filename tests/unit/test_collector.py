@@ -61,10 +61,13 @@ def test_collect_sources_supports_gov24_api_source_pagination(monkeypatch: Any) 
             return _FakeApiResponse(page1)
         return _FakeApiResponse(page2)
 
-    with patch("paperworkradar.collector.requests.get", side_effect=_fake_get), patch(
-        "paperworkradar.collector.time.sleep", return_value=None
+    with (
+        patch("paperworkradar.collector.requests.get", side_effect=_fake_get),
+        patch("paperworkradar.collector.time.sleep", return_value=None),
     ):
-        articles, errors = collect_sources([source], category="paperwork", limit_per_source=10, timeout=5)
+        articles, errors = collect_sources(
+            [source], category="paperwork", limit_per_source=10, timeout=5
+        )
 
     assert errors == []
     assert len(articles) == 3

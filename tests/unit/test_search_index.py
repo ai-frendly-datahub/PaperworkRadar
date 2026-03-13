@@ -3,10 +3,9 @@ from __future__ import annotations
 import sqlite3
 from importlib import import_module
 from pathlib import Path
-from typing import Optional, Protocol, cast
+from typing import Protocol, cast
 
 import yaml
-
 
 
 class _Settings(Protocol):
@@ -14,7 +13,7 @@ class _Settings(Protocol):
 
 
 class _LoadSettings(Protocol):
-    def __call__(self, config_path: Optional[Path] = None) -> _Settings: ...
+    def __call__(self, config_path: Path | None = None) -> _Settings: ...
 
 
 load_settings = cast(_LoadSettings, import_module("paperworkradar.config_loader").load_settings)

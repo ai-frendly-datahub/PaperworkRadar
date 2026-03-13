@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from importlib import import_module
 from pathlib import Path
-from typing import Callable, cast
+from typing import cast
 from unittest.mock import patch
 
 import yaml
+
 
 run = cast(Callable[..., Path], import_module("main").run)
 
@@ -84,7 +86,9 @@ def test_full_pipeline_creates_all_outputs(tmp_path: Path) -> None:
 </channel></rss>
 """
 
-    with patch("paperworkradar.collector.requests.Session.get", return_value=_FakeResponse(rss_payload)):
+    with patch(
+        "paperworkradar.collector.requests.Session.get", return_value=_FakeResponse(rss_payload)
+    ):
         output_path = run(
             category="test_cat",
             config_path=config_path,

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-# pyright: reportPrivateUsage=false
-
-import pytest
-import requests
 import time
 from unittest.mock import Mock, patch
+
+# pyright: reportPrivateUsage=false
+import pytest
+import requests
 
 from paperworkradar.collector import RateLimiter, _collect_single, collect_sources
 from paperworkradar.exceptions import NetworkError, SourceError
@@ -153,7 +153,9 @@ class TestCollectorRetryLogic:
 
         with (
             patch("paperworkradar.collector.requests.Session.get") as mock_get,
-            patch("paperworkradar.collector.get_circuit_breaker_manager", return_value=mock_manager),
+            patch(
+                "paperworkradar.collector.get_circuit_breaker_manager", return_value=mock_manager
+            ),
         ):
             mock_response = Mock()
             mock_response.content = b"""<?xml version="1.0"?>
