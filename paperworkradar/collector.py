@@ -181,9 +181,28 @@ def _collect_single(
     timeout: int,
     session: requests.Session | None = None,
 ) -> list[Article]:
-    if source.type.lower() != "rss":
-        raise SourceError(source.name, f"Unsupported source type '{source.type}'")
+    source_type = source.type.lower()
 
+    # Handle RSS feeds
+    if source_type == "rss":
+        return _collect_rss(source, category=category, limit=limit, timeout=timeout, session=session)
+
+    # Handle API sources
+    if source_type == "api_source":
+        return _collect_api_source(source, category=category, limit=limit, timeout=timeout, session=session)
+
+    raise SourceError(source.name, f"Unsupported source type '{source.type}'")
+
+
+def _collect_rss(
+    source: Source,
+    *,
+    category: str,
+    limit: int,
+    timeout: int,
+    session: requests.Session | None = None,
+) -> list[Article]:
+    """Collect articles from RSS feeds."""
     try:
         response = _fetch_url_with_retry(source.url, timeout, session=session)
     except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
@@ -228,6 +247,114 @@ def _collect_single(
         return items
     except Exception as exc:
         raise ParseError(f"Failed to parse feed from {source.name}: {exc}") from exc
+
+
+def _collect_api_source(
+    source: Source,
+    *,
+    category: str,
+    limit: int,
+    timeout: int,
+    session: requests.Session | None = None,
+) -> list[Article]:
+    """Collect articles from API sources (e.g., Gov24 Open API)."""
+
+    try:
+        response = _fetch_url_with_retry(source.url, timeout, session=session)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as exc:
+        raise NetworkError(f"API request failed for {source.name}: {exc}") from exc
+
+    try:
+        # Verify response code for Gov24 API
+        if source.name == "Gov24 Open API":
+            data = response.json()
+
+            # Check for API error codes
+            if "code" in data:
+                code = data["code"]
+                if code != "0000":
+                    message = data.get("message", "Unknown error")
+                    raise SourceError(source.name, f"Gov24 API error: {code} - {message}")
+
+            # Parse Gov24 response
+            items: list[Article] = []
+            results = data.get("results", [])
+
+            for result in results[:limit]:
+                title = result.get("serviceNm", "")
+                if not title:
+                    continue
+
+                # Build link from service ID
+                service_id = result.get("serviceId", "")
+                link = f"https://www.gov24.go.kr/main/service/{service_id}" if service_id else ""
+
+                # Get description
+                summary = result.get("serviceIntro", "") or ""
+
+                # Extract publish date (if available)
+                published = None
+                reg_dt = result.get("regDt", "")
+                if reg_dt:
+                    try:
+                        # Gov24 date format: YYYYMMDD
+                        published = datetime.strptime(reg_dt, "%Y%m%d").replace(tzinfo=UTC)
+                    except (ValueError, AttributeError):
+                        pass
+
+                items.append(
+                    Article(
+                        title=title,
+                        link=link,
+                        summary=summary,
+                        published=published,
+                        source=source.name,
+                        category=category,
+                    )
+                )
+
+            return items
+        else:
+            # Generic API source handling
+            data = response.json()
+            items: list[Article] = []
+
+            # Try common JSON structures
+            if isinstance(data, dict):
+                results = data.get("results", data.get("items", data.get("data", [])))
+            elif isinstance(data, list):
+                results = data
+            else:
+                raise ParseError(f"Unexpected response format from {source.name}")
+
+            for result in results[:limit]:
+                if isinstance(result, dict):
+                    title = result.get("title", result.get("name", ""))
+                    link = result.get("link", result.get("url", result.get("id", "")))
+                    summary = result.get("summary", result.get("description", ""))
+
+                    # Skip entries with empty title or link
+                    if not title or not link:
+                        continue
+
+                    items.append(
+                        Article(
+                            title=str(title),
+                            link=str(link),
+                            summary=str(summary) if summary else "",
+                            published=None,
+                            source=source.name,
+                            category=category,
+                        )
+                    )
+
+            return items
+
+    except ValueError as exc:
+        raise ParseError(f"Failed to parse JSON response from {source.name}: {exc}") from exc
+    except Exception as exc:
+        raise ParseError(f"Failed to parse API response from {source.name}: {exc}") from exc
 
 
 def _extract_datetime(entry: Mapping[str, Any]) -> datetime | None:
