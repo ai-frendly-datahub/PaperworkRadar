@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from datetime import datetime, timedelta
 from importlib import import_module
 from pathlib import Path
-from typing import Callable, Protocol, cast
+from typing import Protocol, cast
 
 import duckdb
 

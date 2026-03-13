@@ -1,15 +1,11 @@
 from __future__ import annotations
 
 import json
-import logging
 import os
-from io import StringIO
-from pathlib import Path
 
 import pytest
-import structlog
 
-from paperworkradar.logger import get_logger, configure_logging
+from paperworkradar.logger import configure_logging, get_logger
 
 
 class TestLoggerConfiguration:

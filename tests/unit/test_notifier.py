@@ -1,10 +1,7 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from pathlib import Path
+from datetime import UTC, datetime
 from unittest.mock import MagicMock, Mock, patch
-
-import pytest
 
 from paperworkradar.notifier import (
     CompositeNotifier,
@@ -19,7 +16,7 @@ class TestNotificationPayload:
 
     def test_payload_creation(self) -> None:
         """Test creating a notification payload."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         payload = NotificationPayload(
             category_name="test_category",
             sources_count=5,
@@ -40,7 +37,7 @@ class TestNotificationPayload:
 
     def test_payload_to_dict(self) -> None:
         """Test converting payload to dictionary."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         payload = NotificationPayload(
             category_name="test_category",
             sources_count=5,
@@ -81,7 +78,7 @@ class TestEmailNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -113,7 +110,7 @@ class TestEmailNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -141,7 +138,7 @@ class TestEmailNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=5,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -173,7 +170,7 @@ class TestWebhookNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -205,7 +202,7 @@ class TestWebhookNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -233,7 +230,7 @@ class TestWebhookNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -258,7 +255,7 @@ class TestWebhookNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -291,7 +288,7 @@ class TestCompositeNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -317,7 +314,7 @@ class TestCompositeNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -344,7 +341,7 @@ class TestCompositeNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 
@@ -362,7 +359,7 @@ class TestCompositeNotifier:
             collected_count=100,
             matched_count=25,
             errors_count=0,
-            timestamp=datetime.now(timezone.utc),
+            timestamp=datetime.now(UTC),
             report_url="http://example.com/report.html",
         )
 

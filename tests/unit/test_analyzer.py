@@ -52,7 +52,9 @@ class _ApplyEntityRules(Protocol):
 
 Article = cast(_ArticleCtor, import_module("paperworkradar.models").Article)
 EntityDefinition = cast(_EntityCtor, import_module("paperworkradar.models").EntityDefinition)
-apply_entity_rules = cast(_ApplyEntityRules, import_module("paperworkradar.analyzer").apply_entity_rules)
+apply_entity_rules = cast(
+    _ApplyEntityRules, import_module("paperworkradar.analyzer").apply_entity_rules
+)
 
 
 def _make_article(*, title: str, summary: str) -> _Article:
