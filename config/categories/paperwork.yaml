@@ -39,6 +39,14 @@ sources:
     type: "rss"
     url: "https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D=form&order=newest"
 
+  # --- JavaScript-rendered sources (Playwright) ---
+  - name: "정부24 서비스"
+    type: "javascript"
+    url: "https://www.gov.kr/portal/main/nologin"
+  - name: "하이코리아 민원"
+    type: "javascript"
+    url: "https://www.hikorea.go.kr/board/BoardApplicationListR.pt"
+
 entities:
   - name: "TaxDocs"
     display_name: "세금 서류"
