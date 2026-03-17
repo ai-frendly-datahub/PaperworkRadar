@@ -2,9 +2,6 @@ category_name: "paperwork"
 display_name: "서류/행정 레이더"
 
 sources:
-  - name: "Gov24 Open API"
-    type: "api_source"
-    url: "https://api.odcloud.kr/api/gov24/v3/serviceList?perPage=50&maxPages=4&pageDelay=0.15"
   - name: "USCIS Forms Updates"
     type: "rss"
     url: "https://www.uscis.gov/forms/forms-updates/rss-feed"
