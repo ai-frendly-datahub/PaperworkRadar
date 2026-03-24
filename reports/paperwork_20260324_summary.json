@@ -1,44 +1,44 @@
 {
   "date": "2026-03-24",
   "category": "paperwork",
-  "article_count": 200,
+  "article_count": 167,
   "source_count": 12,
-  "matched_count": 142,
+  "matched_count": 120,
   "top_entities": [
     {
       "name": "Registration",
-      "count": 163
-    },
-    {
-      "name": "DigitalGov",
-      "count": 45
+      "count": 174
     },
     {
       "name": "TaxDocs",
-      "count": 39
+      "count": 33
+    },
+    {
+      "name": "DigitalGov",
+      "count": 30
     },
     {
       "name": "Visa",
-      "count": 32
+      "count": 24
     },
     {
       "name": "Deadline",
-      "count": 16
+      "count": 6
     }
   ],
   "sources": {
     "하이코리아 민원": 1,
     "정부24 서비스": 1,
-    "UK Legislation New": 29,
-    "GOV.UK HMRC": 26,
-    "GOV.UK Forms Search": 35,
-    "FedScoop": 8,
-    "GOV.UK Home Office": 21,
-    "StateScoop": 7,
-    "Federal Register Forms Focus": 20,
-    "Federal Register Documents": 27,
-    "UK Statutory Instruments": 15,
-    "GOV.UK Government Digital Service": 10
+    "UK Legislation New": 16,
+    "GOV.UK HMRC": 20,
+    "GOV.UK Forms Search": 9,
+    "FedScoop": 10,
+    "GOV.UK Home Office": 20,
+    "StateScoop": 10,
+    "Federal Register Documents": 38,
+    "Federal Register Forms Focus": 22,
+    "UK Statutory Instruments": 17,
+    "GOV.UK Government Digital Service": 3
   },
-  "generated_at": "2026-03-24T12:36:55.658424+09:00"
+  "generated_at": "2026-03-24T15:12:17.841577+09:00"
 }
