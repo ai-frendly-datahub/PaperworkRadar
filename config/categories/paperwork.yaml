@@ -36,6 +36,74 @@ sources:
     type: "rss"
     url: "https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D=form&order=newest"
 
+  # --- Reddit RSS (Immigration & Legal) ---
+  - name: "Reddit IWantOut"
+    type: "rss"
+    url: "https://www.reddit.com/r/IWantOut/.rss"
+  - name: "Reddit Visa"
+    type: "rss"
+    url: "https://www.reddit.com/r/visa/.rss"
+  - name: "Reddit Immigration"
+    type: "rss"
+    url: "https://www.reddit.com/r/immigration/.rss"
+  - name: "Reddit LegalAdvice"
+    type: "rss"
+    url: "https://www.reddit.com/r/legaladvice/.rss"
+
+  # --- US Government Forms ---
+  - name: "IRS News Releases"
+    type: "rss"
+    url: "https://www.irs.gov/newsroom/rss-feeds"
+  - name: "State Department Travel Advisories"
+    type: "rss"
+    url: "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.rss"
+  - name: "GSA.gov News"
+    type: "rss"
+    url: "https://www.gsa.gov/rss-feeds/news-releases-rss-feed"
+
+  # --- UK Government ---
+  - name: "UK Companies House Updates"
+    type: "rss"
+    url: "https://www.gov.uk/government/organisations/companies-house.atom"
+  - name: "UK Land Registry"
+    type: "rss"
+    url: "https://www.gov.uk/government/organisations/land-registry.atom"
+  - name: "UK Visas and Immigration"
+    type: "rss"
+    url: "https://www.gov.uk/government/organisations/uk-visas-and-immigration.atom"
+
+  # --- Canada Government ---
+  - name: "Canada CRA News"
+    type: "rss"
+    url: "https://www.canada.ca/en/revenue-agency.atom.xml"
+  - name: "Canada Immigration IRCC"
+    type: "rss"
+    url: "https://www.canada.ca/en/immigration-refugees-citizenship.atom.xml"
+
+  # --- Australia Government ---
+  - name: "Australia ASIC Media"
+    type: "rss"
+    url: "https://asic.gov.au/about-asic/news-centre/rss-feeds/"
+  - name: "Australia Immigration News"
+    type: "rss"
+    url: "https://www.homeaffairs.gov.au/rss-feeds"
+
+  # --- Singapore Government ---
+  - name: "Singapore ACRA Updates"
+    type: "rss"
+    url: "https://www.acra.gov.sg/rss/news"
+  - name: "Singapore MOM Updates"
+    type: "rss"
+    url: "https://www.mom.gov.sg/rss"
+
+  # --- Legal Forms & Niche ---
+  - name: "Nolo Legal Updates"
+    type: "rss"
+    url: "https://www.nolo.com/rss.xml"
+  - name: "LegalZoom Blog"
+    type: "rss"
+    url: "https://www.legalzoom.com/articles/feed"
+
   # --- JavaScript-rendered sources (Playwright) ---
   - name: "정부24 서비스"
     type: "javascript"
