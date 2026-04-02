@@ -1,207 +1,487 @@
-category_name: "paperwork"
-display_name: "서류/행정 레이더"
-
+category_name: paperwork
+display_name: 서류/행정 레이더
 sources:
-  - name: "USCIS Forms Updates"
-    type: "rss"
-    url: "https://www.uscis.gov/forms/forms-updates/rss-feed"
-  - name: "Federal Register Documents"
-    type: "rss"
-    url: "https://www.federalregister.gov/api/v1/documents.rss?order=newest"
-  - name: "GOV.UK Forms Search"
-    type: "rss"
-    url: "https://www.gov.uk/search/all.atom?keywords=application+form"
-  - name: "GOV.UK HMRC"
-    type: "rss"
-    url: "https://www.gov.uk/government/organisations/hm-revenue-customs.atom"
-  - name: "GOV.UK Home Office"
-    type: "rss"
-    url: "https://www.gov.uk/government/organisations/home-office.atom"
-  - name: "UK Legislation New"
-    type: "rss"
-    url: "https://www.legislation.gov.uk/new/data.feed"
-  - name: "UK Statutory Instruments"
-    type: "rss"
-    url: "https://www.legislation.gov.uk/uksi/data.feed"
-  - name: "GOV.UK Government Digital Service"
-    type: "rss"
-    url: "https://www.gov.uk/government/organisations/government-digital-service.atom"
-  - name: "FedScoop"
-    type: "rss"
-    url: "https://fedscoop.com/feed/"
-  - name: "StateScoop"
-    type: "rss"
-    url: "https://statescoop.com/feed/"
-  - name: "Federal Register Forms Focus"
-    type: "rss"
-    url: "https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D=form&order=newest"
-
-  # --- Reddit RSS (Immigration & Legal) ---
-  - name: "Reddit IWantOut"
-    type: "rss"
-    url: "https://www.reddit.com/r/IWantOut/.rss"
-  - name: "Reddit Visa"
-    type: "rss"
-    url: "https://www.reddit.com/r/visa/.rss"
-  - name: "Reddit Immigration"
-    type: "rss"
-    url: "https://www.reddit.com/r/immigration/.rss"
-  - name: "Reddit LegalAdvice"
-    type: "rss"
-    url: "https://www.reddit.com/r/legaladvice/.rss"
-
-  # --- US Government Forms ---
-  - name: "IRS News Releases"
-    type: "rss"
-    url: "https://www.irs.gov/newsroom/rss-feeds"
-  - name: "State Department Travel Advisories"
-    type: "rss"
-    url: "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.rss"
-  - name: "GSA.gov News"
-    type: "rss"
-    url: "https://www.gsa.gov/rss-feeds/news-releases-rss-feed"
-
-  # --- UK Government ---
-  - name: "UK Companies House Updates"
-    type: "rss"
-    url: "https://www.gov.uk/government/organisations/companies-house.atom"
-  - name: "UK Land Registry"
-    type: "rss"
-    url: "https://www.gov.uk/government/organisations/land-registry.atom"
-  - name: "UK Visas and Immigration"
-    type: "rss"
-    url: "https://www.gov.uk/government/organisations/uk-visas-and-immigration.atom"
-
-  # --- Canada Government ---
-  - name: "Canada CRA News"
-    type: "rss"
-    url: "https://www.canada.ca/en/revenue-agency.atom.xml"
-  - name: "Canada Immigration IRCC"
-    type: "rss"
-    url: "https://www.canada.ca/en/immigration-refugees-citizenship.atom.xml"
-
-  # --- Australia Government ---
-  - name: "Australia ASIC Media"
-    type: "rss"
-    url: "https://asic.gov.au/about-asic/news-centre/rss-feeds/"
-  - name: "Australia Immigration News"
-    type: "rss"
-    url: "https://www.homeaffairs.gov.au/rss-feeds"
-
-  # --- Singapore Government ---
-  - name: "Singapore ACRA Updates"
-    type: "rss"
-    url: "https://www.acra.gov.sg/rss/news"
-  - name: "Singapore MOM Updates"
-    type: "rss"
-    url: "https://www.mom.gov.sg/rss"
-
-  # --- Legal Forms & Niche ---
-  - name: "Nolo Legal Updates"
-    type: "rss"
-    url: "https://www.nolo.com/rss.xml"
-  - name: "LegalZoom Blog"
-    type: "rss"
-    url: "https://www.legalzoom.com/articles/feed"
-
-  # --- JavaScript-rendered sources (Playwright) ---
-  - name: "정부24 서비스"
-    type: "javascript"
-    url: "https://www.gov.kr/portal/main/nologin"
-  - name: "하이코리아 민원"
-    type: "javascript"
-    url: "https://www.hikorea.go.kr/board/BoardApplicationListR.pt"
-
+- name: USCIS Forms Updates
+  type: rss
+  url: https://www.uscis.gov/forms/forms-updates/rss-feed
+- name: Federal Register Documents
+  type: rss
+  url: https://www.federalregister.gov/api/v1/documents.rss?order=newest
+- name: GOV.UK Forms Search
+  type: rss
+  url: https://www.gov.uk/search/all.atom?keywords=application+form
+- name: GOV.UK HMRC
+  type: rss
+  url: https://www.gov.uk/government/organisations/hm-revenue-customs.atom
+- name: GOV.UK Home Office
+  type: rss
+  url: https://www.gov.uk/government/organisations/home-office.atom
+- name: UK Legislation New
+  type: rss
+  url: https://www.legislation.gov.uk/new/data.feed
+- name: UK Statutory Instruments
+  type: rss
+  url: https://www.legislation.gov.uk/uksi/data.feed
+- name: GOV.UK Government Digital Service
+  type: rss
+  url: https://www.gov.uk/government/organisations/government-digital-service.atom
+- name: FedScoop
+  type: rss
+  url: https://fedscoop.com/feed/
+- name: StateScoop
+  type: rss
+  url: https://statescoop.com/feed/
+- name: Federal Register Forms Focus
+  type: rss
+  url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D=form&order=newest
+- name: Reddit IWantOut
+  type: reddit
+  url: https://www.reddit.com/r/IWantOut/
+- name: Reddit Visa
+  type: reddit
+  url: https://www.reddit.com/r/visa/
+- name: Reddit Immigration
+  type: reddit
+  url: https://www.reddit.com/r/immigration/
+- name: Reddit LegalAdvice
+  type: reddit
+  url: https://www.reddit.com/r/legaladvice/
+- name: IRS News Releases
+  type: rss
+  url: https://www.irs.gov/newsroom/rss-feeds
+- name: State Department Travel Advisories
+  type: rss
+  url: https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.rss
+- name: GSA.gov News
+  type: rss
+  url: https://www.gsa.gov/rss-feeds/news-releases-rss-feed
+- name: UK Companies House Updates
+  type: rss
+  url: https://www.gov.uk/government/organisations/companies-house.atom
+- name: UK Land Registry
+  type: rss
+  url: https://www.gov.uk/government/organisations/land-registry.atom
+- name: UK Visas and Immigration
+  type: rss
+  url: https://www.gov.uk/government/organisations/uk-visas-and-immigration.atom
+- name: Canada CRA News
+  type: rss
+  url: https://www.canada.ca/en/revenue-agency.atom.xml
+- name: Canada Immigration IRCC
+  type: rss
+  url: https://www.canada.ca/en/immigration-refugees-citizenship.atom.xml
+- name: Australia ASIC Media
+  type: rss
+  url: https://asic.gov.au/about-asic/news-centre/rss-feeds/
+- name: Australia Immigration News
+  type: rss
+  url: https://www.homeaffairs.gov.au/rss-feeds
+- name: Singapore ACRA Updates
+  type: rss
+  url: https://www.acra.gov.sg/rss/news
+- name: Singapore MOM Updates
+  type: rss
+  url: https://www.mom.gov.sg/rss
+- name: Nolo Legal Updates
+  type: rss
+  url: https://www.nolo.com/rss.xml
+- name: LegalZoom Blog
+  type: rss
+  url: https://www.legalzoom.com/articles/feed
+- name: 정부24 서비스
+  type: javascript
+  url: https://www.gov.kr/portal/main/nologin
+  config:
+    wait_for: ".service_list"
+- name: 하이코리아 민원
+  type: javascript
+  url: https://www.hikorea.go.kr/board/BoardApplicationListR.pt
+  config:
+    wait_for: ".board_list"
 entities:
-  - name: "TaxDocs"
-    display_name: "세금 서류"
-    keywords:
-      - "application"
-      - "tax"
-      - "tax return"
-      - "taxpayer"
-      - "document"
-      - "filing"
-      - "form"
-      - "instructions"
-      - "irs"
-      - "tax filing"
-      - "tax form"
-      - "세금 신고"
-      - "연말정산"
-      - "소득세"
-      - "서류"
-      - "신고"
-  - name: "Visa"
-    display_name: "비자/이민"
-    keywords:
-      - "application"
-      - "document"
-      - "entry"
-      - "permit"
-      - "visa"
-      - "immigration"
-      - "비자"
-      - "이민"
-      - "체류"
-      - "work permit"
-  - name: "Registration"
-    display_name: "등록/신고"
-    keywords:
-      - "act"
-      - "agency"
-      - "application"
-      - "certificate"
-      - "compliance"
-      - "document"
-      - "filing"
-      - "form"
-      - "government service"
-      - "license"
-      - "notice"
-      - "permit"
-      - "public comment"
-      - "registration"
-      - "regulation"
-      - "rule"
-      - "statutory"
-      - "신청"
-      - "민원"
-      - "서류"
-      - "절차"
-      - "사업자 등록"
-      - "등기"
-      - "허가"
-  - name: "Deadline"
-    display_name: "마감/기한"
-    keywords:
-      - "comment period"
-      - "deadline"
-      - "application deadline"
-      - "effective date"
-      - "filing deadline"
-      - "due date"
-      - "period"
-      - "public inspection"
-      - "submission"
-      - "마감"
-      - "기한"
-      - "신청 기간"
-  - name: "DigitalGov"
-    display_name: "전자정부"
-    keywords:
-      - "digital"
-      - "digital government"
-      - "e-government"
-      - "e government"
-      - "government"
-      - "government data"
-      - "online"
-      - "online application"
-      - "portal"
-      - "public service"
-      - "service"
-      - "전자정부"
-      - "온라인 신청"
-      - "digital id"
-      - "전자서명"
+- name: TaxDocs
+  display_name: 세금 서류
+  keywords:
+  - application
+  - tax
+  - tax return
+  - taxpayer
+  - document
+  - filing
+  - form
+  - instructions
+  - irs
+  - tax filing
+  - tax form
+  - 세금 신고
+  - 연말정산
+  - 소득세
+  - 서류
+  - 신고
+- name: Visa
+  display_name: 비자/이민
+  keywords:
+  - application
+  - document
+  - entry
+  - permit
+  - visa
+  - immigration
+  - 비자
+  - 이민
+  - 체류
+  - work permit
+- name: Registration
+  display_name: 등록/신고
+  keywords:
+  - act
+  - agency
+  - application
+  - certificate
+  - compliance
+  - document
+  - filing
+  - form
+  - government service
+  - license
+  - notice
+  - permit
+  - public comment
+  - registration
+  - regulation
+  - rule
+  - statutory
+  - 신청
+  - 민원
+  - 서류
+  - 절차
+  - 사업자 등록
+  - 등기
+  - 허가
+- name: Deadline
+  display_name: 마감/기한
+  keywords:
+  - comment period
+  - deadline
+  - application deadline
+  - effective date
+  - filing deadline
+  - due date
+  - period
+  - public inspection
+  - submission
+  - 마감
+  - 기한
+  - 신청 기간
+- name: DigitalGov
+  display_name: 전자정부
+  keywords:
+  - digital
+  - digital government
+  - e-government
+  - e government
+  - government
+  - government data
+  - online
+  - online application
+  - portal
+  - public service
+  - service
+  - 전자정부
+  - 온라인 신청
+  - digital id
+  - 전자서명
+- name: PaperworkGeneral
+  display_name: 서류/행정 일반
+  keywords:
+  - form
+  - forms
+  - document
+  - documents
+  - documentation
+  - paperwork
+  - application
+  - applications
+  - apply
+  - applying
+  - submit
+  - submission
+  - file
+  - filing
+  - process
+  - processing
+  - procedure
+  - procedures
+  - requirement
+  - requirements
+  - required
+  - certificate
+  - certificates
+  - certification
+  - license
+  - licenses
+  - permit
+  - permits
+  - approval
+  - approved
+  - pending
+  - status
+  - update
+  - updates
+  - change
+  - changes
+  - new
+  - revised
+  - official
+  - government
+  - federal
+  - state
+  - agency
+  - agencies
+  - office
+  - bureau
+  - department
+  - 서류
+  - 문서
+  - 신청
+  - 신청서
+  - 제출
+  - 접수
+  - 처리
+  - 절차
+  - 요건
+  - 조건
+  - 증명서
+  - 증명
+  - 인증
+  - 허가
+  - 허가증
+  - 면허
+  - 승인
+  - 대기
+  - 진행
+  - 완료
+  - 변경
+  - 갱신
+  - 발급
+  - 재발급
+  - 정부
+  - 기관
+  - 행정
+  - 민원
+  - 공공
+  - story
+  - stories
+  - article
+  - news
+  - today
+  - year
+  - years
+  - time
+  - now
+  - best
+  - most
+  - top
+  - one
+  - two
+  - latest
+  - first
+  - here
+  - this
+  - my
+  - just
+  - share
+  - post
+  - help
+  - advice
+  - question
+  - anyone
+  - looking
+  - need
+  - want
+  - '2026'
+  - '2025'
+  - the
+  - a
+  - is
+  - are
+  - have
+  - has
+  - will
+  - can
+  - more
+  - also
+  - very
+  - only
+  - 기자
+  - 뉴스
+  - 오늘
+  - 올해
+  - 이번
+  - 지난
+  - 최근
+  - 발표
+  - 관련
+  - 조사
+  - 결과
+  - 증가
+  - 감소
+  - 확대
+  - this
+  - get
+  - got
+  - make
+  - made
+  - use
+  - using
+  - way
+  - why
+  - how
+  - what
+  - when
+  - where
+  - who
+  - all
+  - some
+  - any
+  - many
+  - much
+  - other
+  - out
+  - about
+  - up
+  - into
+  - over
+  - after
+  - before
+  - than
+  - been
+  - being
+  - would
+  - could
+  - should
+  - may
+  - might
+  - must
+  - like
+  - good
+  - great
+  - better
+  - work
+  - working
+  - works
+  - think
+  - say
+  - says
+  - said
+  - know
+  - see
+  - come
+  - take
+  - back
+  - going
+  - thing
+  - things
+  - people
+  - world
+  - life
+  - right
+  - still
+  - every
+  - even
+  - last
+  - day
+  - week
+  - month
+  - country
+  - us
+  - uk
+  - canada
+  - law
+  - legal
+  - court
+  - case
+  - move
+  - moving
+  - live
+  - living
+  - stay
+  - travel
+  - work
+  - job
+  - find
+  - wait
+  - waiting
+  - long
+  - please
+  - thanks
+  - experience
+  - question
+  - questions
+  - answer
+  - issue
+  - issues
+  - problem
+  - finally
+  - received
+  - approved
+  - denied
+  - interview
+  - office
+  - it
+  - its
+  - i
+  - me
+  - we
+  - you
+  - your
+  - he
+  - she
+  - they
+  - them
+  - their
+  - our
+  - us
+  - do
+  - does
+  - did
+  - done
+  - doing
+  - be
+  - am
+  - was
+  - were
+  - so
+  - but
+  - and
+  - or
+  - not
+  - 'no'
+  - 'yes'
+  - if
+  - then
+  - there
+  - here
+  - that
+  - these
+  - those
+  - with
+  - for
+  - from
+  - by
+  - at
+  - 'on'
+  - in
+  - to
+  - of
+  - as
+  - an
+  - few
+  - each
+  - recently
+  - soon
+  - go
+  - give
+  - try
+  - look
+  - start
