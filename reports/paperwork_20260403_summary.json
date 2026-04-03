@@ -1,0 +1,47 @@
+{
+  "date": "2026-04-03",
+  "category": "paperwork",
+  "article_count": 200,
+  "source_count": 15,
+  "matched_count": 134,
+  "top_entities": [
+    {
+      "name": "Registration",
+      "count": 169
+    },
+    {
+      "name": "Visa",
+      "count": 84
+    },
+    {
+      "name": "TaxDocs",
+      "count": 34
+    },
+    {
+      "name": "DigitalGov",
+      "count": 28
+    },
+    {
+      "name": "Deadline",
+      "count": 16
+    }
+  ],
+  "sources": {
+    "하이코리아 민원": 1,
+    "정부24 서비스": 1,
+    "Reddit LegalAdvice": 35,
+    "Reddit Immigration": 37,
+    "FedScoop": 4,
+    "GOV.UK Forms Search": 14,
+    "StateScoop": 4,
+    "Reddit IWantOut": 6,
+    "UK Legislation New": 4,
+    "GOV.UK HMRC": 21,
+    "GOV.UK Home Office": 8,
+    "UK Companies House Updates": 2,
+    "UK Visas and Immigration": 2,
+    "Federal Register Forms Focus": 18,
+    "Federal Register Documents": 43
+  },
+  "generated_at": "2026-04-03T11:41:15.813962+09:00"
+}
