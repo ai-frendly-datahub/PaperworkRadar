@@ -1,9 +1,10 @@
 category_name: paperwork
 display_name: 서류/행정 레이더
 sources:
-- name: USCIS Forms Updates
-  type: rss
-  url: https://www.uscis.gov/forms/forms-updates/rss-feed
+# NOTE: 2026-04-06 RSS 403 차단 - USCIS 전체 사이트 차단됨으로 비활성화
+# - name: USCIS Forms Updates
+#   type: rss
+#   url: https://www.uscis.gov/forms/forms-updates/rss-feed
 - name: Federal Register Documents
   type: rss
   url: https://www.federalregister.gov/api/v1/documents.rss?order=newest
@@ -46,15 +47,21 @@ sources:
 - name: Reddit LegalAdvice
   type: reddit
   url: https://www.reddit.com/r/legaladvice/
+# NOTE: 2026-04-06 RSS 404 - JavaScript 타입으로 변환
 - name: IRS News Releases
-  type: rss
-  url: https://www.irs.gov/newsroom/rss-feeds
+  type: javascript
+  url: https://www.irs.gov/newsroom
+  config:
+    wait_for: ".pup-news-list, .view-content"
 - name: State Department Travel Advisories
   type: rss
   url: https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.rss
+# NOTE: 2026-04-06 RSS 404 - JavaScript 타입으로 변환
 - name: GSA.gov News
-  type: rss
-  url: https://www.gsa.gov/rss-feeds/news-releases-rss-feed
+  type: javascript
+  url: https://www.gsa.gov/about-us/newsroom
+  config:
+    wait_for: ".news-list, .view-content, .usa-card-group"
 - name: UK Companies House Updates
   type: rss
   url: https://www.gov.uk/government/organisations/companies-house.atom
