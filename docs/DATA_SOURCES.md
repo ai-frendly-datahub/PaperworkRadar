@@ -5,6 +5,20 @@
 
 ---
 
+## 2026-04-11 Data Quality Overlay
+
+PaperworkRadar는 P0 품질 계획에 따라 서식 변경, 제출 마감일, 포털 신청 절차 변경을 별도 운영 이벤트로 분리합니다.
+
+- 실행 source: Federal Register, GOV.UK forms/HMRC/Home Office/Companies House, Canada CRA/IRCC, Australia ASIC/Home Affairs, Singapore ACRA/MOM, 정부24/하이코리아 포털 후보
+- 운영 이벤트: `form_revision`, `filing_deadline`, `portal_service_change`
+- 품질 게이트: 문서 hash와 원본 URL 동시 보존, 발행기관·관할권 기준 canonical key 유지, 개정일 없는 문서는 provisional 상태 표시
+- backlog 후보: `uscis_forms_updates_html`, `irs_forms_publications`, `irs_tax_deadlines`, `uk_companies_house_filing_deadlines`
+- backlog 활성화 조건: browser fixture, document hash diff, deadline parser, stale deadline 검증
+
+구체적인 실행 계획은 [data-quality-plan.md](data-quality-plan.md)를 기준으로 유지합니다.
+
+---
+
 ## RSS Feeds (16+ Sources)
 
 ### Korean Government Sources

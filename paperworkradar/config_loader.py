@@ -40,6 +40,54 @@ def _string_value(raw: dict[str, object], key: str, default: str) -> str:
     return default
 
 
+def _bool_value(raw: dict[str, object], key: str, default: bool) -> bool:
+    value = raw.get(key)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered in {"true", "1", "yes", "y"}:
+            return True
+        if lowered in {"false", "0", "no", "n"}:
+            return False
+    return default
+
+
+def _float_value(raw: dict[str, object], key: str, default: float) -> float:
+    value = raw.get(key)
+    if isinstance(value, int | float):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value.strip())
+        except ValueError:
+            return default
+    return default
+
+
+def _string_list(raw: dict[str, object], key: str) -> list[str]:
+    value = raw.get(key)
+    if isinstance(value, list):
+        values = cast(list[object], value)
+    elif isinstance(value, tuple | set):
+        values = list(cast(tuple[object, ...] | set[object], value))
+    elif isinstance(value, str) and value.strip():
+        values = [value]
+    else:
+        values = []
+    return [str(item).strip() for item in values if str(item).strip()]
+
+
+def _dict_value(raw: dict[str, object], key: str) -> dict[str, object]:
+    value = raw.get(key)
+    if isinstance(value, dict):
+        return {
+            str(item_key): _resolve_env_refs(item_value)
+            for item_key, item_value in cast(dict[object, object], value).items()
+        }
+    return {}
+
+
 def _dict_items(value: object) -> list[dict[str, object]]:
     if not isinstance(value, list):
         return []
@@ -83,14 +131,7 @@ def load_settings(config_path: Path | None = None) -> RadarSettings:
 
 def load_category_config(category_name: str, categories_dir: Path | None = None) -> CategoryConfig:
     """Load a category YAML and parse it into a CategoryConfig object."""
-    project_root = Path(__file__).resolve().parent.parent
-    base_dir = categories_dir or project_root / "config" / "categories"
-    config_file = Path(base_dir) / f"{category_name}.yaml"
-
-    if not config_file.exists():
-        raise FileNotFoundError(f"Category config not found: {config_file}")
-
-    raw = _read_yaml_dict(config_file)
+    raw = _read_yaml_dict(_category_file(category_name, categories_dir))
     sources = [_parse_source(entry) for entry in _dict_items(raw.get("sources"))]
     entities = [_parse_entity(entry) for entry in _dict_items(raw.get("entities"))]
 
@@ -111,10 +152,24 @@ def load_category_config(category_name: str, categories_dir: Path | None = None)
 def _parse_source(entry: dict[str, object]) -> Source:
     if not entry:
         raise ValueError("Empty source entry in category config")
+    source_entry = cast(dict[str, object], _resolve_env_refs(entry))
     return Source(
-        name=_string_value(entry, "name", "Unnamed Source"),
-        type=_string_value(entry, "type", "rss"),
-        url=_string_value(entry, "url", ""),
+        name=_string_value(source_entry, "name", "Unnamed Source"),
+        type=_string_value(source_entry, "type", "rss"),
+        url=_string_value(source_entry, "url", ""),
+        id=_string_value(source_entry, "id", ""),
+        enabled=_bool_value(source_entry, "enabled", True),
+        language=_string_value(source_entry, "language", ""),
+        country=_string_value(source_entry, "country", ""),
+        region=_string_value(source_entry, "region", ""),
+        trust_tier=_string_value(source_entry, "trust_tier", "T3_professional"),
+        weight=_float_value(source_entry, "weight", 1.0),
+        content_type=_string_value(source_entry, "content_type", "news"),
+        collection_tier=_string_value(source_entry, "collection_tier", "C1_rss"),
+        producer_role=_string_value(source_entry, "producer_role", ""),
+        info_purpose=_string_list(source_entry, "info_purpose"),
+        notes=_string_value(source_entry, "notes", ""),
+        config=_dict_value(source_entry, "config"),
     )
 
 
@@ -137,6 +192,27 @@ def _parse_entity(entry: dict[str, object]) -> EntityDefinition:
         keywords = []
     keyword_list = [str(keyword).strip() for keyword in keywords if str(keyword).strip()]
     return EntityDefinition(name=name, display_name=display_name, keywords=keyword_list)
+
+
+def _category_file(category_name: str, categories_dir: Path | None = None) -> Path:
+    project_root = Path(__file__).resolve().parent.parent
+    base_dir = categories_dir or project_root / "config" / "categories"
+    config_file = Path(base_dir) / f"{category_name}.yaml"
+    if not config_file.exists():
+        raise FileNotFoundError(f"Category config not found: {config_file}")
+    return config_file
+
+
+def load_category_quality_config(
+    category_name: str, categories_dir: Path | None = None
+) -> dict[str, object]:
+    """Load repo-local data quality overlay sections from category YAML."""
+    raw = _read_yaml_dict(_category_file(category_name, categories_dir))
+    quality_config: dict[str, object] = {}
+    for key in ("data_quality", "source_backlog", "integration_candidates"):
+        if key in raw:
+            quality_config[key] = _resolve_env_refs(raw[key])
+    return quality_config
 
 
 def _resolve_env_refs(value: object) -> object:

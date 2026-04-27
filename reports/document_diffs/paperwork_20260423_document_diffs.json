@@ -1,0 +1,836 @@
+{
+  "category": "paperwork",
+  "generated_at": "2026-04-23T19:40:47.089186+00:00",
+  "documents": [
+    {
+      "source": "GOV.UK Home Office",
+      "title": "New UK-France agreement to reduce illegal crossings",
+      "document_url": "https://www.gov.uk/government/news/new-uk-france-agreement-to-reduce-illegal-crossings",
+      "source_url": "https://www.gov.uk/government/news/new-uk-france-agreement-to-reduce-illegal-crossings",
+      "content_hash": "08dd21908dbeb4b360ae12f2cdc6196e639271b0d8695c6124496247ae82cfdd",
+      "revision_date": "2026-04-23T09:29:43+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Qualification reform hub",
+      "document_url": "https://www.gov.uk/guidance/qualification-reform-hub",
+      "source_url": "https://www.gov.uk/guidance/qualification-reform-hub",
+      "content_hash": "363226969627e88b63908e567508862da8bf63b66c555299eaa4faeb33ea971e",
+      "revision_date": "2026-04-23T07:08:37+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Jurisdictional sift: Nnamuchi and UNISON: The Public Service Union",
+      "document_url": "https://www.gov.uk/government/publications/jurisdictional-sift-nnamuchi-and-unison-the-public-service-union",
+      "source_url": "https://www.gov.uk/government/publications/jurisdictional-sift-nnamuchi-and-unison-the-public-service-union",
+      "content_hash": "c6c7d45228649468aa9b1ace7e4669971afac02e63f82dccf7da1183b1cb27b6",
+      "revision_date": "2026-04-23T07:06:06+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Statutory Document Summaries",
+      "document_url": "https://www.gov.uk/government/news/statutory-document-summaries",
+      "source_url": "https://www.gov.uk/government/news/statutory-document-summaries",
+      "content_hash": "10bb943f3101970caf18787a3ebdc23ad30fd185e801f91416048cdf75c3bc03",
+      "revision_date": "2026-04-23T07:06:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Supporting Syria’s future: guidance for businesses and NGOs",
+      "document_url": "https://www.gov.uk/government/publications/supporting-syrias-future-guidance-for-businesses-and-aid-organisations",
+      "source_url": "https://www.gov.uk/government/publications/supporting-syrias-future-guidance-for-businesses-and-aid-organisations",
+      "content_hash": "8d149f588ed55a61b562ce25638236c1dbd1de22125bc7e3468c7acf0bd7a54f",
+      "revision_date": "2026-04-23T07:02:06+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "How to submit applications and complaints to the CAC",
+      "document_url": "https://www.gov.uk/government/news/applications-and-complaints",
+      "source_url": "https://www.gov.uk/government/news/applications-and-complaints",
+      "content_hash": "e9d5663680d51c25b8abf1791d572fcb2dc40dba0075ffe0f0921c29f71786d6",
+      "revision_date": "2026-04-23T06:58:06+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Retail Crime Forum: minutes",
+      "document_url": "https://www.gov.uk/government/publications/retail-crime-forum-minutes",
+      "source_url": "https://www.gov.uk/government/publications/retail-crime-forum-minutes",
+      "content_hash": "dacd43d7239553be5055f6f156e01b37ae42b2b7053749c1526472016f3ea8d9",
+      "revision_date": "2026-04-23T06:38:54+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Home Office major projects: appointment letters for senior responsible owners",
+      "document_url": "https://www.gov.uk/government/publications/home-office-major-projects-appointment-letters-for-senior-responsible-owners",
+      "source_url": "https://www.gov.uk/government/publications/home-office-major-projects-appointment-letters-for-senior-responsible-owners",
+      "content_hash": "dcf31d33ac4f95b9192822060aa706e12f4e738891690af41be2245afc1a61aa",
+      "revision_date": "2026-04-23T06:32:55+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Nationality forms guide",
+      "document_url": "https://www.gov.uk/government/publications/nationality-forms-guide",
+      "source_url": "https://www.gov.uk/government/publications/nationality-forms-guide",
+      "content_hash": "2bc0b1b2b0ebd6d196359b93c1d507dc2ca9f0a655fb02a1256443038c79aaba",
+      "revision_date": "2026-04-23T05:49:25+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Form AN: guidance",
+      "document_url": "https://www.gov.uk/government/publications/form-an-guidance",
+      "source_url": "https://www.gov.uk/government/publications/form-an-guidance",
+      "content_hash": "ea5c41c4f0e51676e6d72a63d1be7a5a98c90e4948332e26d49860d0cd8f9f61",
+      "revision_date": "2026-04-23T05:07:13+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Form B(OTA): guidance",
+      "document_url": "https://www.gov.uk/government/publications/form-bota-guidance",
+      "source_url": "https://www.gov.uk/government/publications/form-bota-guidance",
+      "content_hash": "3c3456d17823683980908f3baa7f8f34bde2187096a87ad8727bf3bc545cc799",
+      "revision_date": "2026-04-23T04:59:42+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Immigration status and enforcement action: caseworker guidance",
+      "document_url": "https://www.gov.uk/government/publications/immigration-status-and-enforcement-action-caseworker-guidance",
+      "source_url": "https://www.gov.uk/government/publications/immigration-status-and-enforcement-action-caseworker-guidance",
+      "content_hash": "1a7acd08a06d3ceafe1368f3c2f2f353ffb75f3b793a4b6e8a830c1ef23d14e9",
+      "revision_date": "2026-04-23T04:16:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Restricted leave: caseworker guidance",
+      "document_url": "https://www.gov.uk/government/publications/restricted-leave-caseworker-guidance",
+      "source_url": "https://www.gov.uk/government/publications/restricted-leave-caseworker-guidance",
+      "content_hash": "818f751ae5fed331476dda583c58c0617608f33fef70fde326ad322d6cc9b123",
+      "revision_date": "2026-04-23T04:06:34+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Small boat activity in the English Channel",
+      "document_url": "https://www.gov.uk/government/publications/migrants-detected-crossing-the-english-channel-in-small-boats",
+      "source_url": "https://www.gov.uk/government/publications/migrants-detected-crossing-the-english-channel-in-small-boats",
+      "content_hash": "be59cf91abc59a044a05fa910054e89f99424dc6bbf0bcc23852ba38e084ee43",
+      "revision_date": "2026-04-23T03:31:01+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "HM Land Registry: local land charges search results",
+      "document_url": "https://www.gov.uk/guidance/hm-land-registry-local-land-charges-search-results",
+      "source_url": "https://www.gov.uk/guidance/hm-land-registry-local-land-charges-search-results",
+      "content_hash": "99d87ac7dceec4d628fbebdf214435fd1563b2978364070514292d37f7f031e6",
+      "revision_date": "2026-04-23T01:44:28+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "March 2026 Transaction Data",
+      "document_url": "https://www.gov.uk/government/news/march-2026-transaction-data",
+      "source_url": "https://www.gov.uk/government/news/march-2026-transaction-data",
+      "content_hash": "fc3df2268aa80d90a3922be729062d542667fe38b9a6301af5c09298982d5c15",
+      "revision_date": "2026-04-23T01:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Police recorded crime and outcomes open data tables",
+      "document_url": "https://www.gov.uk/government/statistical-data-sets/police-recorded-crime-and-outcomes-open-data-tables",
+      "source_url": "https://www.gov.uk/government/statistical-data-sets/police-recorded-crime-and-outcomes-open-data-tables",
+      "content_hash": "0dc8fa927ccdac63866b76ec83b150d1635945a0f7213f51e658341843ccee40",
+      "revision_date": "2026-04-22T23:30:09+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Notice of Availability of Proposed Guidance for Preferred Loan Sizing for Transit-Oriented Development Projects Under the Railroad Rehabilitation and Improvement Financing Program and Transportation Infrastructure Finance and Innovation Act Program",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07981/notice-of-availability-of-proposed-guidance-for-preferred-loan-sizing-for-transit-oriented",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07981/notice-of-availability-of-proposed-guidance-for-preferred-loan-sizing-for-transit-oriented",
+      "content_hash": "36997d92550da27f8446763442cd443dc9ff0203a05861b0d5f5e10240deaf1b",
+      "revision_date": "2026-04-22T15:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Procedures for Submissions by Certain Steel and Aluminum Producers Committing to New U.S. Steel or Aluminum Production To Obtain Tariff Adjustments Under Proclamation 10984",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07987/procedures-for-submissions-by-certain-steel-and-aluminum-producers-committing-to-new-us-steel-or",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07987/procedures-for-submissions-by-certain-steel-and-aluminum-producers-committing-to-new-us-steel-or",
+      "content_hash": "cd1607754e04798ebf1ea34a0e85db47f1684bf2294ffa847ddd68f508312eea",
+      "revision_date": "2026-04-22T15:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "National Forests and Grasslands in Texas; Oil and Gas Leasing Availability Analysis Environmental Impact Statement; Revised",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07974/national-forests-and-grasslands-in-texas-oil-and-gas-leasing-availability-analysis-environmental",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07974/national-forests-and-grasslands-in-texas-oil-and-gas-leasing-availability-analysis-environmental",
+      "content_hash": "83045b6c4f34e8cad3fa2b6020524889bf031af45157aaa724da86c6609490fd",
+      "revision_date": "2026-04-22T15:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activity Under OMB Review: Public Transportation Emergency Relief Program",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07968/agency-information-collection-activity-under-omb-review-public-transportation-emergency-relief",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07968/agency-information-collection-activity-under-omb-review-public-transportation-emergency-relief",
+      "content_hash": "b303c491000859f69de4590289bc845a9404010dea70fcd95bd483faa8394e54",
+      "revision_date": "2026-04-22T15:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activity Under OMB Review: Transit Research, Development, Demonstration, Deployment and Training Projects",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07970/agency-information-collection-activity-under-omb-review-transit-research-development-demonstration",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07970/agency-information-collection-activity-under-omb-review-transit-research-development-demonstration",
+      "content_hash": "04e19e75c08bf5211310bb2f30403a43de9b9ac746afd06694cf64691629b281",
+      "revision_date": "2026-04-22T15:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Benefits system distorts choices at 16",
+      "document_url": "https://www.gov.uk/government/news/benefits-system-distorts-choices-at-16",
+      "source_url": "https://www.gov.uk/government/news/benefits-system-distorts-choices-at-16",
+      "content_hash": "b071a5329cf02b0f858d3d4aed25cfb64f74f2e2eeae83c695fcd915610ca5ab",
+      "revision_date": "2026-04-22T14:01:00+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "SSAC Occasional Paper 27: The influence of the social security system on educational and vocational decision-making at age 16",
+      "document_url": "https://www.gov.uk/government/publications/ssac-occasional-paper-27-the-influence-of-the-social-security-system-on-educational-and-vocational-decision-making-at-age-16",
+      "source_url": "https://www.gov.uk/government/publications/ssac-occasional-paper-27-the-influence-of-the-social-security-system-on-educational-and-vocational-decision-making-at-age-16",
+      "content_hash": "85649951fcfe1acda21eba8d433fdd2f162208b1727494eb7f00ce6f79f7d320",
+      "revision_date": "2026-04-22T14:01:00+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "HM Land Registry estimated completion timeframes",
+      "document_url": "https://www.gov.uk/guidance/hm-land-registry-estimated-completion-timeframes",
+      "source_url": "https://www.gov.uk/guidance/hm-land-registry-estimated-completion-timeframes",
+      "content_hash": "cbcc022f78e56d66b458afbca4c866f3ccccb4991fc78b70c5b4356002916cf4",
+      "revision_date": "2026-04-22T07:23:59+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "G Wynne and C Sellars v The Modern Draper Ltd (In Voluntary Liquidation): 1804166/2025 and Others",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/g-wynne-and-c-sellars-v-the-modern-draper-ltd-in-voluntary-liquidation-1804166-slash-2025-and-others",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/g-wynne-and-c-sellars-v-the-modern-draper-ltd-in-voluntary-liquidation-1804166-slash-2025-and-others",
+      "content_hash": "6d63151f796b68e087a77c62575d640f3f0dbdf96f130866f42224639a0ef8e2",
+      "revision_date": "2026-04-22T07:06:57+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Mr T Mulkeen and Others v Elev8 Access Platforms Ltd (in Administration) and Secretary of State for Business and Trade: 1801165/2025 and Others",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/mr-t-mulkeen-and-others-v-elev8-access-platforms-ltd-in-administration-and-secretary-of-state-for-business-and-trade-1801165-slash-2025-and-others",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/mr-t-mulkeen-and-others-v-elev8-access-platforms-ltd-in-administration-and-secretary-of-state-for-business-and-trade-1801165-slash-2025-and-others",
+      "content_hash": "ddb4056c849baa026c53ac3dc29e9417bddedfd15b941c702a9b4efc18145041",
+      "revision_date": "2026-04-22T07:05:17+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Mr D Lee v Ford Retail Ltd T/a TrustFord: 6001387/2026",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/mr-d-lee-v-ford-retail-ltd-t-slash-a-trustford-6001387-slash-2026",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/mr-d-lee-v-ford-retail-ltd-t-slash-a-trustford-6001387-slash-2026",
+      "content_hash": "2f118941dac1e67e444eb7637a04755fe8c8e3cdda939ac272338e174800b1ea",
+      "revision_date": "2026-04-22T07:03:10+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Ms E Harper and Ms G Mander v The Potting Shed Ltd: 1806680/2025 and 1806681/2025",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/ms-e-harper-and-ms-g-mander-v-the-potting-shed-ltd-1806680-slash-2025-and-1806681-slash-2025",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/ms-e-harper-and-ms-g-mander-v-the-potting-shed-ltd-1806680-slash-2025-and-1806681-slash-2025",
+      "content_hash": "9dbad7c54c7a4d68be227086238a6040751eed76133031dec448423ed27921d6",
+      "revision_date": "2026-04-22T07:01:33+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Mr P Ashworth v Future Network Solutions Ltd: 6002263/2024",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/mr-p-ashworth-v-future-network-solutions-ltd-6002263-slash-2024",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/mr-p-ashworth-v-future-network-solutions-ltd-6002263-slash-2024",
+      "content_hash": "7beb4536f04e2b153b8793b2bcb810a70138f1a80c57f67c04fbe4782aaac8f2",
+      "revision_date": "2026-04-22T07:00:14+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Mrs C Tobias v TransUnion International UK Ltd: 1801749/2025",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/mrs-c-tobias-v-transunion-international-uk-ltd-1801749-slash-2025",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/mrs-c-tobias-v-transunion-international-uk-ltd-1801749-slash-2025",
+      "content_hash": "120c217df2cda11fc66fabf440f59626843130edfa1868b9bc5eb8a40120346e",
+      "revision_date": "2026-04-22T06:58:59+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "J Onokuah v Leeds and York Partnership NHS Foundation Trust: 1811269/2024",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/j-onokuah-v-leeds-and-york-partnership-nhs-foundation-trust-1811269-slash-2024",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/j-onokuah-v-leeds-and-york-partnership-nhs-foundation-trust-1811269-slash-2024",
+      "content_hash": "07624698cb30cb982a1bf8bb2e04f20b94a8ed3f1ca60263ba7717dfcffb296d",
+      "revision_date": "2026-04-22T06:57:59+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Mr S Harrison v Leeds Teaching Hospitals NHS Trust: 6002604/2026",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/mr-s-harrison-v-leeds-teaching-hospitals-nhs-trust-6002604-slash-2026",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/mr-s-harrison-v-leeds-teaching-hospitals-nhs-trust-6002604-slash-2026",
+      "content_hash": "0630192566c44d7605227d9284934b01ee195edd04db71b7c88c718a22910fb6",
+      "revision_date": "2026-04-22T06:56:38+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "V Oldham v Lloyds Bank plc: 6010727/2024",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/v-oldham-v-lloyds-bank-plc-6010727-slash-2024",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/v-oldham-v-lloyds-bank-plc-6010727-slash-2024",
+      "content_hash": "0fb558c09fe0098c1b3fe336bed69991676379099c9ff39c9221be4e391f7c3b",
+      "revision_date": "2026-04-22T06:55:08+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Ex-gratia payments",
+      "document_url": "https://www.gov.uk/government/publications/ex-gratia-payments",
+      "source_url": "https://www.gov.uk/government/publications/ex-gratia-payments",
+      "content_hash": "49ba62ef61c717bcd7c2e7fe51635916dcfab52347da6a383ded8f6269e72b46",
+      "revision_date": "2026-04-22T06:08:48+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "HM Land Registry portal: standard restrictions (e-RX1)",
+      "document_url": "https://www.gov.uk/guidance/hm-land-registry-portal-standard-restrictions-e-rx1",
+      "source_url": "https://www.gov.uk/guidance/hm-land-registry-portal-standard-restrictions-e-rx1",
+      "content_hash": "b643cf94aea138eb018b73d5bba393210a1290204bb1361e277e2de7753b4794",
+      "revision_date": "2026-04-22T05:20:43+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Workforce management information, 2026",
+      "document_url": "https://www.gov.uk/government/publications/workforce-management-information-2026",
+      "source_url": "https://www.gov.uk/government/publications/workforce-management-information-2026",
+      "content_hash": "345d42d67b03bd35976480a4d1866826aebcb3e83043323893d96b70a9195a12",
+      "revision_date": "2026-04-22T02:04:26+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Register of licensed sponsors: workers",
+      "document_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+      "source_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+      "content_hash": "f1f519e10bf0b721e434ad46cead88d2f9dfe90994d97a746e0109efb7786e8a",
+      "revision_date": "2026-04-22T00:29:46+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Register of licensed sponsors: students",
+      "document_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+      "source_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+      "content_hash": "f7e62a0638bafbcc2e57bebe460d9006f26a6ee62c27956226e9eae9200ddd32",
+      "revision_date": "2026-04-22T00:29:33+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "UK House Price Index: data downloads February 2026",
+      "document_url": "https://www.gov.uk/government/statistical-data-sets/uk-house-price-index-data-downloads-february-2026",
+      "source_url": "https://www.gov.uk/government/statistical-data-sets/uk-house-price-index-data-downloads-february-2026",
+      "content_hash": "7398f1d932e7e0c011b6bca41faa796dd4360c57aeb0132261642d828c80da87",
+      "revision_date": "2026-04-21T23:30:01+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Accredited official statistics: UK House Price Index for February 2026",
+      "document_url": "https://www.gov.uk/government/statistics/uk-house-price-index-for-february-2026",
+      "source_url": "https://www.gov.uk/government/statistics/uk-house-price-index-for-february-2026",
+      "content_hash": "39cf788940409704c7f224b4341cb8acb093594a0516f2deb9bfb87e77b9a7f1",
+      "revision_date": "2026-04-21T23:30:01+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "UK House Price Index for February 2026",
+      "document_url": "https://www.gov.uk/government/news/uk-house-price-index-for-february-2026",
+      "source_url": "https://www.gov.uk/government/news/uk-house-price-index-for-february-2026",
+      "content_hash": "3d379a40ac86b5f08cc8ad166928ea1de40c37a38a8cbae3503dae214a3e21e6",
+      "revision_date": "2026-04-21T23:30:00+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Policy paper: Communiqués from the Interministerial Group for Safety, Security and Migration",
+      "document_url": "https://www.gov.uk/government/publications/communiques-from-the-interministerial-group-for-safety-security-and-migration",
+      "source_url": "https://www.gov.uk/government/publications/communiques-from-the-interministerial-group-for-safety-security-and-migration",
+      "content_hash": "ea29c518f9bbca25c5e613fa077d15005cc216632dbd971eab13f0dc53adcdc5",
+      "revision_date": "2026-04-21T23:19:15+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities: Submission to OMB for Review and Approval; Public Comment Request; Health Center Program Forms-OMB No. 0915-0285-Revision",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07793/agency-information-collection-activities-submission-to-omb-for-review-and-approval-public-comment",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07793/agency-information-collection-activities-submission-to-omb-for-review-and-approval-public-comment",
+      "content_hash": "992520ece0b4a4fdd4b32944a36709bf8050c2385fc5046c456f51be4cc5c204",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Privacy Act of 1974; System of Records",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07817/privacy-act-of-1974-system-of-records",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07817/privacy-act-of-1974-system-of-records",
+      "content_hash": "78d7d52750efb70636a04be194a055986f29d9395079ca2387a74292065d7083",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "NextEra Energy Duane Arnold, LLC; Duane Arnold Energy Center; Applications for Amendments to Renewed Facility License Involving Proposed No Significant Hazards Consideration Determination and Containing Safeguards Information and Order Imposing Procedures for Access to Safeguards Information",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07796/nextera-energy-duane-arnold-llc-duane-arnold-energy-center-applications-for-amendments-to-renewed",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07796/nextera-energy-duane-arnold-llc-duane-arnold-energy-center-applications-for-amendments-to-renewed",
+      "content_hash": "011b9705c6448a800bd852e645a999df3f950070ea5f3b25d7688850a4a34f6d",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Medicaid and Children's Health Insurance Program (CHIP) Generic Information Collection Activities: Proposed Collection; Comment Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07803/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07803/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "content_hash": "e1ddfc66d5a20f4431ef9e54bb6325994eede9bd0631e4c5a81f401f6c2cdf7f",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Cboe Exchange, Inc.; Notice of Filing of a Proposed Rule Change To Amend Rule 4.21 (Series of FLEX Options)",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07818/self-regulatory-organizations-cboe-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to-amend",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07818/self-regulatory-organizations-cboe-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to-amend",
+      "content_hash": "39250ddcfc6d32f8901c648453678c47a76f3d19923357dc4066775485615a35",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Cboe BZX Exchange, Inc.; Notice of Filing of a Proposed Rule Change To List and Trade Shares of the BondBloxx Private Credit Trust Under BZX Rule 14.11(f), Trust Issued Receipts",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07820/self-regulatory-organizations-cboe-bzx-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07820/self-regulatory-organizations-cboe-bzx-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to",
+      "content_hash": "0d4608634c1745a0312e53ca0fe67a3e1b70e28b69494823acba83232e5c4852",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Joint Industry Plan; Notice of Filing of Amendment No. 1, and Order Instituting Proceedings To Determine Whether To Approve or Disapprove an Amendment to the Joint Self-Regulatory Organization Plan Governing the Collection, Consolidation and Dissemination of Quotation and Transaction Information for Nasdaq-Listed Securities Traded on Exchanges on an Unlisted Trading Privileges Basis, as Modified by Amendment No. 1 Thereto, To Extend the Processor's Hours of Operation",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07787/joint-industry-plan-notice-of-filing-of-amendment-no-1-and-order-instituting-proceedings-to",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07787/joint-industry-plan-notice-of-filing-of-amendment-no-1-and-order-instituting-proceedings-to",
+      "content_hash": "67628155b94bf4ca68b81a2979d6c0b40cbae4e87d933fcebe8e338f31def04a",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; NOAA Office of Education Higher Education Scholarship, Fellowship, and Internship Programs",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07790/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07790/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "content_hash": "c6eb13d422426328bd304dfc4612569f7b60524a2694f818d16b2bbf86ea3d11",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Equal Credit Opportunity Act (Regulation B)",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07804/equal-credit-opportunity-act-regulation-b",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07804/equal-credit-opportunity-act-regulation-b",
+      "content_hash": "ad32c9251b92c283b5db1474c74437376f656e6c0b94235ebc5d6520ef81cc72",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Final 2024 Marine Mammal Stock Assessment Reports",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07791/final-2024-marine-mammal-stock-assessment-reports",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07791/final-2024-marine-mammal-stock-assessment-reports",
+      "content_hash": "ca419f968b5291a78ed94d68501bf51f3c06504ea94471890f08c2dd19ee884c",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Nasdaq MRX, LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change To Amend Various Auction Mechanisms",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07788/self-regulatory-organizations-nasdaq-mrx-llc-notice-of-filing-and-immediate-effectiveness-of",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07788/self-regulatory-organizations-nasdaq-mrx-llc-notice-of-filing-and-immediate-effectiveness-of",
+      "content_hash": "eb22679aaae47b0b2c40b14c202a6ef1c25054551349f5de72c3b92bc985cb63",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Bank Conversions and Mergers, Subpart C-Merger of Insured Credit Unions Into Banks",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07806/bank-conversions-and-mergers-subpart-c-merger-of-insured-credit-unions-into-banks",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07806/bank-conversions-and-mergers-subpart-c-merger-of-insured-credit-unions-into-banks",
+      "content_hash": "824b1a80e878e42109d82597116d16879442767aa4efb6c24b287c8c908149f4",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Nasdaq PHLX LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change To Amend Various Auction Mechanisms",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07786/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07786/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of",
+      "content_hash": "c872bdcbc1c78006e03ff92276fd7f94ee7fc9f47af2a5a142ce3df14488d210",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Cboe EDGX Exchange, Inc.; Notice of Filing and Immediate Effectiveness of a Proposed Rule Change To Amend Rules 21.19 and 21.21 To Permit Orders for the Accounts of Market-Makers With an Appointment in the Applicable Class To Be Solicited for the Initiating Order for a Simple AIM or Simple SAM Auction",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07821/self-regulatory-organizations-cboe-edgx-exchange-inc-notice-of-filing-and-immediate-effectiveness-of",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07821/self-regulatory-organizations-cboe-edgx-exchange-inc-notice-of-filing-and-immediate-effectiveness-of",
+      "content_hash": "9250bdbf516b3718ad3c330b5b22bcfd754a373d19a7e17bbd48076fe809fd24",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "National Emission Standards for Hazardous Air Pollutants: Crude Oil and Natural Gas Production Facilities and Natural Gas Transmission and Storage Facilities; Technology Review and Reconsideration",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07800/national-emission-standards-for-hazardous-air-pollutants-crude-oil-and-natural-gas-production",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07800/national-emission-standards-for-hazardous-air-pollutants-crude-oil-and-natural-gas-production",
+      "content_hash": "cf2da4dfe492e666868cedc30b00e718c1a3d2563eab3b1ff66323162fc7f563",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Medicaid and Children's Health Insurance Program (CHIP) Generic Information Collection Activities: Proposed Collection; Comment Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07802/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07802/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "content_hash": "efef4a24cf4c617b39dc6c132239a13795f4750334a232f72c13491c60a0389e",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Guidance: Global Talent eligible prestigious prize lists",
+      "document_url": "https://www.gov.uk/government/publications/global-talent-eligible-prestigious-prize-lists",
+      "source_url": "https://www.gov.uk/government/publications/global-talent-eligible-prestigious-prize-lists",
+      "content_hash": "4ab96f0e2b546a74c969cd7b73710b4e01e28124a20ff2331fc290803d05ce7b",
+      "revision_date": "2026-04-21T06:56:27+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Applying to the Ukraine Permission Extension scheme",
+      "document_url": "https://www.gov.uk/guidance/applying-to-the-ukraine-permission-extension-scheme",
+      "source_url": "https://www.gov.uk/guidance/applying-to-the-ukraine-permission-extension-scheme",
+      "content_hash": "1001f55ccaef24dacf277d539e2ac203ae6d72b13b912739b964bcc8e56ba2bf",
+      "revision_date": "2026-04-21T05:45:11+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "UK visa support for Ukrainian nationals",
+      "document_url": "https://www.gov.uk/guidance/support-for-family-members-of-british-nationals-in-ukraine-and-ukrainian-nationals-in-ukraine-and-the-uk",
+      "source_url": "https://www.gov.uk/guidance/support-for-family-members-of-british-nationals-in-ukraine-and-ukrainian-nationals-in-ukraine-and-the-uk",
+      "content_hash": "1f9b80331c55ee736bba5b4d7e172cf5bda30e8caf6377e1a8fbe6eb27f55cd1",
+      "revision_date": "2026-04-21T05:44:59+00:00",
+      "collected_at": "2026-04-23T04:04:54.817898+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Apply for a visa under the Homes for Ukraine Sponsorship Scheme",
+      "document_url": "https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme",
+      "source_url": "https://www.gov.uk/guidance/apply-for-a-visa-under-the-ukraine-sponsorship-scheme",
+      "content_hash": "b00278cfaee53b3b779441c86dca78b778cad13d7a7e45c3a0a15dc43f77d3b5",
+      "revision_date": "2026-04-21T05:44:52+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Official Statistics: Forced Marriage Unit statistics 2025",
+      "document_url": "https://www.gov.uk/government/statistics/announcements/forced-marriage-unit-statistics-2025",
+      "source_url": "https://www.gov.uk/government/statistics/announcements/forced-marriage-unit-statistics-2025",
+      "content_hash": "21d97463ba622a597a0d146c22fa39727520aa609ba8f023a72b124f0c3c184f",
+      "revision_date": "2026-04-21T04:46:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Statutory guidance: The Terrorism (Protection of Premises) Act 2025",
+      "document_url": "https://www.gov.uk/government/publications/the-terrorism-protection-of-premises-act-2025",
+      "source_url": "https://www.gov.uk/government/publications/the-terrorism-protection-of-premises-act-2025",
+      "content_hash": "4da2b7190f75c916b31f76f604eb22685e291f8c07215e42e69a086fe61e017a",
+      "revision_date": "2026-04-21T02:44:48+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Guidance: Living in initial accommodation",
+      "document_url": "https://www.gov.uk/government/publications/living-in-initial-accommodation",
+      "source_url": "https://www.gov.uk/government/publications/living-in-initial-accommodation",
+      "content_hash": "e90a950a5a481a3d0fea207a4eef33fa73f93776dd23d652b7acd96f312f3e14",
+      "revision_date": "2026-04-21T01:03:26+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Medical Implications of Less-Lethal Weapons Expert Committee: membership",
+      "document_url": "https://www.gov.uk/government/publications/medical-implications-of-less-lethal-weapons-expert-committee-membership",
+      "source_url": "https://www.gov.uk/government/publications/medical-implications-of-less-lethal-weapons-expert-committee-membership",
+      "content_hash": "3ae4da7ac4f80470bb3a08538d53523077090abde82cbf8c3e791d8b6d4a2c51",
+      "revision_date": "2026-04-20T23:57:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Security Minister statement on antisemitic attacks",
+      "document_url": "https://www.gov.uk/government/speeches/security-minister-statement-on-antisemitic-attacks",
+      "source_url": "https://www.gov.uk/government/speeches/security-minister-statement-on-antisemitic-attacks",
+      "content_hash": "4c9f4d6d6f5df9ac8cb5ea9d932a76bbf8b8ea573723b7b1af08ebeba33efbd1",
+      "revision_date": "2026-04-20T09:32:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Guidance: Medical Implications of Less-Lethal Weapons Expert Committee: register of interests",
+      "document_url": "https://www.gov.uk/government/publications/medical-implications-of-less-lethal-weapons-expert-committee-register-of-interests",
+      "source_url": "https://www.gov.uk/government/publications/medical-implications-of-less-lethal-weapons-expert-committee-register-of-interests",
+      "content_hash": "abb0ff979a8bf1710569aa30010b17a9e51ac5f9e36cfafadb3b45404c8e84eb",
+      "revision_date": "2026-04-20T07:29:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "HM Land Registry training hub",
+      "document_url": "https://www.gov.uk/guidance/hm-land-registry-training-hub",
+      "source_url": "https://www.gov.uk/guidance/hm-land-registry-training-hub",
+      "content_hash": "ba37d4b11825c02bae57bdce759fd6d6fb961919f689ad4ceae71c64340c3892",
+      "revision_date": "2026-04-20T05:09:04+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Endorsing bodies: Innovator Founder and Scale-up visas",
+      "document_url": "https://www.gov.uk/government/publications/endorsing-bodies-innovator-founder-and-scale-up-visas",
+      "source_url": "https://www.gov.uk/government/publications/endorsing-bodies-innovator-founder-and-scale-up-visas",
+      "content_hash": "3907e59194d702daf06f7c7ef77efabc3417ddae5ed2d37ffc54a75a6fc12d7c",
+      "revision_date": "2026-04-20T05:00:01+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Asylum: new Independent Appeals Body",
+      "document_url": "https://www.gov.uk/government/calls-for-evidence/asylum-new-independent-appeals-body",
+      "source_url": "https://www.gov.uk/government/calls-for-evidence/asylum-new-independent-appeals-body",
+      "content_hash": "62a5e032a27b525c1e9abdd3fed43cf868123c2a396365d8d0f31c31f7e330c0",
+      "revision_date": "2026-04-20T04:35:24+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Ask the Home Office to check your immigration status is correct",
+      "document_url": "https://www.gov.uk/guidance/ask-the-home-office-to-check-your-immigration-status-is-correct",
+      "source_url": "https://www.gov.uk/guidance/ask-the-home-office-to-check-your-immigration-status-is-correct",
+      "content_hash": "5b1639f53750ba3abb295805de2ad920f56a2c4306ad3f19d19bf478652fbf43",
+      "revision_date": "2026-04-20T03:34:22+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Research and testing using animals: licences and compliance",
+      "document_url": "https://www.gov.uk/guidance/research-and-testing-using-animals",
+      "source_url": "https://www.gov.uk/guidance/research-and-testing-using-animals",
+      "content_hash": "2dfd2acc6ed3ceb00cd71cd870fa39a8558426dde4a894b7e0b5bf35ac7bb4e5",
+      "revision_date": "2026-04-20T03:13:42+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Administrative review: caseworker guidance",
+      "document_url": "https://www.gov.uk/government/publications/administrative-review-caseworker-guidance",
+      "source_url": "https://www.gov.uk/government/publications/administrative-review-caseworker-guidance",
+      "content_hash": "353acc5a18722ffb60b6e167027b26d08b8d3696a1911b15508963661419fe9b",
+      "revision_date": "2026-04-20T02:57:23+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: India: tuberculosis test clinics for a UK visa",
+      "document_url": "https://www.gov.uk/government/publications/india-tuberculosis-test-clinics-for-a-uk-visa",
+      "source_url": "https://www.gov.uk/government/publications/india-tuberculosis-test-clinics-for-a-uk-visa",
+      "content_hash": "505c603f61bfea2a602a12c589987a7538b46edca25228ca590a06d7329af027",
+      "revision_date": "2026-04-20T01:42:37+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Guidance: Leases: when to register (PG25)",
+      "document_url": "https://www.gov.uk/government/publications/leases-when-to-register-pg25",
+      "source_url": "https://www.gov.uk/government/publications/leases-when-to-register-pg25",
+      "content_hash": "a1ca405a36ca9e5c9772454be2283847152920490ab6853fefc2b71b750723a3",
+      "revision_date": "2026-04-19T20:00:03+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Guidance: Amending deeds that effect dispositions of registered land (PG68)",
+      "document_url": "https://www.gov.uk/government/publications/amending-deeds-that-effect-dispositions-of-registered-land-pg68",
+      "source_url": "https://www.gov.uk/government/publications/amending-deeds-that-effect-dispositions-of-registered-land-pg68",
+      "content_hash": "e1004655848585ce738c5932e046cca5cabeebf8fc3f894ec58f881c556ffb82",
+      "revision_date": "2026-04-19T20:00:03+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Guidance: Leases: determination (PG26)",
+      "document_url": "https://www.gov.uk/government/publications/leases-determination-pg26",
+      "source_url": "https://www.gov.uk/government/publications/leases-determination-pg26",
+      "content_hash": "dc7e5b04b4fb2985740ed80890db743747b63f1f5b1e1e8b6afaedbb28ab6698",
+      "revision_date": "2026-04-19T20:00:03+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Transparency data: HM Land Registry expenditure over £25,000: 2026",
+      "document_url": "https://www.gov.uk/government/publications/hm-land-registry-expenditure-over-25000-2026",
+      "source_url": "https://www.gov.uk/government/publications/hm-land-registry-expenditure-over-25000-2026",
+      "content_hash": "c3f2d5a50deaaefb7220fa1c03aa6db5f644425fcbcc8c0f9862675b8768b788",
+      "revision_date": "2026-04-17T04:32:13+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Official Statistics: Windrush Compensation Scheme data: February 2026",
+      "document_url": "https://www.gov.uk/government/statistics/announcements/windrush-compensation-scheme-data-february-2026",
+      "source_url": "https://www.gov.uk/government/statistics/announcements/windrush-compensation-scheme-data-february-2026",
+      "content_hash": "bbe95d377500b004cf89a8661e4466a19b5328c1643bb37c72e1117322e70ff2",
+      "revision_date": "2026-04-17T01:41:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Policy paper: Freedom from violence and abuse: a cross-government strategy",
+      "document_url": "https://www.gov.uk/government/publications/freedom-from-violence-and-abuse-a-cross-government-strategy",
+      "source_url": "https://www.gov.uk/government/publications/freedom-from-violence-and-abuse-a-cross-government-strategy",
+      "content_hash": "ea07fe99e8d60a0f62c05760b9ebf12368eb8d72e0e924d6b3e8d4378b0551e7",
+      "revision_date": "2026-04-16T23:20:59+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Accredited official statistics: UK House Price Index for January 2026",
+      "document_url": "https://www.gov.uk/government/statistics/uk-house-price-index-for-january-2026",
+      "source_url": "https://www.gov.uk/government/statistics/uk-house-price-index-for-january-2026",
+      "content_hash": "d829a47868a23f2655a2edf7fe26cc43bd349a625438ac6cd584ec168bcf9ba1",
+      "revision_date": "2026-04-16T22:04:52+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    }
+  ]
+}

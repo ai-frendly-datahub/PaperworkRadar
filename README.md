@@ -54,6 +54,13 @@
 - **분석**: 엔티티별 키워드 매칭. 매칭된 키워드를 리포트에 칩으로 표시합니다.
 - **리포트**: `reports/<category>_report.html`을 생성하며, 최근 N일(기본 7일) 기사와 엔티티 히트 카운트, 수집 오류를 표시합니다.
 
+## 데이터 품질 운영
+
+- 품질 기준은 [data-quality-plan.md](/home/kjs/projects/ai-frendly-datahub/PaperworkRadar/docs/data-quality-plan.md)와 `config/categories/paperwork.yaml`의 `data_quality` 섹션을 기준으로 관리합니다.
+- 공식 서식 feed는 `form_revision`, 세금·회사·rulemaking 마감 source는 `filing_deadline`, 정부 포털 source는 `portal_service_change`로 분리합니다.
+- 서식 원본은 `document_url`과 `content_hash`를 함께 추적하는 것을 목표로 하며, 개정일이 없으면 `collected_at` 기준 provisional 상태로 둡니다.
+- `USCIS Forms Updates`, `IRS Forms and Publications`, `IRS Filing Deadlines`, `Companies House Filing Deadlines`는 `source_backlog`에서 parser·hash diff·stale deadline 검증 후 단계적으로 활성화합니다.
+
 ## 기본 경로
 
 - DB: `data/radar_data.duckdb`
@@ -78,3 +85,15 @@ PaperworkRadar/
     models.py             # 데이터 클래스
   .github/workflows/      # GitHub Actions (crawler + Pages 배포)
 ```
+
+<!-- DATAHUB-OPS-AUDIT:START -->
+## DataHub Operations
+
+- CI/CD workflows: `pr-checks.yml`, `radar-crawler.yml`, `release.yml`.
+- GitHub Pages visualization: `reports/index.html` (valid HTML); https://ai-frendly-datahub.github.io/PaperworkRadar/.
+- Latest remote Pages check: HTTP 200, HTML.
+- Local workspace audit: 58 Python files parsed, 0 syntax errors.
+- Re-run audit from the workspace root: `python scripts/audit_ci_pages_readme.py --syntax-check --write`.
+- Latest audit report: `_workspace/2026-04-14_github_ci_pages_readme_audit.md`.
+- Latest Pages URL report: `_workspace/2026-04-14_github_pages_url_check.md`.
+<!-- DATAHUB-OPS-AUDIT:END -->

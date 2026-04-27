@@ -1,0 +1,76 @@
+{
+  "category": "paperwork",
+  "generated_at": "2026-04-13T11:38:36.953841+00:00",
+  "documents": [
+    {
+      "source": "하이코리아 민원",
+      "title": "Welcome to G4F of KOREA",
+      "document_url": "https://www.hikorea.go.kr/board/BoardApplicationListR.pt",
+      "source_url": "https://www.hikorea.go.kr/board/BoardApplicationListR.pt",
+      "content_hash": "d4b657fa120fb44211ea2b9b9b7cfd236c05717c090cceb53c4741a0121ce01b",
+      "revision_date": "2026-04-13T11:36:57.297594+00:00",
+      "collected_at": "2026-04-13T11:37:07.238727+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Mr J Mangrola v The Home Office and Others: 3311616/2023 and 3315289/2023",
+      "document_url": "https://www.gov.uk/employment-tribunal-decisions/mr-j-mangrola-v-the-home-office-and-others-3311616-slash-2023-and-3315289-slash-2023",
+      "source_url": "https://www.gov.uk/employment-tribunal-decisions/mr-j-mangrola-v-the-home-office-and-others-3311616-slash-2023-and-3315289-slash-2023",
+      "content_hash": "f07f8fb5f400f9542aaee80cbb1528ecb49b654ef339d23a241389f7b56e1ac2",
+      "revision_date": "2026-04-13T02:33:40+00:00",
+      "collected_at": "2026-04-13T11:38:36.713563+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Relaxation of licensing hours for the Men's Football World Cup 2026",
+      "document_url": "https://www.gov.uk/government/consultations/relaxation-of-licensing-hours-for-the-mens-football-world-cup-2026",
+      "source_url": "https://www.gov.uk/government/consultations/relaxation-of-licensing-hours-for-the-mens-football-world-cup-2026",
+      "content_hash": "c0ae2c0865893a38926e01025e180aff551130ee39be96c8c1f8a74f09a7a13f",
+      "revision_date": "2026-04-13T01:00:40+00:00",
+      "collected_at": "2026-04-13T11:38:36.713563+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Register of licensed sponsors: workers",
+      "document_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+      "source_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+      "content_hash": "f1f519e10bf0b721e434ad46cead88d2f9dfe90994d97a746e0109efb7786e8a",
+      "revision_date": "2026-04-13T00:56:31+00:00",
+      "collected_at": "2026-04-13T11:38:36.713563+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Framework service level agreement",
+      "document_url": "https://www.gov.uk/government/publications/framework-service-level-agreement",
+      "source_url": "https://www.gov.uk/government/publications/framework-service-level-agreement",
+      "content_hash": "b5609bfc398df1474325ba068110e80711dc62cfdedeeb20f5c5d8689d86cbe3",
+      "revision_date": "2026-04-12T21:00:06+00:00",
+      "collected_at": "2026-04-13T08:14:55.369543+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Guidance: The land charges registers and agricultural credits register: registration, official search, office copy and cancellation (PG63)",
+      "document_url": "https://www.gov.uk/government/publications/the-land-charges-registers-and-agricultural-credits-register-registration-official-search-office-copy-and-cancellation-pg63",
+      "source_url": "https://www.gov.uk/government/publications/the-land-charges-registers-and-agricultural-credits-register-registration-official-search-office-copy-and-cancellation-pg63",
+      "content_hash": "8835c178d3cc24d7c9d483d62c7298ced444f9b9283efe1ee5272e0ad43437ed",
+      "revision_date": "2026-04-12T20:00:07+00:00",
+      "collected_at": "2026-04-13T11:38:36.713563+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Proposed eCollection; eComments Requested; Revision of a Previously Approved Collection; Title-Registration for Controlled Substances Act Data-Use Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/13/2026-07129/agency-information-collection-activities-proposed-ecollection-ecomments-requested-revision-of-a",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/13/2026-07129/agency-information-collection-activities-proposed-ecollection-ecomments-requested-revision-of-a",
+      "content_hash": "51d11e144b0fb93551f82f82ea0d2a845f62bbcfeb2ef11f20765ff6c7f248da",
+      "revision_date": "2026-04-12T19:00:00+00:00",
+      "collected_at": "2026-04-13T11:38:36.713563+00:00",
+      "status": "unchanged"
+    }
+  ]
+}

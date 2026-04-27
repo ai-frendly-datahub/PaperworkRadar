@@ -9,6 +9,7 @@ from typing import Protocol, cast
 
 from .tools import (
     handle_doc_checklist,
+    handle_quality_report,
     handle_recent_updates,
     handle_search,
     handle_sql,
@@ -95,6 +96,18 @@ def _list_tool_specs() -> list[dict[str, object]]:
                 },
             },
         },
+        {
+            "name": "quality_report",
+            "description": "Summarize form revision, filing deadline, and document diff quality status.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "category": {"type": "string"},
+                    "days": {"type": "integer", "minimum": 1},
+                    "limit": {"type": "integer", "minimum": 1},
+                },
+            },
+        },
     ]
 
 
@@ -127,6 +140,13 @@ def _call_tool_handler(name: str, arguments: object) -> str:
             db_path=_db_path(),
             days=_as_int(args.get("days"), 30),
             limit=_as_int(args.get("limit"), 10),
+        )
+    if name == "quality_report":
+        return handle_quality_report(
+            db_path=_db_path(),
+            category=str(args.get("category") or "paperwork"),
+            days=_as_int(args.get("days"), 30),
+            limit=_as_int(args.get("limit"), 500),
         )
     return f"Unknown tool: {name}"
 

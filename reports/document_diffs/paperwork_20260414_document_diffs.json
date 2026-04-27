@@ -1,0 +1,76 @@
+{
+  "category": "paperwork",
+  "generated_at": "2026-04-14T11:26:24.561389+00:00",
+  "documents": [
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Recording and reporting packaging waste: reprocessors and exporters",
+      "document_url": "https://www.gov.uk/guidance/recording-and-reporting-packaging-waste-reprocessors-and-exporters",
+      "source_url": "https://www.gov.uk/guidance/recording-and-reporting-packaging-waste-reprocessors-and-exporters",
+      "content_hash": "844afab3c52d3ff062c270a62a97afa406b398843197cae7e3761deb3fafedc8",
+      "revision_date": "2026-04-14T02:19:35+00:00",
+      "collected_at": "2026-04-14T11:26:24.295412+00:00",
+      "status": "new"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Register of licensed sponsors: students",
+      "document_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+      "source_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+      "content_hash": "f7e62a0638bafbcc2e57bebe460d9006f26a6ee62c27956226e9eae9200ddd32",
+      "revision_date": "2026-04-14T01:06:23+00:00",
+      "collected_at": "2026-04-14T11:26:24.295412+00:00",
+      "status": "new"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Official Statistics: National DNA Database statistics",
+      "document_url": "https://www.gov.uk/government/statistics/national-dna-database-statistics",
+      "source_url": "https://www.gov.uk/government/statistics/national-dna-database-statistics",
+      "content_hash": "8a5bc04d08fbdf2647715459ae8176c5416389c14ff8f786f9a76e677c8144d1",
+      "revision_date": "2026-04-14T00:29:02+00:00",
+      "collected_at": "2026-04-14T11:26:24.295412+00:00",
+      "status": "new"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "Guidance: HM Land Registry: Local Land Charges Programme",
+      "document_url": "https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme",
+      "source_url": "https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme",
+      "content_hash": "2c99d39070a8231a759af5b68843cc83381fb56197acf9c6407f284aeef2e8ba",
+      "revision_date": "2026-04-14T00:11:57+00:00",
+      "collected_at": "2026-04-14T11:26:24.295412+00:00",
+      "status": "new"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Arms Sales Notification",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/14/2026-07237/arms-sales-notification",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/14/2026-07237/arms-sales-notification",
+      "content_hash": "02a7e7f6184956b73238150a0058c575eab5e55437b1ecd709c71ab64d39e1ae",
+      "revision_date": "2026-04-13T19:00:00+00:00",
+      "collected_at": "2026-04-14T11:26:24.295412+00:00",
+      "status": "new"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Highways maintenance funding allocations",
+      "document_url": "https://www.gov.uk/government/publications/highways-maintenance-funding-allocations",
+      "source_url": "https://www.gov.uk/government/publications/highways-maintenance-funding-allocations",
+      "content_hash": "bffc48fa4c6b24438798f02e0de7c192da5501be3aaeb363706ac95e83a09db6",
+      "revision_date": "2026-04-13T14:01:02+00:00",
+      "collected_at": "2026-04-14T05:27:18.784456+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "하이코리아 민원",
+      "title": "Welcome to G4F of KOREA",
+      "document_url": "https://www.hikorea.go.kr/board/BoardApplicationListR.pt",
+      "source_url": "https://www.hikorea.go.kr/board/BoardApplicationListR.pt",
+      "content_hash": "d4b657fa120fb44211ea2b9b9b7cfd236c05717c090cceb53c4741a0121ce01b",
+      "revision_date": "2026-04-13T11:36:57.297594+00:00",
+      "collected_at": "2026-04-13T11:37:07.238727+00:00",
+      "status": "unchanged"
+    }
+  ]
+}

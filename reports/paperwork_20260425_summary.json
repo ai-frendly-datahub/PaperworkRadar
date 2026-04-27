@@ -1,0 +1,96 @@
+{
+  "date": "2026-04-25",
+  "category": "paperwork",
+  "article_count": 200,
+  "source_count": 17,
+  "matched_count": 197,
+  "top_entities": [
+    {
+      "name": "PaperworkGeneral",
+      "count": 5548
+    },
+    {
+      "name": "Registration",
+      "count": 138
+    },
+    {
+      "name": "Visa",
+      "count": 71
+    },
+    {
+      "name": "TaxDocs",
+      "count": 48
+    },
+    {
+      "name": "DigitalGov",
+      "count": 36
+    },
+    {
+      "name": "Deadline",
+      "count": 15
+    }
+  ],
+  "sources": {
+    "Federal Register Forms Focus": 22,
+    "Federal Register Documents": 35,
+    "정부24 서비스": 1,
+    "GSA.gov News": 1,
+    "IRS News Releases": 1,
+    "Reddit LegalAdvice": 42,
+    "Reddit Immigration": 36,
+    "Reddit IWantOut": 7,
+    "GOV.UK Forms Search": 19,
+    "GOV.UK Home Office": 7,
+    "GOV.UK HMRC": 8,
+    "StateScoop": 5,
+    "FedScoop": 2,
+    "GOV.UK Government Digital Service": 2,
+    "UK Land Registry": 1,
+    "UK Legislation New": 9,
+    "UK Visas and Immigration": 2
+  },
+  "generated_at": "2026-04-25T20:37:40.425979+09:00",
+  "ontology": {
+    "repo": "PaperworkRadar",
+    "category": "paperwork",
+    "ontology_version": "0.1.0",
+    "event_model_ids": [
+      "paperwork.filing_deadline",
+      "paperwork.form_revision",
+      "paperwork.portal_service_change"
+    ],
+    "event_model_mappings": {
+      "form_revision": "paperwork.form_revision",
+      "filing_deadline": "paperwork.filing_deadline",
+      "portal_service_change": "paperwork.portal_service_change"
+    },
+    "entity_type_hints": [
+      "organization.agency",
+      "evidence.url"
+    ],
+    "source_role_ids": [
+      "community_signal",
+      "context_only",
+      "operational_evidence",
+      "primary_evidence"
+    ],
+    "source_role_mappings": {
+      "Federal Register Documents": "primary_evidence",
+      "Federal Register Forms Focus": "primary_evidence",
+      "GOV.UK Forms Search": "operational_evidence",
+      "GOV.UK HMRC": "operational_evidence",
+      "GOV.UK Government Digital Service": "operational_evidence",
+      "UK Legislation New": "primary_evidence",
+      "UK Statutory Instruments": "primary_evidence",
+      "IRS News Releases": "operational_evidence",
+      "FedScoop": "context_only",
+      "StateScoop": "context_only",
+      "Reddit LegalAdvice": "community_signal"
+    },
+    "evidence_policy_ids": [
+      "traceable_url_required",
+      "official_confirmation_required",
+      "non_authoritative_context_only"
+    ]
+  }
+}

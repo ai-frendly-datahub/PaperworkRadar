@@ -187,6 +187,49 @@ def test_handle_top_trends(tmp_path: Path) -> None:
     assert "1" in output
 
 
+def test_handle_quality_report(tmp_path: Path) -> None:
+    from mcp_server.tools import handle_quality_report
+    from paperworkradar.models import Article
+    from paperworkradar.storage import RadarStorage
+
+    db_path = tmp_path / "radar.duckdb"
+    now = datetime.now(UTC)
+    storage = RadarStorage(db_path)
+    try:
+        storage.upsert_articles(
+            [
+                Article(
+                    title="Updated government form",
+                    link="https://example.com/forms/updated",
+                    summary="New form edition",
+                    published=now - timedelta(hours=2),
+                    collected_at=now,
+                    source="Federal Register Forms Focus",
+                    category="paperwork",
+                ),
+                Article(
+                    title="Tax filing reminder",
+                    link="https://example.com/deadlines/tax",
+                    summary="Upcoming filing deadline",
+                    published=now - timedelta(hours=3),
+                    collected_at=now,
+                    source="GOV.UK HMRC",
+                    category="paperwork",
+                ),
+            ]
+        )
+    finally:
+        storage.close()
+
+    output = handle_quality_report(db_path=db_path, category="paperwork", days=30, limit=20)
+    payload = json.loads(output)
+
+    assert payload["category"] == "paperwork"
+    assert payload["summary"]["form_revision_events"] >= 1
+    assert payload["summary"]["filing_deadline_events"] >= 1
+    assert payload["document_diffs"][0]["document_url"] == "https://example.com/forms/updated"
+
+
 def test_handle_price_watch_stub() -> None:
     from mcp_server.tools import handle_price_watch
 

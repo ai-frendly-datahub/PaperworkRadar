@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Any
 from unittest.mock import patch
 
+import paperworkradar.browser_collector as browser_collector
+from paperworkradar.browser_collector import collect_browser_sources
 from paperworkradar.collector import collect_sources
 from paperworkradar.models import Source
 
@@ -77,3 +79,37 @@ def test_collect_sources_supports_gov24_api_source_pagination(monkeypatch: Any) 
     assert calls[0]["params"]["returnType"] == "JSON"
     assert calls[0]["params"]["page"] == 1
     assert calls[1]["params"]["page"] == 2
+
+
+def test_browser_collector_forwards_source_config(monkeypatch: Any) -> None:
+    source = Source(
+        name="JS Source",
+        type="javascript",
+        url="https://example.com/page",
+        config={"wait_for": "body", "bypass_crawl_health": True},
+    )
+    captured: dict[str, Any] = {}
+
+    def fake_core_collect(**kwargs: Any) -> tuple[list[object], list[str]]:
+        captured.update(kwargs)
+        return [], []
+
+    monkeypatch.setattr(browser_collector, "_BROWSER_COLLECTION_AVAILABLE", True)
+    monkeypatch.setattr(browser_collector, "_core_collect", fake_core_collect)
+
+    articles, errors = collect_browser_sources(
+        [source],
+        "paperwork",
+        timeout=5_000,
+        health_db_path="/tmp/health.duckdb",
+    )
+
+    assert articles == []
+    assert errors == []
+    assert captured["category"] == "paperwork"
+    assert captured["timeout"] == 5_000
+    assert captured["health_db_path"] == "/tmp/health.duckdb"
+    assert captured["sources"][0]["config"] == {
+        "wait_for": "body",
+        "bypass_crawl_health": True,
+    }

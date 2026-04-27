@@ -9,7 +9,7 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 import feedparser
 import requests
@@ -174,6 +174,34 @@ def _parse_retry_after(value: str | None) -> int | str | None:
     return stripped
 
 
+def _source_bool(source: Source, key: str) -> bool:
+    value = source.config.get(key)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.strip().lower() in {"1", "true", "yes", "y", "on"}
+    return False
+
+
+def _collect_reddit_pass(
+    sources: list[Source],
+    *,
+    category: str,
+    limit_per_source: int,
+    timeout: int,
+    health_db_path: str | None,
+) -> tuple[list[Article], list[str]]:
+    from radar_core.reddit_collector import collect_reddit_sources
+
+    return collect_reddit_sources(
+        sources=sources,
+        category=category,
+        limit=limit_per_source,
+        timeout=timeout,
+        health_db_path=health_db_path,
+    )
+
+
 def collect_sources(
     sources: list[Source],
     *,
@@ -187,27 +215,41 @@ def collect_sources(
     """Fetch items from all configured sources, returning articles and errors."""
     articles: list[Article] = []
     errors: list[str] = []
+    _js_types = {"javascript", "browser", "html", "js", "web"}
+    _standard_types = {"rss", "api_source", "api"}
+    enabled_sources = [source for source in sources if source.enabled]
+    standard_sources = [
+        source for source in enabled_sources if source.type.lower() in _standard_types
+    ]
+    js_sources = [source for source in enabled_sources if source.type.lower() in _js_types]
+    reddit_sources = [source for source in enabled_sources if source.type.lower() == "reddit"]
+    unsupported_sources = [
+        source
+        for source in enabled_sources
+        if source.type.lower() not in {*_standard_types, *_js_types, "reddit"}
+    ]
     manager = get_circuit_breaker_manager()
     workers = _resolve_max_workers(max_workers)
+    resolved_health_db_path = health_db_path or os.environ.get(
+        "RADAR_CRAWL_HEALTH_DB_PATH", _DEFAULT_HEALTH_DB_PATH
+    )
     source_hosts: dict[str, str] = {
-        source.name: (urlparse(source.url).netloc.lower() or source.name) for source in sources
+        source.name: (urlparse(source.url).netloc.lower() or source.name)
+        for source in standard_sources
     }
     rate_limiters: dict[str, RateLimiter] = {
         host: RateLimiter(min_interval=min_interval_per_host) for host in set(source_hosts.values())
     }
     throttler = AdaptiveThrottler(min_delay=max(0.001, min_interval_per_host))
-    health_store = CrawlHealthStore(
-        health_db_path or os.environ.get("RADAR_CRAWL_HEALTH_DB_PATH", _DEFAULT_HEALTH_DB_PATH)
-    )
+    health_store = CrawlHealthStore(resolved_health_db_path)
     _set_collection_controls(throttler, health_store)
     session = _create_session()
 
-    _js_types = {"javascript", "browser"}
-    rss_sources = [s for s in sources if s.type.lower() not in _js_types]
-    js_sources = [s for s in sources if s.type.lower() in _js_types]
-
     def _collect_for_source(source: Source) -> tuple[list[Article], list[str]]:
-        if health_store.is_disabled(source.name):
+        if (
+            not _source_bool(source, "bypass_crawl_health")
+            and health_store.is_disabled(source.name)
+        ):
             return [], [f"{source.name}: Source disabled (crawl health threshold reached)"]
 
         host = source_hosts[source.name]
@@ -235,26 +277,33 @@ def collect_sources(
 
     try:
         if workers == 1:
-            for source in rss_sources:
+            for source in standard_sources:
                 source_articles, source_errors = _collect_for_source(source)
                 articles.extend(source_articles)
                 errors.extend(source_errors)
         else:
-            with ThreadPoolExecutor(max_workers=workers) as executor:
-                future_map: list[Future[tuple[list[Article], list[str]]]] = [
-                    executor.submit(_collect_for_source, source) for source in rss_sources
-                ]
+            if standard_sources:
+                with ThreadPoolExecutor(max_workers=workers) as executor:
+                    future_map: list[Future[tuple[list[Article], list[str]]]] = [
+                        executor.submit(_collect_for_source, source)
+                        for source in standard_sources
+                    ]
 
-                for future in future_map:
-                    source_articles, source_errors = future.result()
-                    articles.extend(source_articles)
-                    errors.extend(source_errors)
+                    for future in future_map:
+                        source_articles, source_errors = future.result()
+                        articles.extend(source_articles)
+                        errors.extend(source_errors)
 
         if js_sources:
             try:
                 from .browser_collector import collect_browser_sources
 
-                js_articles, js_errors = collect_browser_sources(js_sources, category)
+                js_articles, js_errors = collect_browser_sources(
+                    js_sources,
+                    category,
+                    timeout=max(1_000, timeout * 1_000),
+                    health_db_path=resolved_health_db_path,
+                )
                 articles.extend(js_articles)
                 errors.extend(js_errors)
             except ImportError:
@@ -263,6 +312,28 @@ def collect_sources(
                     js_source_count=len(js_sources),
                     hint="pip install 'radar-core[browser]'",
                 )
+
+        if reddit_sources:
+            try:
+                reddit_articles, reddit_errors = _collect_reddit_pass(
+                    reddit_sources,
+                    category=category,
+                    limit_per_source=limit_per_source,
+                    timeout=timeout,
+                    health_db_path=resolved_health_db_path,
+                )
+                articles.extend(reddit_articles)
+                errors.extend(reddit_errors)
+            except ImportError:
+                errors.append(
+                    f"Reddit collection unavailable for {len(reddit_sources)} source(s). "
+                    "Ensure radar-core reddit support is installed."
+                )
+
+        for source in unsupported_sources:
+            errors.append(
+                f"{source.name}: Source type '{source.type}' is cataloged but not collected by the paperwork pipeline"
+            )
     finally:
         session.close()
         health_store.close()
@@ -288,7 +359,7 @@ def _collect_single(
         )
 
     # Handle API sources
-    if source_type == "api_source":
+    if source_type in {"api_source", "api"}:
         return _collect_api_source(
             source, category=category, limit=limit, timeout=timeout, session=session
         )
@@ -340,6 +411,9 @@ def _collect_rss(
             if not title or title == "(no title)" or not link:
                 continue
 
+            if not summary.strip():
+                summary = title
+
             items.append(
                 Article(
                     title=title,
@@ -365,6 +439,14 @@ def _collect_api_source(
     session: requests.Session | None = None,
 ) -> list[Article]:
     """Collect articles from API sources (e.g., Gov24 Open API)."""
+
+    if source.name == "Gov24 Open API":
+        return _collect_gov24_api_source(
+            source,
+            category=category,
+            limit=limit,
+            timeout=timeout,
+        )
 
     try:
         response = _fetch_url_with_retry(
@@ -467,6 +549,139 @@ def _collect_api_source(
         raise ParseError(f"Failed to parse JSON response from {source.name}: {exc}") from exc
     except Exception as exc:
         raise ParseError(f"Failed to parse API response from {source.name}: {exc}") from exc
+
+
+def _collect_gov24_api_source(
+    source: Source,
+    *,
+    category: str,
+    limit: int,
+    timeout: int,
+) -> list[Article]:
+    parsed = urlparse(source.url)
+    if not parsed.scheme or not parsed.netloc:
+        raise SourceError(source.name, f"Invalid Gov24 URL: {source.url}")
+
+    params = {key: values[0] for key, values in parse_qs(parsed.query).items() if values}
+    endpoint = parsed._replace(query="").geturl()
+    api_key = os.getenv("GOV24_API_KEY", "").strip()
+    if not api_key:
+        raise SourceError(source.name, "GOV24_API_KEY is required")
+
+    per_page = min(_parse_int(params.get("perPage"), default=50), 100)
+    max_pages = max(_parse_int(params.get("maxPages"), default=5), 1)
+    page_delay = max(_parse_float(params.get("pageDelay"), default=0.2), 0.0)
+
+    items: list[Article] = []
+    for page in range(1, max_pages + 1):
+        try:
+            response = requests.get(
+                endpoint,
+                params={
+                    "serviceKey": api_key,
+                    "returnType": "JSON",
+                    "page": page,
+                    "perPage": per_page,
+                },
+                timeout=timeout,
+            )
+            response.raise_for_status()
+            payload = response.json()
+        except requests.exceptions.RequestException as exc:
+            raise NetworkError(f"API request failed for {source.name}: {exc}") from exc
+        except ValueError as exc:
+            raise ParseError(f"Failed to parse JSON response from {source.name}: {exc}") from exc
+
+        if not isinstance(payload, dict):
+            raise ParseError(f"Unexpected response format from {source.name}")
+
+        records = _extract_gov24_records(payload)
+        if not records:
+            break
+
+        for record in records:
+            title = _first_text(record, "serviceName", "서비스명", "name")
+            if not title:
+                continue
+
+            service_id = _first_text(record, "serviceId", "svcId", "id")
+            link = _first_text(record, "serviceUrl", "landingUrl", "homepage")
+            if not link and service_id:
+                link = f"https://www.gov.kr/portal/rcvfvrSvc/dtlEx/{service_id}"
+
+            items.append(
+                Article(
+                    title=title,
+                    link=link,
+                    summary=_first_text(
+                        record,
+                        "serviceSummary",
+                        "servicePurpose",
+                        "serviceTarget",
+                        "서비스목적",
+                        "서비스개요",
+                        "content",
+                    ),
+                    published=_parse_gov24_datetime(
+                        _first_text(record, "updatedAt", "lastUpdated", "등록일시", "수정일시")
+                    ),
+                    source=source.name,
+                    category=category,
+                )
+            )
+            if len(items) >= limit:
+                return items
+
+        if len(records) < per_page:
+            break
+        if page_delay > 0:
+            time.sleep(page_delay)
+
+    return items
+
+
+def _extract_gov24_records(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    data = payload.get("data")
+    if not isinstance(data, list):
+        return []
+    return [item for item in data if isinstance(item, dict)]
+
+
+def _first_text(data: dict[str, Any], *keys: str) -> str:
+    for key in keys:
+        value = data.get(key)
+        if isinstance(value, str):
+            text = value.strip()
+            if text:
+                return text
+    return ""
+
+
+def _parse_int(value: str | None, *, default: int) -> int:
+    try:
+        return int(value) if value is not None else default
+    except (TypeError, ValueError):
+        return default
+
+
+def _parse_float(value: str | None, *, default: float) -> float:
+    try:
+        return float(value) if value is not None else default
+    except (TypeError, ValueError):
+        return default
+
+
+def _parse_gov24_datetime(raw: str) -> datetime | None:
+    if not raw:
+        return None
+    normalized = raw.strip().replace("Z", "+00:00")
+    try:
+        parsed = datetime.fromisoformat(normalized)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=UTC)
+    return parsed
 
 
 def _extract_datetime(entry: Mapping[str, Any]) -> datetime | None:

@@ -8,8 +8,13 @@ from typing import cast
 from paperworkradar.analyzer import apply_entity_rules
 from paperworkradar.collector import collect_sources
 from paperworkradar.common.validators import validate_article
-from paperworkradar.config_loader import load_category_config, load_settings
+from paperworkradar.config_loader import (
+    load_category_config,
+    load_category_quality_config,
+    load_settings,
+)
 from paperworkradar.date_storage import apply_date_storage_policy
+from paperworkradar.quality_report import build_quality_report, write_quality_report
 from paperworkradar.raw_logger import RawLogger
 from paperworkradar.reporter import generate_index_html, generate_report
 from paperworkradar.search_index import SearchIndex
@@ -87,6 +92,7 @@ def run(
     """Execute the lightweight collect -> analyze -> report pipeline."""
     settings = load_settings(config_path)
     category_cfg = load_category_config(category, categories_dir=categories_dir)
+    quality_cfg = load_category_quality_config(category, categories_dir=categories_dir)
 
     print(
         f"[Radar] Collecting '{category_cfg.display_name}' from {len(category_cfg.sources)} sources..."
@@ -138,6 +144,18 @@ def run(
         "window_days": recent_days,
     }
 
+    quality_report = build_quality_report(
+        category=category_cfg,
+        articles=recent_articles,
+        errors=errors,
+        quality_config=quality_cfg,
+    )
+    quality_report_paths = write_quality_report(
+        quality_report,
+        output_dir=settings.report_dir,
+        category_name=category_cfg.category_name,
+    )
+
     output_path = settings.report_dir / f"{category_cfg.category_name}_report.html"
     _ = generate_report(
         category=category_cfg,
@@ -145,6 +163,7 @@ def run(
         output_path=output_path,
         stats=stats,
         errors=errors,
+        quality_report=quality_report,
     )
     # Generate index.html
     generate_index_html(settings.report_dir)
@@ -157,6 +176,11 @@ def run(
         snapshot_db=snapshot_db,
     )
     print(f"[Radar] Report generated at {output_path}")
+    print(f"[Radar] Quality report generated at {quality_report_paths['latest']}")
+    print(
+        "[Radar] Document diff report generated at "
+        f"{quality_report_paths['document_diff_latest']}"
+    )
     snapshot_path = date_storage.get("snapshot_path")
     if isinstance(snapshot_path, str) and snapshot_path:
         print(f"[Radar] Snapshot saved at {snapshot_path}")

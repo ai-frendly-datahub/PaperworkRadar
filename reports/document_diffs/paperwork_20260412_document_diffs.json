@@ -1,0 +1,46 @@
+{
+  "category": "paperwork",
+  "generated_at": "2026-04-12T16:42:23.022033+00:00",
+  "documents": [
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Proposed eCollection; eComments Requested; Revision of a Previously Approved Collection; Title-Registration for Controlled Substances Act Data-Use Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/13/2026-07129/agency-information-collection-activities-proposed-ecollection-ecomments-requested-revision-of-a",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/13/2026-07129/agency-information-collection-activities-proposed-ecollection-ecomments-requested-revision-of-a",
+      "content_hash": "51d11e144b0fb93551f82f82ea0d2a845f62bbcfeb2ef11f20765ff6c7f248da",
+      "revision_date": "2026-04-12T19:00:00+00:00",
+      "collected_at": "2026-04-12T16:42:22.743905+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "하이코리아 민원",
+      "title": "민원서식 목록 < 뉴스.공지 < 하이코리아",
+      "document_url": "https://www.hikorea.go.kr/board/BoardApplicationListR.pt",
+      "source_url": "https://www.hikorea.go.kr/board/BoardApplicationListR.pt",
+      "content_hash": "39b1bb9340c99fd4a8582dcf985b44d75064bb323f820ccb139f84cc9b98da1e",
+      "revision_date": "2026-04-12T16:42:18.843396+00:00",
+      "collected_at": "2026-04-12T16:42:22.743905+00:00",
+      "status": "new"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Letter to BMA Resident Doctors Committee",
+      "document_url": "https://www.gov.uk/government/news/letter-to-bma-resident-doctors-committee",
+      "source_url": "https://www.gov.uk/government/news/letter-to-bma-resident-doctors-committee",
+      "content_hash": "26c9a900ae18a1df4dce36e64d1397ee19da30f702691f4ff2f70273f0959c2a",
+      "revision_date": "2026-04-12T02:58:07+00:00",
+      "collected_at": "2026-04-12T16:42:22.743905+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Small boat activity in the English Channel",
+      "document_url": "https://www.gov.uk/government/publications/migrants-detected-crossing-the-english-channel-in-small-boats",
+      "source_url": "https://www.gov.uk/government/publications/migrants-detected-crossing-the-english-channel-in-small-boats",
+      "content_hash": "be59cf91abc59a044a05fa910054e89f99424dc6bbf0bcc23852ba38e084ee43",
+      "revision_date": "2026-04-11T23:23:01+00:00",
+      "collected_at": "2026-04-12T16:42:22.743905+00:00",
+      "status": "unchanged"
+    }
+  ]
+}

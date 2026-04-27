@@ -1,5 +1,76 @@
 category_name: paperwork
 display_name: 서류/행정 레이더
+data_quality:
+  priority: P0
+  primary_motion: compliance-risk
+  weakest_dimension: operational_depth
+  quality_outputs:
+    freshness_report: reports/paperwork_quality.json
+    dated_freshness_report_pattern: reports/paperwork_YYYYMMDD_quality.json
+    document_diff_report: reports/document_diffs/paperwork_document_diffs.json
+    dated_document_diff_report_pattern: reports/document_diffs/paperwork_YYYYMMDD_document_diffs.json
+    tracked_event_models: [form_revision, filing_deadline, portal_service_change]
+  event_models:
+    form_revision:
+      fields: [jurisdiction, issuing_agency, form_number, form_title, revision_date, document_url, content_hash, source_url, collected_at]
+      notes: "서식 원본 파일과 안내문 변경을 diff 가능한 이벤트로 취급한다."
+    filing_deadline:
+      fields: [jurisdiction, issuing_agency, filing_type, due_date, effective_date, source_url, collected_at]
+      notes: "제출 마감일·시행일·public comment 종료일을 별도 운영 이벤트로 유지한다."
+    portal_service_change:
+      fields: [portal, service_id, service_name, requirement_summary, changed_at, source_url, collected_at]
+      notes: "정부 포털의 신청 절차·필수 첨부서류·수수료 변경을 추적한다."
+  canonical_keys:
+    form:
+      fields: [jurisdiction, issuing_agency, normalized_form_title, form_number, document_url]
+      notes: "서식명이 같아도 발행기관·관할권이 다르면 별도 entity로 분리한다."
+    deadline:
+      fields: [jurisdiction, issuing_agency, filing_type, due_date, source_url]
+      notes: "마감일 추적과 stale deadline 제거용 key."
+    portal_service:
+      fields: [portal, service_id, normalized_service_name, jurisdiction]
+      notes: "정부24/하이코리아 등 포털형 service catalog 정규화 기준."
+  freshness_sla:
+    form_revision:
+      max_age_days: 3
+      event_date_field: revision_date
+      observed_date_field: collected_at
+    filing_deadline:
+      max_age_days: 2
+      event_date_field: due_date
+      observed_date_field: collected_at
+    portal_service_change:
+      max_age_days: 4
+      event_date_field: changed_at
+      observed_date_field: collected_at
+  quality_gates:
+    - "문서 hash와 원본 URL을 함께 저장"
+    - "서식명만 같고 발행기관이 다른 문서를 별도 entity로 분리"
+    - "개정일이 없으면 수집일 기준 provisional 상태로 표시"
+    - "뉴스 해설과 실제 제출 마감/서식 변경 이벤트를 같은 신뢰 등급으로 병합하지 않음"
+source_backlog:
+  form_diff_candidates:
+    - id: uscis_forms_updates_html
+      name: "USCIS Forms Updates"
+      url: https://www.uscis.gov/forms/forms-updates
+      reason: "RSS 403으로 비활성화된 고가치 서식 변경 source. HTML/browser fixture와 문서 hash diff 검증 후 재활성화."
+      required_before_enable: [browser_fixture_test, document_hash_diff, edition_date_parser]
+    - id: irs_forms_publications
+      name: "IRS Forms and Publications"
+      url: https://www.irs.gov/forms-instructions-and-publications
+      reason: "세금 서식·instructions 개정 추적 후보. PDF/document hash와 filing year canonicalization 필요."
+      required_before_enable: [document_hash_diff, filing_year_key, api_or_html_path]
+  deadline_calendar_candidates:
+    - id: irs_tax_deadlines
+      name: "IRS Filing Deadlines"
+      url: https://www.irs.gov/filing
+      reason: "세금 신고 마감일 운영 calendar 후보. 일반 news feed와 분리해 due_date event로 적재 필요."
+      required_before_enable: [deadline_parser, timezone_policy, stale_deadline_check]
+    - id: uk_companies_house_filing_deadlines
+      name: "Companies House Filing Deadlines"
+      url: https://www.gov.uk/government/organisations/companies-house
+      reason: "회사 서류 제출기한과 filing requirement 변경 후보."
+      required_before_enable: [deadline_parser, company_filing_taxonomy, evidence_url_check]
 sources:
 # NOTE: 2026-04-06 RSS 403 차단 - USCIS 전체 사이트 차단됨으로 비활성화
 # - name: USCIS Forms Updates
@@ -8,24 +79,116 @@ sources:
 - name: Federal Register Documents
   type: rss
   url: https://www.federalregister.gov/api/v1/documents.rss?order=newest
+  language: en
+  country: US
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: rulemaking_notice
+  producer_role: government
+  info_purpose: [rulemaking, public_comment, filing_requirement, filing_deadline, operational_event]
+  notes: "공식 rulemaking feed. public comment 종료일·시행일·filing requirement 변경 후보를 추적."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, filing_type, source_url]
+    freshness_sla_days: 2
 - name: GOV.UK Forms Search
   type: rss
   url: https://www.gov.uk/search/all.atom?keywords=application+form
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: form_search
+  producer_role: government
+  info_purpose: [application_form, form_revision, filing_requirement, operational_event]
+  notes: "GOV.UK application form 검색 feed. 서식명·발행기관 기준 form_revision 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, normalized_form_title, source_url]
+    freshness_sla_days: 2
 - name: GOV.UK HMRC
   type: rss
   url: https://www.gov.uk/government/organisations/hm-revenue-customs.atom
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: tax_form_notice
+  producer_role: government
+  info_purpose: [tax_form, filing_deadline, form_revision, operational_event]
+  notes: "세금 서식·신고기한·guidance 변경을 deadline/form event로 추적."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, filing_type, source_url]
+    freshness_sla_days: 2
 - name: GOV.UK Home Office
   type: rss
   url: https://www.gov.uk/government/organisations/home-office.atom
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: immigration_form_notice
+  producer_role: government
+  info_purpose: [visa_application, application_form, filing_requirement, operational_event]
+  notes: "비자·이민 신청 절차 및 요구서류 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, normalized_form_title, source_url]
 - name: UK Legislation New
   type: rss
   url: https://www.legislation.gov.uk/new/data.feed
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: statutory_change
+  producer_role: government
+  info_purpose: [statutory_change, filing_requirement, effective_date, operational_event]
+  notes: "법령 변경으로 인한 서류 제출요건·시행일 후보."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
 - name: UK Statutory Instruments
   type: rss
   url: https://www.legislation.gov.uk/uksi/data.feed
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: statutory_instrument
+  producer_role: government
+  info_purpose: [statutory_instrument, filing_requirement, effective_date, operational_event]
+  notes: "statutory instrument 기반 신청/신고 요건 변경 후보."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
+    freshness_sla_days: 7
 - name: GOV.UK Government Digital Service
   type: rss
   url: https://www.gov.uk/government/organisations/government-digital-service.atom
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: portal_service_change
+  producer_role: government
+  info_purpose: [digital_service, portal_service_change, online_application, operational_event]
+  notes: "온라인 신청·정부 포털 service catalog 변경 후보."
+  config:
+    event_model: portal_service_change
+    event_date_field: published
+    observed_date_field: collected_at
 - name: FedScoop
   type: rss
   url: https://fedscoop.com/feed/
@@ -35,76 +198,312 @@ sources:
 - name: Federal Register Forms Focus
   type: rss
   url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D=form&order=newest
+  language: en
+  country: US
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: form_rulemaking_notice
+  producer_role: government
+  info_purpose: [form_diff, form_revision, public_comment, filing_deadline, operational_event]
+  notes: "Federal Register form 키워드 집중 feed. form_revision과 filing_deadline 운영 이벤트 우선 source."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, normalized_form_title, source_url]
+    status_fields: [revision_date, effective_date, comment_close_date]
+    freshness_sla_days: 2
 - name: Reddit IWantOut
   type: reddit
   url: https://www.reddit.com/r/IWantOut/
+  language: en
+  trust_tier: T4_community
+  collection_tier: C3_reddit
+  content_type: community
+  producer_role: consumer_community
+  info_purpose: [application_friction, document_requirement_question, auxiliary_verification]
+  notes: "비자/이민 서류 준비 friction 보조 신호. 공식 deadline/form event와 병합하지 않음."
 - name: Reddit Visa
   type: reddit
   url: https://www.reddit.com/r/visa/
+  language: en
+  trust_tier: T4_community
+  collection_tier: C3_reddit
+  content_type: community
+  producer_role: consumer_community
+  info_purpose: [visa_application_friction, document_requirement_question, auxiliary_verification]
+  notes: "비자 신청 서류 confusion 보조 신호."
 - name: Reddit Immigration
   type: reddit
   url: https://www.reddit.com/r/immigration/
+  language: en
+  trust_tier: T4_community
+  collection_tier: C3_reddit
+  content_type: community
+  producer_role: consumer_community
+  info_purpose: [immigration_application_friction, document_requirement_question, auxiliary_verification]
+  notes: "이민 신청 서류 friction 보조 신호."
 - name: Reddit LegalAdvice
   type: reddit
   url: https://www.reddit.com/r/legaladvice/
+  language: en
+  trust_tier: T4_community
+  collection_tier: C3_reddit
+  content_type: community
+  producer_role: consumer_community
+  info_purpose: [legal_document_friction, auxiliary_verification]
+  notes: "법률문서 사용자 friction 보조 신호. 공식 source와 같은 근거로 병합하지 않음."
 # NOTE: 2026-04-06 RSS 404 - JavaScript 타입으로 변환
 - name: IRS News Releases
   type: javascript
   url: https://www.irs.gov/newsroom
+  language: en
+  country: US
+  trust_tier: T1_official
+  collection_tier: C3_html_js
+  content_type: tax_deadline_notice
+  producer_role: government
+  info_purpose: [tax_form_change, filing_deadline, form_revision, operational_event]
+  notes: "세금 신고 마감·서식 변경 공지 후보. JS 수집 안정성 검증 대상."
   config:
     wait_for: ".pup-news-list, .view-content"
+    bypass_crawl_health: true
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, filing_type, source_url]
 - name: State Department Travel Advisories
   type: rss
   url: https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.rss
+  language: en
+  country: US
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: travel_document_notice
+  producer_role: government
+  info_purpose: [visa_document_notice, travel_document_requirement, operational_event]
+  notes: "여행/비자 서류 요건 변경 보조 source."
 # NOTE: 2026-04-06 RSS 404 - JavaScript 타입으로 변환
 - name: GSA.gov News
   type: javascript
   url: https://www.gsa.gov/about-us/newsroom
+  language: en
+  country: US
+  trust_tier: T1_official
+  collection_tier: C3_html_js
+  content_type: procurement_form_notice
+  producer_role: government
+  info_purpose: [procurement_form, registration_requirement, portal_service_change, operational_event]
+  notes: "조달/등록 관련 정부 서비스 변경 후보. JS 수집 안정성 검증 대상."
   config:
-    wait_for: ".news-list, .view-content, .usa-card-group"
+    wait_for: "body"
+    bypass_crawl_health: true
+    event_model: portal_service_change
+    event_date_field: published
+    observed_date_field: collected_at
 - name: UK Companies House Updates
   type: rss
   url: https://www.gov.uk/government/organisations/companies-house.atom
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: company_filing_notice
+  producer_role: government
+  info_purpose: [company_filing, filing_deadline, form_revision, operational_event]
+  notes: "회사 filing guidance와 form/update notice를 제공하는 공식 feed. 실제 발행 cadence는 3~4일 quiet window가 반복돼 source-local SLA를 사용한다."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, filing_type, source_url]
+    freshness_sla_days: 4
 - name: UK Land Registry
   type: rss
   url: https://www.gov.uk/government/organisations/land-registry.atom
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: land_registry_form_notice
+  producer_role: government
+  info_purpose: [land_registry_form, filing_requirement, form_revision, operational_event]
+  notes: "등기 서식·제출요건 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
 - name: UK Visas and Immigration
   type: rss
   url: https://www.gov.uk/government/organisations/uk-visas-and-immigration.atom
+  language: en
+  country: UK
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: visa_form_notice
+  producer_role: government
+  info_purpose: [visa_application, filing_requirement, form_revision, filing_deadline, operational_event]
+  notes: "비자/이민 서식과 신청기한 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Canada CRA News
   type: rss
   url: https://www.canada.ca/en/revenue-agency.atom.xml
+  enabled: false
+  language: en
+  country: CA
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: tax_form_notice
+  producer_role: government
+  info_purpose: [tax_form, filing_deadline, form_revision, operational_event]
+  notes: "Disabled 2026-04-13: configured Canada CRA atom URL resolves to the canada.ca 404 page; replacement feed requires revalidation. 캐나다 세금 서식·신고기한 변경 후보."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Canada Immigration IRCC
   type: rss
   url: https://www.canada.ca/en/immigration-refugees-citizenship.atom.xml
+  enabled: false
+  language: en
+  country: CA
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: immigration_form_notice
+  producer_role: government
+  info_purpose: [immigration_application, form_revision, filing_requirement, operational_event]
+  notes: "Disabled 2026-04-13: configured Canada IRCC atom URL resolves to the canada.ca 404 page; replacement feed requires revalidation. 캐나다 이민 신청 서식·요건 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Australia ASIC Media
   type: rss
   url: https://asic.gov.au/about-asic/news-centre/rss-feeds/
+  enabled: false
+  language: en
+  country: AU
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: company_filing_notice
+  producer_role: government
+  info_purpose: [company_filing, registration_requirement, form_revision, operational_event]
+  notes: "Disabled 2026-04-13: configured ASIC RSS URL returns 404 HTML. 회사 등록/신고 서식과 제출요건 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Australia Immigration News
   type: rss
   url: https://www.homeaffairs.gov.au/rss-feeds
+  enabled: false
+  language: en
+  country: AU
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: immigration_form_notice
+  producer_role: government
+  info_purpose: [immigration_application, visa_application, filing_requirement, form_revision, operational_event]
+  notes: "Disabled 2026-04-13: configured Home Affairs RSS URL returns access denied in current crawler network. 호주 이민/비자 서식과 신청요건 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Singapore ACRA Updates
   type: rss
   url: https://www.acra.gov.sg/rss/news
+  enabled: false
+  language: en
+  country: SG
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: company_filing_notice
+  producer_role: government
+  info_purpose: [company_filing, registration_requirement, portal_service_change, operational_event]
+  notes: "Disabled 2026-04-13: configured ACRA RSS URL returns 404 HTML. 싱가포르 기업 등록/filing requirement 변경 후보."
+  config:
+    event_model: filing_deadline
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Singapore MOM Updates
   type: rss
   url: https://www.mom.gov.sg/rss
+  enabled: false
+  language: en
+  country: SG
+  trust_tier: T1_official
+  collection_tier: C1_rss
+  content_type: work_permit_notice
+  producer_role: government
+  info_purpose: [work_permit, visa_application, filing_requirement, form_revision, operational_event]
+  notes: "Disabled 2026-04-13: configured MOM RSS URL returns 404 HTML. 고용허가/비자 신청 서식과 제출요건 변경 후보."
+  config:
+    event_model: form_revision
+    event_date_field: published
+    observed_date_field: collected_at
 - name: Nolo Legal Updates
   type: rss
   url: https://www.nolo.com/rss.xml
+  language: en
+  country: US
+  trust_tier: T3_professional
+  collection_tier: C1_rss
+  content_type: legal_explainer
+  producer_role: expert_media
+  info_purpose: [market_validation, legal_form_context]
+  notes: "공식 source 해석 보조용 expert media. 운영 이벤트 원천으로는 사용하지 않음."
 - name: LegalZoom Blog
   type: rss
   url: https://www.legalzoom.com/articles/feed
+  enabled: false
+  language: en
+  country: US
+  trust_tier: T3_professional
+  collection_tier: C1_rss
+  content_type: legal_explainer
+  producer_role: expert_media
+  info_purpose: [market_validation, legal_form_context]
+  notes: "Disabled 2026-04-13: configured LegalZoom feed returns 404 HTML. 공식 서식/마감 이벤트의 시장 해설 보조 source."
 - name: 정부24 서비스
   type: javascript
   url: https://www.gov.kr/portal/main/nologin
+  language: ko
+  country: KR
+  trust_tier: T1_official
+  collection_tier: C3_html_js
+  content_type: portal_service_catalog
+  producer_role: government
+  info_purpose: [portal_service_change, online_application, required_document, operational_event]
+  notes: "정부24 서비스 catalog와 신청 절차 변경 후보. API source 활성화 전 browser fallback으로 유지."
   config:
-    wait_for: ".service_list"
+    wait_for: "body"
+    timeout: 20000
+    event_model: portal_service_change
+    event_date_field: collected_at
+    observed_date_field: collected_at
+    canonical_key_fields: [portal, service_id, normalized_service_name, jurisdiction]
 - name: 하이코리아 민원
   type: javascript
   url: https://www.hikorea.go.kr/board/BoardApplicationListR.pt
+  enabled: false
+  language: ko
+  country: KR
+  trust_tier: T1_official
+  collection_tier: C3_html_js
+  content_type: immigration_application_notice
+  producer_role: government
+  info_purpose: [visa_application, filing_requirement, form_revision, operational_event]
+  notes: "Disabled 2026-04-13: live browser probe returns a system congestion page instead of the application list; re-enable after stable fixture or API path is available. 체류/비자 민원 신청서류와 접수 요건 변경 후보."
   config:
-    wait_for: ".board_list"
+    wait_for: "body"
+    timeout: 20000
+    event_model: form_revision
+    event_date_field: collected_at
+    observed_date_field: collected_at
+    canonical_key_fields: [jurisdiction, issuing_agency, normalized_form_title, source_url]
 entities:
 - name: TaxDocs
   display_name: 세금 서류
