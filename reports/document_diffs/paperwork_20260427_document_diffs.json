@@ -1,6 +1,6 @@
 {
   "category": "paperwork",
-  "generated_at": "2026-04-28T00:41:06.600071+00:00",
+  "generated_at": "2026-04-27T23:45:05.703117+00:00",
   "documents": [
     {
       "source": "Federal Register Forms Focus",
@@ -184,170 +184,10 @@
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities; Application for Permit To Drill (APD, Revised APD), Supplemental APD Information Sheet, and All Supporting Documentation",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08030/agency-information-collection-activities-application-for-permit-to-drill-apd-revised-apd",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08030/agency-information-collection-activities-application-for-permit-to-drill-apd-revised-apd",
-      "content_hash": "d2f3091197105d78eae94a5b035a2ca1ed07bc9ee5ead719a0f3f144a2f15999",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities; Extension of Collection; Comment Request; Safety Standard for Adult Portable Bed Rails",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08027/agency-information-collection-activities-extension-of-collection-comment-request-safety-standard-for",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08027/agency-information-collection-activities-extension-of-collection-comment-request-safety-standard-for",
-      "content_hash": "3b21418e3c66ed1a61ea3eb3b963d8357a48cbb89e59421ec97826f010c08599",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Cost Expenditure Criteria for Research and Development Utilization Facilities",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08024/cost-expenditure-criteria-for-research-and-development-utilization-facilities",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08024/cost-expenditure-criteria-for-research-and-development-utilization-facilities",
-      "content_hash": "51e4cbded2b0d9e558330876ebd2b3068cc4f24be5281f200e9e9b3d902c7761",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Request for Information Regarding Enhancing and Streamlining Data Collection From Credit Unions",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08023/request-for-information-regarding-enhancing-and-streamlining-data-collection-from-credit-unions",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08023/request-for-information-regarding-enhancing-and-streamlining-data-collection-from-credit-unions",
-      "content_hash": "8bc69218d9ee32b05a102c7f5c8ea7e8d80f03194fc2ed0ab12f625891018c94",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Certain Hardwood Plywood Products from the People's Republic of China: Preliminary Determinations of No Shipments and Rescission, In Part; 2024, 2020-2021",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08038/certain-hardwood-plywood-products-from-the-peoples-republic-of-china-preliminary-determinations-of",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08038/certain-hardwood-plywood-products-from-the-peoples-republic-of-china-preliminary-determinations-of",
-      "content_hash": "1a22cccf6ad959f02fec3a37b993ec0dc5826010cfd0b87214acca67e65f1047",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Pipeline Safety: Electronic Retention of Part 194 Response Plans",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08070/pipeline-safety-electronic-retention-of-part-194-response-plans",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08070/pipeline-safety-electronic-retention-of-part-194-response-plans",
-      "content_hash": "bc8d5b4424ef62de157706c24508f4af32b4703ba6ae7208959b75c13ac86abb",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Amendments to the Federal Railroad Administration's Procedures for Service of Documents in Railroad Safety Enforcement Proceedings",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08021/amendments-to-the-federal-railroad-administrations-procedures-for-service-of-documents-in-railroad",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08021/amendments-to-the-federal-railroad-administrations-procedures-for-service-of-documents-in-railroad",
-      "content_hash": "5cbe033ce345ab3cfb65c1469740aeda6e5af7a94e0427781523ab3f9113ce52",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Information Collection: Safeguards on Nuclear Material, Implementation of US/IAEA Agreement",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08002/information-collection-safeguards-on-nuclear-material-implementation-of-usiaea-agreement",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08002/information-collection-safeguards-on-nuclear-material-implementation-of-usiaea-agreement",
-      "content_hash": "0ca149e42abdb0aab85fbf326c45eae0cc718cf810417e32b1b5375048bf22cc",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Information Collection: NRC Form 748, National Source Tracking System Report",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08000/information-collection-nrc-form-748-national-source-tracking-system-report",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08000/information-collection-nrc-form-748-national-source-tracking-system-report",
-      "content_hash": "ebd629968f0c22401396eb587f53f1a0883489962df6c74bf737b72fb88b78c1",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Privacy Act of 1974; System of Records",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07999/privacy-act-of-1974-system-of-records",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07999/privacy-act-of-1974-system-of-records",
-      "content_hash": "f5a1e135f37ddaa319c97eddc337c06313e959a6d24f978c8106ed9b593aac32",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities; Topographic and Hydrography Data Grants",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08026/agency-information-collection-activities-topographic-and-hydrography-data-grants",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08026/agency-information-collection-activities-topographic-and-hydrography-data-grants",
-      "content_hash": "5815300dbe3152374e5b5f3695a54105396e96f76d8009d1e8db9d1c709f4e82",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities: Information Collection Renewal; Submission for OMB Review; Assessment of Fees",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07991/agency-information-collection-activities-information-collection-renewal-submission-for-omb-review",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07991/agency-information-collection-activities-information-collection-renewal-submission-for-omb-review",
-      "content_hash": "4661af784bacc972a15f86162a323fec43f5ebae4d6ba9f1e39d80d99c0c9668",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "GOV.UK Forms Search",
-      "title": "ERSM140070 - Reporting requirements - Form 42",
-      "document_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140070",
-      "source_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140070",
-      "content_hash": "858145e86f869f7c24eb303c8eaee382d4abec1a4929bf3f3d9c17b1f18be97a",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
       "title": "Internal Revenue Service Advisory Council; Request for Nominations",
       "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08007/internal-revenue-service-advisory-council-request-for-nominations",
       "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08007/internal-revenue-service-advisory-council-request-for-nominations",
       "content_hash": "46338a72b6d60dc09e281b0d0821046e2971c382d5df011e8ed9faf933e35b14",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "CION Grosvenor Infrastructure Master Fund, LLC, et al.",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07995/cion-grosvenor-infrastructure-master-fund-llc-et-al",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07995/cion-grosvenor-infrastructure-master-fund-llc-et-al",
-      "content_hash": "8e9013673b079f04439184150122bc18724c24d95a0c4b3ef27cb010ce287fc0",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "30-Day Notice of Proposed Information Collection: HUD Secretary's Award",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08001/30-day-notice-of-proposed-information-collection-hud-secretarys-award",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08001/30-day-notice-of-proposed-information-collection-hud-secretarys-award",
-      "content_hash": "57e141b705a9e24c576c3fa0d85a3cc06afce8838c6b8a1acdb02dd9dafa054e",
-      "revision_date": "2026-04-23T15:00:00+00:00",
-      "collected_at": "2026-04-24T07:53:59.977516+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "GOV.UK Forms Search",
-      "title": "ERSM140030 - Reporting requirements - 'Other' non-tax advantaged employment-related securities (Previously Form 42)",
-      "document_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140030",
-      "source_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140030",
-      "content_hash": "a175a0cac59c81268a05c1eec0b3f3c6f363b72374db3d4e229e4b021ea37890",
       "revision_date": "2026-04-23T15:00:00+00:00",
       "collected_at": "2026-04-24T07:53:59.977516+00:00",
       "status": "unchanged"
@@ -364,20 +204,40 @@
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities: Submission for OMB Review; Comment Request",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08025/agency-information-collection-activities-submission-for-omb-review-comment-request",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08025/agency-information-collection-activities-submission-for-omb-review-comment-request",
-      "content_hash": "abff6f7ce2c6fc9413cb7d6ac715986e2e124a84f8282874ccab6b3dff3922cf",
+      "title": "30-Day Notice of Proposed Information Collection: HUD Secretary's Award",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08001/30-day-notice-of-proposed-information-collection-hud-secretarys-award",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08001/30-day-notice-of-proposed-information-collection-hud-secretarys-award",
+      "content_hash": "57e141b705a9e24c576c3fa0d85a3cc06afce8838c6b8a1acdb02dd9dafa054e",
       "revision_date": "2026-04-23T15:00:00+00:00",
       "collected_at": "2026-04-24T07:53:59.977516+00:00",
       "status": "unchanged"
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities: Comment Request",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08033/agency-information-collection-activities-comment-request",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08033/agency-information-collection-activities-comment-request",
-      "content_hash": "40c88fae9ff46e44ba6235e84197e38d6aa178afacbb851dbd184876b45b1ac8",
+      "title": "Information Collection: NRC Form 748, National Source Tracking System Report",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08000/information-collection-nrc-form-748-national-source-tracking-system-report",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08000/information-collection-nrc-form-748-national-source-tracking-system-report",
+      "content_hash": "ebd629968f0c22401396eb587f53f1a0883489962df6c74bf737b72fb88b78c1",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Extension of Collection; Comment Request; Safety Standard for Adult Portable Bed Rails",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08027/agency-information-collection-activities-extension-of-collection-comment-request-safety-standard-for",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08027/agency-information-collection-activities-extension-of-collection-comment-request-safety-standard-for",
+      "content_hash": "3b21418e3c66ed1a61ea3eb3b963d8357a48cbb89e59421ec97826f010c08599",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities: Information Collection Renewal; Submission for OMB Review; Assessment of Fees",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07991/agency-information-collection-activities-information-collection-renewal-submission-for-omb-review",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07991/agency-information-collection-activities-information-collection-renewal-submission-for-omb-review",
+      "content_hash": "4661af784bacc972a15f86162a323fec43f5ebae4d6ba9f1e39d80d99c0c9668",
       "revision_date": "2026-04-23T15:00:00+00:00",
       "collected_at": "2026-04-24T07:53:59.977516+00:00",
       "status": "unchanged"
@@ -394,10 +254,150 @@
     },
     {
       "source": "Federal Register Forms Focus",
+      "title": "Privacy Act of 1974; System of Records",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07999/privacy-act-of-1974-system-of-records",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07999/privacy-act-of-1974-system-of-records",
+      "content_hash": "f5a1e135f37ddaa319c97eddc337c06313e959a6d24f978c8106ed9b593aac32",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities: Submission for OMB Review; Comment Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08025/agency-information-collection-activities-submission-for-omb-review-comment-request",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08025/agency-information-collection-activities-submission-for-omb-review-comment-request",
+      "content_hash": "abff6f7ce2c6fc9413cb7d6ac715986e2e124a84f8282874ccab6b3dff3922cf",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Cost Expenditure Criteria for Research and Development Utilization Facilities",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08024/cost-expenditure-criteria-for-research-and-development-utilization-facilities",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08024/cost-expenditure-criteria-for-research-and-development-utilization-facilities",
+      "content_hash": "51e4cbded2b0d9e558330876ebd2b3068cc4f24be5281f200e9e9b3d902c7761",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Amendments to the Federal Railroad Administration's Procedures for Service of Documents in Railroad Safety Enforcement Proceedings",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08021/amendments-to-the-federal-railroad-administrations-procedures-for-service-of-documents-in-railroad",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08021/amendments-to-the-federal-railroad-administrations-procedures-for-service-of-documents-in-railroad",
+      "content_hash": "5cbe033ce345ab3cfb65c1469740aeda6e5af7a94e0427781523ab3f9113ce52",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "ERSM140070 - Reporting requirements - Form 42",
+      "document_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140070",
+      "source_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140070",
+      "content_hash": "858145e86f869f7c24eb303c8eaee382d4abec1a4929bf3f3d9c17b1f18be97a",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Request for Information Regarding Enhancing and Streamlining Data Collection From Credit Unions",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08023/request-for-information-regarding-enhancing-and-streamlining-data-collection-from-credit-unions",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08023/request-for-information-regarding-enhancing-and-streamlining-data-collection-from-credit-unions",
+      "content_hash": "8bc69218d9ee32b05a102c7f5c8ea7e8d80f03194fc2ed0ab12f625891018c94",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "ERSM140030 - Reporting requirements - 'Other' non-tax advantaged employment-related securities (Previously Form 42)",
+      "document_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140030",
+      "source_url": "https://www.gov.uk/hmrc-internal-manuals/employment-related-securities/ersm140030",
+      "content_hash": "a175a0cac59c81268a05c1eec0b3f3c6f363b72374db3d4e229e4b021ea37890",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Topographic and Hydrography Data Grants",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08026/agency-information-collection-activities-topographic-and-hydrography-data-grants",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08026/agency-information-collection-activities-topographic-and-hydrography-data-grants",
+      "content_hash": "5815300dbe3152374e5b5f3695a54105396e96f76d8009d1e8db9d1c709f4e82",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Information Collection: Safeguards on Nuclear Material, Implementation of US/IAEA Agreement",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08002/information-collection-safeguards-on-nuclear-material-implementation-of-usiaea-agreement",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08002/information-collection-safeguards-on-nuclear-material-implementation-of-usiaea-agreement",
+      "content_hash": "0ca149e42abdb0aab85fbf326c45eae0cc718cf810417e32b1b5375048bf22cc",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
       "title": "Significant New Use Rules on Certain Chemical Substances (26-2)",
       "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08012/significant-new-use-rules-on-certain-chemical-substances-26-2",
       "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08012/significant-new-use-rules-on-certain-chemical-substances-26-2",
       "content_hash": "4e6c1962915303fbe67b7181a00d69681c5e6bee90919c8828066ef399a0f248",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "CION Grosvenor Infrastructure Master Fund, LLC, et al.",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07995/cion-grosvenor-infrastructure-master-fund-llc-et-al",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-07995/cion-grosvenor-infrastructure-master-fund-llc-et-al",
+      "content_hash": "8e9013673b079f04439184150122bc18724c24d95a0c4b3ef27cb010ce287fc0",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Pipeline Safety: Electronic Retention of Part 194 Response Plans",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08070/pipeline-safety-electronic-retention-of-part-194-response-plans",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08070/pipeline-safety-electronic-retention-of-part-194-response-plans",
+      "content_hash": "bc8d5b4424ef62de157706c24508f4af32b4703ba6ae7208959b75c13ac86abb",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Certain Hardwood Plywood Products from the People's Republic of China: Preliminary Determinations of No Shipments and Rescission, In Part; 2024, 2020-2021",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08038/certain-hardwood-plywood-products-from-the-peoples-republic-of-china-preliminary-determinations-of",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08038/certain-hardwood-plywood-products-from-the-peoples-republic-of-china-preliminary-determinations-of",
+      "content_hash": "1a22cccf6ad959f02fec3a37b993ec0dc5826010cfd0b87214acca67e65f1047",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities: Comment Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08033/agency-information-collection-activities-comment-request",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08033/agency-information-collection-activities-comment-request",
+      "content_hash": "40c88fae9ff46e44ba6235e84197e38d6aa178afacbb851dbd184876b45b1ac8",
+      "revision_date": "2026-04-23T15:00:00+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Application for Permit To Drill (APD, Revised APD), Supplemental APD Information Sheet, and All Supporting Documentation",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08030/agency-information-collection-activities-application-for-permit-to-drill-apd-revised-apd",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/24/2026-08030/agency-information-collection-activities-application-for-permit-to-drill-apd-revised-apd",
+      "content_hash": "d2f3091197105d78eae94a5b035a2ca1ed07bc9ee5ead719a0f3f144a2f15999",
       "revision_date": "2026-04-23T15:00:00+00:00",
       "collected_at": "2026-04-24T07:53:59.977516+00:00",
       "status": "unchanged"
@@ -614,16 +614,6 @@
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Notice of Availability of Proposed Guidance for Preferred Loan Sizing for Transit-Oriented Development Projects Under the Railroad Rehabilitation and Improvement Financing Program and Transportation Infrastructure Finance and Innovation Act Program",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07981/notice-of-availability-of-proposed-guidance-for-preferred-loan-sizing-for-transit-oriented",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07981/notice-of-availability-of-proposed-guidance-for-preferred-loan-sizing-for-transit-oriented",
-      "content_hash": "36997d92550da27f8446763442cd443dc9ff0203a05861b0d5f5e10240deaf1b",
-      "revision_date": "2026-04-22T15:00:00+00:00",
-      "collected_at": "2026-04-23T19:18:34.638737+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
       "title": "Procedures for Submissions by Certain Steel and Aluminum Producers Committing to New U.S. Steel or Aluminum Production To Obtain Tariff Adjustments Under Proclamation 10984",
       "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07987/procedures-for-submissions-by-certain-steel-and-aluminum-producers-committing-to-new-us-steel-or",
       "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07987/procedures-for-submissions-by-certain-steel-and-aluminum-producers-committing-to-new-us-steel-or",
@@ -654,6 +644,16 @@
     },
     {
       "source": "Federal Register Forms Focus",
+      "title": "Notice of Availability of Proposed Guidance for Preferred Loan Sizing for Transit-Oriented Development Projects Under the Railroad Rehabilitation and Improvement Financing Program and Transportation Infrastructure Finance and Innovation Act Program",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07981/notice-of-availability-of-proposed-guidance-for-preferred-loan-sizing-for-transit-oriented",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07981/notice-of-availability-of-proposed-guidance-for-preferred-loan-sizing-for-transit-oriented",
+      "content_hash": "36997d92550da27f8446763442cd443dc9ff0203a05861b0d5f5e10240deaf1b",
+      "revision_date": "2026-04-22T15:00:00+00:00",
+      "collected_at": "2026-04-23T19:18:34.638737+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
       "title": "National Forests and Grasslands in Texas; Oil and Gas Leasing Availability Analysis Environmental Impact Statement; Revised",
       "document_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07974/national-forests-and-grasslands-in-texas-oil-and-gas-leasing-availability-analysis-environmental",
       "source_url": "https://www.federalregister.gov/documents/2026/04/23/2026-07974/national-forests-and-grasslands-in-texas-oil-and-gas-leasing-availability-analysis-environmental",
@@ -664,20 +664,20 @@
     },
     {
       "source": "GOV.UK Forms Search",
-      "title": "SSAC Occasional Paper 27: The influence of the social security system on educational and vocational decision-making at age 16",
-      "document_url": "https://www.gov.uk/government/publications/ssac-occasional-paper-27-the-influence-of-the-social-security-system-on-educational-and-vocational-decision-making-at-age-16",
-      "source_url": "https://www.gov.uk/government/publications/ssac-occasional-paper-27-the-influence-of-the-social-security-system-on-educational-and-vocational-decision-making-at-age-16",
-      "content_hash": "85649951fcfe1acda21eba8d433fdd2f162208b1727494eb7f00ce6f79f7d320",
+      "title": "Benefits system distorts choices at 16",
+      "document_url": "https://www.gov.uk/government/news/benefits-system-distorts-choices-at-16",
+      "source_url": "https://www.gov.uk/government/news/benefits-system-distorts-choices-at-16",
+      "content_hash": "b071a5329cf02b0f858d3d4aed25cfb64f74f2e2eeae83c695fcd915610ca5ab",
       "revision_date": "2026-04-22T14:01:00+00:00",
       "collected_at": "2026-04-23T04:04:54.817898+00:00",
       "status": "unchanged"
     },
     {
       "source": "GOV.UK Forms Search",
-      "title": "Benefits system distorts choices at 16",
-      "document_url": "https://www.gov.uk/government/news/benefits-system-distorts-choices-at-16",
-      "source_url": "https://www.gov.uk/government/news/benefits-system-distorts-choices-at-16",
-      "content_hash": "b071a5329cf02b0f858d3d4aed25cfb64f74f2e2eeae83c695fcd915610ca5ab",
+      "title": "SSAC Occasional Paper 27: The influence of the social security system on educational and vocational decision-making at age 16",
+      "document_url": "https://www.gov.uk/government/publications/ssac-occasional-paper-27-the-influence-of-the-social-security-system-on-educational-and-vocational-decision-making-at-age-16",
+      "source_url": "https://www.gov.uk/government/publications/ssac-occasional-paper-27-the-influence-of-the-social-security-system-on-educational-and-vocational-decision-making-at-age-16",
+      "content_hash": "85649951fcfe1acda21eba8d433fdd2f162208b1727494eb7f00ce6f79f7d320",
       "revision_date": "2026-04-22T14:01:00+00:00",
       "collected_at": "2026-04-23T04:04:54.817898+00:00",
       "status": "unchanged"
@@ -814,22 +814,22 @@
     },
     {
       "source": "UK Land Registry",
-      "title": "UK House Price Index: data downloads February 2026",
-      "document_url": "https://www.gov.uk/government/statistical-data-sets/uk-house-price-index-data-downloads-february-2026",
-      "source_url": "https://www.gov.uk/government/statistical-data-sets/uk-house-price-index-data-downloads-february-2026",
-      "content_hash": "7398f1d932e7e0c011b6bca41faa796dd4360c57aeb0132261642d828c80da87",
-      "revision_date": "2026-04-21T23:30:01+00:00",
-      "collected_at": "2026-04-25T11:37:35.938250+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "UK Land Registry",
       "title": "Accredited official statistics: UK House Price Index for February 2026",
       "document_url": "https://www.gov.uk/government/statistics/uk-house-price-index-for-february-2026",
       "source_url": "https://www.gov.uk/government/statistics/uk-house-price-index-for-february-2026",
       "content_hash": "39cf788940409704c7f224b4341cb8acb093594a0516f2deb9bfb87e77b9a7f1",
       "revision_date": "2026-04-21T23:30:01+00:00",
       "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Land Registry",
+      "title": "UK House Price Index: data downloads February 2026",
+      "document_url": "https://www.gov.uk/government/statistical-data-sets/uk-house-price-index-data-downloads-february-2026",
+      "source_url": "https://www.gov.uk/government/statistical-data-sets/uk-house-price-index-data-downloads-february-2026",
+      "content_hash": "7398f1d932e7e0c011b6bca41faa796dd4360c57aeb0132261642d828c80da87",
+      "revision_date": "2026-04-21T23:30:01+00:00",
+      "collected_at": "2026-04-25T11:37:35.938250+00:00",
       "status": "unchanged"
     },
     {
@@ -854,60 +854,20 @@
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities: Submission to OMB for Review and Approval; Public Comment Request; Health Center Program Forms-OMB No. 0915-0285-Revision",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07793/agency-information-collection-activities-submission-to-omb-for-review-and-approval-public-comment",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07793/agency-information-collection-activities-submission-to-omb-for-review-and-approval-public-comment",
-      "content_hash": "992520ece0b4a4fdd4b32944a36709bf8050c2385fc5046c456f51be4cc5c204",
+      "title": "Medicaid and Children's Health Insurance Program (CHIP) Generic Information Collection Activities: Proposed Collection; Comment Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07802/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07802/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "content_hash": "efef4a24cf4c617b39dc6c132239a13795f4750334a232f72c13491c60a0389e",
       "revision_date": "2026-04-21T15:00:00+00:00",
       "collected_at": "2026-04-22T18:08:07.661400+00:00",
       "status": "unchanged"
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "NextEra Energy Duane Arnold, LLC; Duane Arnold Energy Center; Applications for Amendments to Renewed Facility License Involving Proposed No Significant Hazards Consideration Determination and Containing Safeguards Information and Order Imposing Procedures for Access to Safeguards Information",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07796/nextera-energy-duane-arnold-llc-duane-arnold-energy-center-applications-for-amendments-to-renewed",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07796/nextera-energy-duane-arnold-llc-duane-arnold-energy-center-applications-for-amendments-to-renewed",
-      "content_hash": "011b9705c6448a800bd852e645a999df3f950070ea5f3b25d7688850a4a34f6d",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Self-Regulatory Organizations; Cboe Exchange, Inc.; Notice of Filing of a Proposed Rule Change To Amend Rule 4.21 (Series of FLEX Options)",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07818/self-regulatory-organizations-cboe-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to-amend",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07818/self-regulatory-organizations-cboe-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to-amend",
-      "content_hash": "39250ddcfc6d32f8901c648453678c47a76f3d19923357dc4066775485615a35",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Self-Regulatory Organizations; Cboe EDGX Exchange, Inc.; Notice of Filing and Immediate Effectiveness of a Proposed Rule Change To Amend Rules 21.19 and 21.21 To Permit Orders for the Accounts of Market-Makers With an Appointment in the Applicable Class To Be Solicited for the Initiating Order for a Simple AIM or Simple SAM Auction",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07821/self-regulatory-organizations-cboe-edgx-exchange-inc-notice-of-filing-and-immediate-effectiveness-of",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07821/self-regulatory-organizations-cboe-edgx-exchange-inc-notice-of-filing-and-immediate-effectiveness-of",
-      "content_hash": "9250bdbf516b3718ad3c330b5b22bcfd754a373d19a7e17bbd48076fe809fd24",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Self-Regulatory Organizations; Nasdaq PHLX LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change To Amend Various Auction Mechanisms",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07786/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07786/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of",
-      "content_hash": "c872bdcbc1c78006e03ff92276fd7f94ee7fc9f47af2a5a142ce3df14488d210",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; NOAA Office of Education Higher Education Scholarship, Fellowship, and Internship Programs",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07790/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07790/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
-      "content_hash": "c6eb13d422426328bd304dfc4612569f7b60524a2694f818d16b2bbf86ea3d11",
+      "title": "National Emission Standards for Hazardous Air Pollutants: Crude Oil and Natural Gas Production Facilities and Natural Gas Transmission and Storage Facilities; Technology Review and Reconsideration",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07800/national-emission-standards-for-hazardous-air-pollutants-crude-oil-and-natural-gas-production",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07800/national-emission-standards-for-hazardous-air-pollutants-crude-oil-and-natural-gas-production",
+      "content_hash": "cf2da4dfe492e666868cedc30b00e718c1a3d2563eab3b1ff66323162fc7f563",
       "revision_date": "2026-04-21T15:00:00+00:00",
       "collected_at": "2026-04-22T18:08:07.661400+00:00",
       "status": "unchanged"
@@ -934,46 +894,6 @@
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Final 2024 Marine Mammal Stock Assessment Reports",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07791/final-2024-marine-mammal-stock-assessment-reports",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07791/final-2024-marine-mammal-stock-assessment-reports",
-      "content_hash": "ca419f968b5291a78ed94d68501bf51f3c06504ea94471890f08c2dd19ee884c",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Self-Regulatory Organizations; Cboe BZX Exchange, Inc.; Notice of Filing of a Proposed Rule Change To List and Trade Shares of the BondBloxx Private Credit Trust Under BZX Rule 14.11(f), Trust Issued Receipts",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07820/self-regulatory-organizations-cboe-bzx-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07820/self-regulatory-organizations-cboe-bzx-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to",
-      "content_hash": "0d4608634c1745a0312e53ca0fe67a3e1b70e28b69494823acba83232e5c4852",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "National Emission Standards for Hazardous Air Pollutants: Crude Oil and Natural Gas Production Facilities and Natural Gas Transmission and Storage Facilities; Technology Review and Reconsideration",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07800/national-emission-standards-for-hazardous-air-pollutants-crude-oil-and-natural-gas-production",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07800/national-emission-standards-for-hazardous-air-pollutants-crude-oil-and-natural-gas-production",
-      "content_hash": "cf2da4dfe492e666868cedc30b00e718c1a3d2563eab3b1ff66323162fc7f563",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
-      "title": "Medicaid and Children's Health Insurance Program (CHIP) Generic Information Collection Activities: Proposed Collection; Comment Request",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07802/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07802/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
-      "content_hash": "efef4a24cf4c617b39dc6c132239a13795f4750334a232f72c13491c60a0389e",
-      "revision_date": "2026-04-21T15:00:00+00:00",
-      "collected_at": "2026-04-22T18:08:07.661400+00:00",
-      "status": "unchanged"
-    },
-    {
-      "source": "Federal Register Forms Focus",
       "title": "Joint Industry Plan; Notice of Filing of Amendment No. 1, and Order Instituting Proceedings To Determine Whether To Approve or Disapprove an Amendment to the Joint Self-Regulatory Organization Plan Governing the Collection, Consolidation and Dissemination of Quotation and Transaction Information for Nasdaq-Listed Securities Traded on Exchanges on an Unlisted Trading Privileges Basis, as Modified by Amendment No. 1 Thereto, To Extend the Processor's Hours of Operation",
       "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07787/joint-industry-plan-notice-of-filing-of-amendment-no-1-and-order-instituting-proceedings-to",
       "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07787/joint-industry-plan-notice-of-filing-of-amendment-no-1-and-order-instituting-proceedings-to",
@@ -984,10 +904,20 @@
     },
     {
       "source": "Federal Register Forms Focus",
-      "title": "Medicaid and Children's Health Insurance Program (CHIP) Generic Information Collection Activities: Proposed Collection; Comment Request",
-      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07803/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
-      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07803/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
-      "content_hash": "e1ddfc66d5a20f4431ef9e54bb6325994eede9bd0631e4c5a81f401f6c2cdf7f",
+      "title": "Final 2024 Marine Mammal Stock Assessment Reports",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07791/final-2024-marine-mammal-stock-assessment-reports",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07791/final-2024-marine-mammal-stock-assessment-reports",
+      "content_hash": "ca419f968b5291a78ed94d68501bf51f3c06504ea94471890f08c2dd19ee884c",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "NextEra Energy Duane Arnold, LLC; Duane Arnold Energy Center; Applications for Amendments to Renewed Facility License Involving Proposed No Significant Hazards Consideration Determination and Containing Safeguards Information and Order Imposing Procedures for Access to Safeguards Information",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07796/nextera-energy-duane-arnold-llc-duane-arnold-energy-center-applications-for-amendments-to-renewed",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07796/nextera-energy-duane-arnold-llc-duane-arnold-energy-center-applications-for-amendments-to-renewed",
+      "content_hash": "011b9705c6448a800bd852e645a999df3f950070ea5f3b25d7688850a4a34f6d",
       "revision_date": "2026-04-21T15:00:00+00:00",
       "collected_at": "2026-04-22T18:08:07.661400+00:00",
       "status": "unchanged"
@@ -1004,10 +934,80 @@
     },
     {
       "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; NOAA Office of Education Higher Education Scholarship, Fellowship, and Internship Programs",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07790/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07790/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "content_hash": "c6eb13d422426328bd304dfc4612569f7b60524a2694f818d16b2bbf86ea3d11",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Medicaid and Children's Health Insurance Program (CHIP) Generic Information Collection Activities: Proposed Collection; Comment Request",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07803/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07803/medicaid-and-childrens-health-insurance-program-chip-generic-information-collection-activities",
+      "content_hash": "e1ddfc66d5a20f4431ef9e54bb6325994eede9bd0631e4c5a81f401f6c2cdf7f",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Cboe EDGX Exchange, Inc.; Notice of Filing and Immediate Effectiveness of a Proposed Rule Change To Amend Rules 21.19 and 21.21 To Permit Orders for the Accounts of Market-Makers With an Appointment in the Applicable Class To Be Solicited for the Initiating Order for a Simple AIM or Simple SAM Auction",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07821/self-regulatory-organizations-cboe-edgx-exchange-inc-notice-of-filing-and-immediate-effectiveness-of",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07821/self-regulatory-organizations-cboe-edgx-exchange-inc-notice-of-filing-and-immediate-effectiveness-of",
+      "content_hash": "9250bdbf516b3718ad3c330b5b22bcfd754a373d19a7e17bbd48076fe809fd24",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Cboe Exchange, Inc.; Notice of Filing of a Proposed Rule Change To Amend Rule 4.21 (Series of FLEX Options)",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07818/self-regulatory-organizations-cboe-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to-amend",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07818/self-regulatory-organizations-cboe-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to-amend",
+      "content_hash": "39250ddcfc6d32f8901c648453678c47a76f3d19923357dc4066775485615a35",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
       "title": "Privacy Act of 1974; System of Records",
       "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07817/privacy-act-of-1974-system-of-records",
       "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07817/privacy-act-of-1974-system-of-records",
       "content_hash": "78d7d52750efb70636a04be194a055986f29d9395079ca2387a74292065d7083",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Agency Information Collection Activities: Submission to OMB for Review and Approval; Public Comment Request; Health Center Program Forms-OMB No. 0915-0285-Revision",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07793/agency-information-collection-activities-submission-to-omb-for-review-and-approval-public-comment",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07793/agency-information-collection-activities-submission-to-omb-for-review-and-approval-public-comment",
+      "content_hash": "992520ece0b4a4fdd4b32944a36709bf8050c2385fc5046c456f51be4cc5c204",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Cboe BZX Exchange, Inc.; Notice of Filing of a Proposed Rule Change To List and Trade Shares of the BondBloxx Private Credit Trust Under BZX Rule 14.11(f), Trust Issued Receipts",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07820/self-regulatory-organizations-cboe-bzx-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07820/self-regulatory-organizations-cboe-bzx-exchange-inc-notice-of-filing-of-a-proposed-rule-change-to",
+      "content_hash": "0d4608634c1745a0312e53ca0fe67a3e1b70e28b69494823acba83232e5c4852",
+      "revision_date": "2026-04-21T15:00:00+00:00",
+      "collected_at": "2026-04-22T18:08:07.661400+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "Federal Register Forms Focus",
+      "title": "Self-Regulatory Organizations; Nasdaq PHLX LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change To Amend Various Auction Mechanisms",
+      "document_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07786/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of",
+      "source_url": "https://www.federalregister.gov/documents/2026/04/22/2026-07786/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of",
+      "content_hash": "c872bdcbc1c78006e03ff92276fd7f94ee7fc9f47af2a5a142ce3df14488d210",
       "revision_date": "2026-04-21T15:00:00+00:00",
       "collected_at": "2026-04-22T18:08:07.661400+00:00",
       "status": "unchanged"
@@ -1079,6 +1079,16 @@
       "source_url": "https://www.gov.uk/government/publications/living-in-initial-accommodation",
       "content_hash": "e90a950a5a481a3d0fea207a4eef33fa73f93776dd23d652b7acd96f312f3e14",
       "revision_date": "2026-04-21T01:03:26+00:00",
+      "collected_at": "2026-04-24T07:53:59.977516+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Transparency data: Medical Implications of Less-Lethal Weapons Expert Committee: membership",
+      "document_url": "https://www.gov.uk/government/publications/medical-implications-of-less-lethal-weapons-expert-committee-membership",
+      "source_url": "https://www.gov.uk/government/publications/medical-implications-of-less-lethal-weapons-expert-committee-membership",
+      "content_hash": "3ae4da7ac4f80470bb3a08538d53523077090abde82cbf8c3e791d8b6d4a2c51",
+      "revision_date": "2026-04-20T23:57:00+00:00",
       "collected_at": "2026-04-24T07:53:59.977516+00:00",
       "status": "unchanged"
     }
