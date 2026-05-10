@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import argparse
+from collections.abc import Mapping
 from datetime import UTC
 from pathlib import Path
-from typing import cast
+from typing import Any, cast
 
 from paperworkradar.analyzer import apply_entity_rules
 from paperworkradar.collector import collect_sources
@@ -144,7 +145,20 @@ def run(
             search_idx.upsert(article.link, article.title, article.summary)
 
     recent_articles = storage.recent_articles(category_cfg.category_name, days=recent_days)
+    quality_lookback_days = _quality_lookback_days(
+        quality_cfg,
+        sources=category_cfg.sources,
+        minimum_days=recent_days,
+    )
+    quality_articles = storage.recent_articles(
+        category_cfg.category_name,
+        days=quality_lookback_days,
+        limit=_quality_article_limit(category_cfg.sources),
+    )
     storage.close()
+    quality_articles = _dedupe_articles(
+        [*collected, *analyzed, *validated_articles, *quality_articles]
+    )
 
     stats = {
         "sources": len(category_cfg.sources),
@@ -157,6 +171,7 @@ def run(
     quality_report = build_quality_report(
         category=category_cfg,
         articles=recent_articles,
+        freshness_articles=quality_articles,
         errors=errors,
         quality_config=quality_cfg,
     )
@@ -207,6 +222,65 @@ def run(
     )
 
     return output_path
+
+
+def _quality_article_limit(sources: object) -> int:
+    if isinstance(sources, list):
+        return max(1000, len(sources) * 200)
+    return 1000
+
+
+def _quality_lookback_days(
+    quality_config: Mapping[str, object],
+    *,
+    sources: list[object],
+    minimum_days: int,
+) -> int:
+    """Return a freshness window wide enough to classify quiet sources as stale."""
+    horizons = [max(1, minimum_days)]
+    data_quality = _mapping_value(quality_config, "data_quality")
+    freshness_sla = _mapping_value(data_quality, "freshness_sla")
+
+    for model_config in freshness_sla.values():
+        if not isinstance(model_config, Mapping):
+            continue
+        parsed = _positive_int(model_config.get("max_age_days"))
+        if parsed is not None:
+            horizons.append(parsed)
+
+    for source in sources:
+        config = getattr(source, "config", {})
+        if isinstance(config, Mapping):
+            parsed = _positive_int(config.get("freshness_sla_days"))
+            if parsed is not None:
+                horizons.append(parsed)
+
+    widest_sla = max(horizons)
+    return min(120, max(max(1, minimum_days), widest_sla * 3))
+
+
+def _mapping_value(mapping: Mapping[str, object], key: str) -> Mapping[str, Any]:
+    value = mapping.get(key)
+    return value if isinstance(value, Mapping) else {}
+
+
+def _positive_int(value: object) -> int | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int | float) and value > 0:
+        return int(value)
+    if isinstance(value, str) and value.strip().isdigit():
+        parsed = int(value.strip())
+        return parsed if parsed > 0 else None
+    return None
+
+
+def _dedupe_articles(articles: list[Any]) -> list[Any]:
+    deduped: dict[str, Any] = {}
+    for article in articles:
+        key = f"{article.source}:{article.link or article.title}"
+        deduped.setdefault(key, article)
+    return list(deduped.values())
 
 
 def parse_args() -> argparse.Namespace:

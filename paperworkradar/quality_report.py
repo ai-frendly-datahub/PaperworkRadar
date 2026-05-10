@@ -28,12 +28,16 @@ def build_quality_report(
     *,
     category: CategoryConfig,
     articles: Iterable[Article],
+    freshness_articles: Iterable[Article] | None = None,
     errors: Iterable[str] | None = None,
     quality_config: Mapping[str, object] | None = None,
     generated_at: datetime | None = None,
 ) -> dict[str, Any]:
     generated = _as_utc(generated_at or datetime.now(UTC))
     articles_list = list(articles)
+    freshness_articles_list = (
+        list(freshness_articles) if freshness_articles is not None else articles_list
+    )
     errors_list = [str(error) for error in (errors or [])]
     quality = _dict(quality_config or {}, "data_quality")
     freshness_sla = _dict(quality, "freshness_sla")
@@ -42,7 +46,7 @@ def build_quality_report(
     source_rows = [
         _build_source_row(
             source=source,
-            articles=articles_list,
+            articles=freshness_articles_list,
             errors=errors_list,
             freshness_sla=freshness_sla,
             tracked_event_models=tracked_event_models,
@@ -54,6 +58,8 @@ def build_quality_report(
         sources=category.sources,
         articles=articles_list,
         tracked_event_models=tracked_event_models,
+        freshness_sla=freshness_sla,
+        generated_at=generated,
     )
     documents = _build_document_diff_rows(
         sources=category.sources,
@@ -63,13 +69,19 @@ def build_quality_report(
 
     status_counts = Counter(str(row["status"]) for row in source_rows)
     event_counts = Counter(str(row["event_model"]) for row in events)
+    event_status_counts = Counter(str(row["event_status"]) for row in events)
+    event_keys = {
+        str(row["paperwork_event_key"])
+        for row in events
+        if str(row.get("paperwork_event_key") or "")
+    }
     portal_service_keys = {
         str(row["portal_service_key"])
         for row in events
         if row.get("event_model") == "portal_service_change"
         and str(row.get("portal_service_key") or "")
     }
-    return {
+    report = {
         "category": category.category_name,
         "generated_at": generated.isoformat(),
         "summary": {
@@ -84,12 +96,37 @@ def build_quality_report(
             "form_revision_events": event_counts.get("form_revision", 0),
             "filing_deadline_events": event_counts.get("filing_deadline", 0),
             "portal_service_change_events": event_counts.get("portal_service_change", 0),
+            "fresh_paperwork_events": event_status_counts.get("fresh", 0),
+            "stale_paperwork_events": event_status_counts.get("stale", 0),
+            "undated_paperwork_events": event_status_counts.get("unknown_event_date", 0),
+            "unique_paperwork_event_key_count": len(event_keys),
             "unique_portal_service_count": len(portal_service_keys),
             "document_diff_count": len(documents),
             "changed_document_count": 0,
             "new_document_count": 0,
             "unchanged_document_count": 0,
             "events_with_evidence_url": sum(1 for row in events if row.get("evidence_url")),
+            "events_missing_evidence_url": sum(
+                1 for row in events if not row.get("evidence_url")
+            ),
+            "form_revision_events_with_content_hash": sum(
+                1
+                for row in events
+                if row.get("event_model") == "form_revision"
+                and row.get("content_hash")
+            ),
+            "filing_deadline_events_with_due_date": sum(
+                1
+                for row in events
+                if row.get("event_model") == "filing_deadline"
+                and row.get("due_date")
+            ),
+            "portal_service_change_events_with_service_key": sum(
+                1
+                for row in events
+                if row.get("event_model") == "portal_service_change"
+                and row.get("portal_service_key")
+            ),
             "collection_error_count": len(errors_list),
         },
         "sources": source_rows,
@@ -97,6 +134,13 @@ def build_quality_report(
         "document_diffs": documents,
         "errors": errors_list,
     }
+    report["daily_review_items"] = _build_daily_review_items(
+        source_rows=source_rows,
+        events=events,
+        documents=documents,
+    )
+    report["summary"]["daily_review_item_count"] = len(report["daily_review_items"])
+    return report
 
 
 def write_quality_report(
@@ -153,6 +197,12 @@ def _build_source_row(
     tracked = _is_tracked_source(source, event_model, tracked_event_models)
     latest_article = _latest_article(source_articles)
     latest_event_at = _event_datetime(latest_article, source) if latest_article else None
+    if (
+        latest_article is not None
+        and latest_event_at is None
+        and str(source.config.get("event_date_field") or "") == "collected_at"
+    ):
+        latest_event_at = generated_at
     latest_portal_service = (
         _portal_service_fields(latest_article, source)
         if latest_article and event_model == "portal_service_change"
@@ -199,6 +249,8 @@ def _build_event_rows(
     sources: list[Source],
     articles: list[Article],
     tracked_event_models: set[str],
+    freshness_sla: Mapping[str, object],
+    generated_at: datetime,
 ) -> list[dict[str, Any]]:
     sources_by_name = {source.name: source for source in sources}
     rows: list[dict[str, Any]] = []
@@ -209,7 +261,9 @@ def _build_event_rows(
         event_model = _source_event_model(source)
         if not _is_tracked_source(source, event_model, tracked_event_models):
             continue
-        event_at = _event_datetime(article, source)
+        event_at = _paperwork_event_datetime(article, source, event_model)
+        sla_days = _source_sla_days(source, event_model, freshness_sla)
+        age_days = _age_days(generated_at, event_at) if event_at else None
         row = {
             "source": source.name,
             "event_model": event_model,
@@ -218,6 +272,19 @@ def _build_event_rows(
             "evidence_url": article.link,
             "evidence_url_present": bool(article.link),
             "event_at": event_at.isoformat() if event_at else None,
+            "event_age_days": round(age_days, 2) if age_days is not None else None,
+            "event_freshness_sla_days": sla_days,
+            "event_status": _event_status(
+                event_at=event_at,
+                age_days=age_days,
+                sla_days=sla_days,
+            ),
+            "paperwork_event_key": _paperwork_event_key(
+                article=article,
+                source=source,
+                event_model=event_model,
+            ),
+            "due_date": _due_date(article),
             "document_url": article.link if event_model == "form_revision" else "",
             "content_hash": (
                 _document_content_hash(article)
@@ -229,6 +296,127 @@ def _build_event_rows(
             row.update(_portal_service_fields(article, source))
         rows.append(row)
     return rows
+
+
+def _build_daily_review_items(
+    *,
+    source_rows: list[dict[str, Any]],
+    events: list[dict[str, Any]],
+    documents: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    items: list[dict[str, Any]] = []
+    for row in source_rows:
+        source_name = str(row.get("source") or "")
+        status = str(row.get("status") or "")
+        event_model = str(row.get("event_model") or "")
+        if status in {"missing", "stale", "unknown_event_date"}:
+            items.append(
+                {
+                    "reason": f"source_status_{status}",
+                    "source": source_name,
+                    "event_model": event_model,
+                    "freshness_sla_days": row.get("freshness_sla_days"),
+                    "age_days": row.get("age_days"),
+                    "latest_event_at": row.get("latest_event_at"),
+                    "detail": "Tracked paperwork source needs collection or freshness follow-up.",
+                }
+            )
+
+        if status == "skipped_disabled" and event_model in TRACKED_EVENT_MODELS:
+            items.append(
+                {
+                    "reason": "disabled_source_gate",
+                    "source": source_name,
+                    "event_model": event_model,
+                    "skip_reason": row.get("skip_reason"),
+                    "reenable_gate": row.get("reenable_gate"),
+                }
+            )
+
+        for error in _list(row.get("errors")):
+            items.append(
+                {
+                    "reason": "source_collection_error",
+                    "source": source_name,
+                    "event_model": event_model,
+                    "error": error,
+                }
+            )
+
+    for event in events:
+        event_model = str(event.get("event_model") or "")
+        event_status = str(event.get("event_status") or "")
+        if event_status in {"stale", "unknown_event_date"}:
+            items.append(
+                {
+                    "reason": f"event_status_{event_status}",
+                    "source": event.get("source"),
+                    "event_model": event_model,
+                    "event_at": event.get("event_at"),
+                    "event_age_days": event.get("event_age_days"),
+                    "event_freshness_sla_days": event.get("event_freshness_sla_days"),
+                    "evidence_url": event.get("evidence_url"),
+                    "title": event.get("title"),
+                }
+            )
+        if not event.get("evidence_url"):
+            items.append(
+                {
+                    "reason": "event_missing_evidence_url",
+                    "source": event.get("source"),
+                    "event_model": event_model,
+                    "paperwork_event_key": event.get("paperwork_event_key"),
+                    "title": event.get("title"),
+                }
+            )
+        if event_model == "form_revision" and (
+            not event.get("document_url") or not event.get("content_hash")
+        ):
+            items.append(
+                {
+                    "reason": "form_revision_missing_document_hash",
+                    "source": event.get("source"),
+                    "event_model": event_model,
+                    "paperwork_event_key": event.get("paperwork_event_key"),
+                    "evidence_url": event.get("evidence_url"),
+                    "title": event.get("title"),
+                }
+            )
+        if event_model == "filing_deadline" and not event.get("due_date"):
+            items.append(
+                {
+                    "reason": "filing_deadline_missing_due_date",
+                    "source": event.get("source"),
+                    "event_model": event_model,
+                    "paperwork_event_key": event.get("paperwork_event_key"),
+                    "evidence_url": event.get("evidence_url"),
+                    "title": event.get("title"),
+                }
+            )
+        if event_model == "portal_service_change" and not event.get("portal_service_key"):
+            items.append(
+                {
+                    "reason": "portal_service_change_missing_service_key",
+                    "source": event.get("source"),
+                    "event_model": event_model,
+                    "paperwork_event_key": event.get("paperwork_event_key"),
+                    "evidence_url": event.get("evidence_url"),
+                    "title": event.get("title"),
+                }
+            )
+
+    for document in documents:
+        if not document.get("content_hash"):
+            items.append(
+                {
+                    "reason": "document_missing_content_hash",
+                    "source": document.get("source"),
+                    "document_url": document.get("document_url"),
+                    "title": document.get("title"),
+                }
+            )
+
+    return items[:100]
 
 
 def _build_document_diff_rows(
@@ -414,6 +602,57 @@ def _event_datetime(article: Article | None, source: Source) -> datetime | None:
     return _as_utc(article_time) if article_time else None
 
 
+def _paperwork_event_datetime(
+    article: Article | None,
+    source: Source,
+    event_model: str,
+) -> datetime | None:
+    if article is None:
+        return None
+    if event_model == "filing_deadline":
+        due_date = _parse_datetime(_due_date(article))
+        if due_date is not None:
+            return due_date
+    return _event_datetime(article, source)
+
+
+def _event_status(
+    *,
+    event_at: datetime | None,
+    age_days: float | None,
+    sla_days: int | None,
+) -> str:
+    if event_at is None or age_days is None:
+        return "unknown_event_date"
+    if sla_days is not None and age_days > sla_days:
+        return "stale"
+    return "fresh"
+
+
+def _paperwork_event_key(*, article: Article, source: Source, event_model: str) -> str:
+    date_part = _due_date(article) if event_model == "filing_deadline" else ""
+    if not date_part and article.published:
+        date_part = article.published.date().isoformat()
+    key_parts = [
+        event_model,
+        source.country,
+        source.name,
+        date_part,
+        _first_entity(article, "ServiceName"),
+        _first_entity(article, "Form"),
+        article.title or article.link,
+    ]
+    return ":".join(_normalize_key_text(part) for part in key_parts if str(part).strip())
+
+
+def _due_date(article: Article) -> str:
+    for key in ("DueDate", "FilingDeadline", "Deadline", "PolicyEffectiveDate", "EffectiveDate"):
+        value = _first_entity(article, key)
+        if value:
+            return value
+    return ""
+
+
 def _document_content_hash(article: Article) -> str:
     content = "\n".join([article.link, article.title, article.summary or ""])
     return sha256(content.encode("utf-8")).hexdigest()
@@ -506,6 +745,12 @@ def _first_entity(article: Article, key: str) -> str:
     if isinstance(values, list) and values:
         return str(values[0])
     return ""
+
+
+def _list(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item).strip() for item in value if str(item).strip()]
 
 
 def _compact_text(text: str, *, limit: int = 120) -> str:

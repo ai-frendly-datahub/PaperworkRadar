@@ -1,0 +1,36 @@
+{
+  "category": "paperwork",
+  "generated_at": "2026-04-30T01:37:46.456730+00:00",
+  "documents": [
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Guidance: HMRC appropriate policy document",
+      "document_url": "https://www.gov.uk/government/publications/hmrc-appropriate-policy-document",
+      "source_url": "https://www.gov.uk/government/publications/hmrc-appropriate-policy-document",
+      "content_hash": "f03eb3165109a4f7f3e9e6a8291755b3f3e63057be0eef522b757e754faac523",
+      "revision_date": "2026-04-29T14:15:06+00:00",
+      "collected_at": "2026-04-30T01:37:45.953504+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Promotional material: Support for people affected by terrorist attacks overseas",
+      "document_url": "https://www.gov.uk/government/publications/support-for-people-affected-by-terrorist-attacks-overseas",
+      "source_url": "https://www.gov.uk/government/publications/support-for-people-affected-by-terrorist-attacks-overseas",
+      "content_hash": "eac2675f001d2b3cdc07d9e5092a629a72bd125e54707b4dd25d5f10fd54cd44",
+      "revision_date": "2026-04-29T07:30:03+00:00",
+      "collected_at": "2026-04-30T01:37:45.953504+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Guidance: EU Settlement Scheme: caseworker guidance",
+      "document_url": "https://www.gov.uk/government/publications/eu-settlement-scheme-caseworker-guidance",
+      "source_url": "https://www.gov.uk/government/publications/eu-settlement-scheme-caseworker-guidance",
+      "content_hash": "71524703bf7e2f09c8d1550c14f580af45d3121c0d154433904c7b0c7635e16b",
+      "revision_date": "2026-04-29T05:39:53+00:00",
+      "collected_at": "2026-04-30T01:37:45.953504+00:00",
+      "status": "unchanged"
+    }
+  ]
+}

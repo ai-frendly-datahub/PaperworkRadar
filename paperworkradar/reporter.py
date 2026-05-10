@@ -119,11 +119,15 @@ def _render_paperwork_quality_panel(quality_report: Mapping[str, Any]) -> str:
         row for row in _list(quality_report.get("document_diffs")) if isinstance(row, Mapping)
     ]
     events = [row for row in _list(quality_report.get("events")) if isinstance(row, Mapping)]
+    daily_review_items = [
+        row for row in _list(quality_report.get("daily_review_items")) if isinstance(row, Mapping)
+    ]
     flagged_sources = [
         row
         for row in sources
-        if str(row.get("status")) in {"stale", "missing", "unknown_event_date"}
-    ][:6]
+        if str(row.get("status")) in {"stale", "missing", "unknown_event_date", "skipped_disabled"}
+        or _list(row.get("errors"))
+    ][:8]
     changed_documents = [
         row for row in documents if str(row.get("status")) in {"new", "changed"}
     ][:6]
@@ -144,7 +148,11 @@ def _render_paperwork_quality_panel(quality_report: Mapping[str, Any]) -> str:
         ("portal services", summary_map.get("unique_portal_service_count", 0)),
         ("doc changes", summary_map.get("changed_document_count", 0)),
         ("new docs", summary_map.get("new_document_count", 0)),
+        ("fresh events", summary_map.get("fresh_paperwork_events", 0)),
+        ("stale events", summary_map.get("stale_paperwork_events", 0)),
+        ("event keys", summary_map.get("unique_paperwork_event_key_count", 0)),
         ("evidence URLs", summary_map.get("events_with_evidence_url", 0)),
+        ("daily review", summary_map.get("daily_review_item_count", len(daily_review_items))),
     ]
     chip_html = "\n".join(
         f'<span class="chip"><strong>{escape(label)}</strong> {escape(str(value))}</span>'
@@ -175,6 +183,7 @@ def _render_paperwork_quality_panel(quality_report: Mapping[str, Any]) -> str:
             {_render_tracked_events(tracked_events)}
             {_render_portal_service_changes(portal_events)}
             {_render_document_diffs(changed_documents)}
+            {_render_daily_review_items(daily_review_items[:8])}
           </div>
         </article>
       </section>
@@ -192,7 +201,11 @@ def _render_quality_sources(flagged_sources: list[Mapping[str, Any]]) -> str:
         model = escape(str(row.get("event_model", "")))
         age = row.get("age_days")
         age_text = "" if age is None else f", age {escape(str(age))}d"
-        items.append(f"<li><strong>{source}</strong>: {status} ({model}{age_text})</li>")
+        errors = _list(row.get("errors"))
+        details = "" if not errors else ": error " + escape(str(errors[0]))
+        items.append(
+            f"<li><strong>{source}</strong>: {status} ({model}{age_text}){details}</li>"
+        )
     return "<ul>" + "\n".join(items) + "</ul>"
 
 
@@ -222,10 +235,17 @@ def _render_tracked_events(events: list[Mapping[str, Any]]) -> str:
         event_at = escape(str(event.get("event_at", "") or "event date unavailable"))
         evidence_url = escape(str(event.get("evidence_url", "") or str(event.get("url", ""))))
         digest = escape(str(event.get("content_hash", ""))[:12])
+        due_date = escape(str(event.get("due_date", "")))
+        event_status = escape(str(event.get("event_status", "")))
+        event_key = escape(str(event.get("paperwork_event_key", ""))[:64])
         evidence_text = f"evidence {evidence_url}" if evidence_url else "evidence unavailable"
         hash_text = f", hash {digest}" if digest else ""
+        due_text = f", due {due_date}" if due_date else ""
+        status_text = f", event {event_status}" if event_status else ""
+        key_text = f", key {event_key}" if event_key else ""
         items.append(
-            f"<li><strong>{model}</strong> {title} ({source}, {event_at}; {evidence_text}{hash_text})</li>"
+            f"<li><strong>{model}</strong> {title} ({source}, {event_at}; "
+            f"{evidence_text}{hash_text}{due_text}{status_text}{key_text})</li>"
         )
     return "<ul>" + "\n".join(items) + "</ul>"
 
@@ -243,6 +263,22 @@ def _render_portal_service_changes(events: list[Mapping[str, Any]]) -> str:
         detail = summary or service_key or "service detail unavailable"
         items.append(f"<li><strong>{portal}</strong>: {service} ({detail})</li>")
     return "<ul>" + "\n".join(items) + "</ul>"
+
+
+def _render_daily_review_items(items: list[Mapping[str, Any]]) -> str:
+    if not items:
+        return '<p class="muted small">No paperwork daily review items in this run.</p>'
+
+    rows: list[str] = []
+    for item in items:
+        reason = escape(str(item.get("reason", "")))
+        source = escape(str(item.get("source", "")))
+        model = escape(str(item.get("event_model", "")))
+        title = escape(str(item.get("title", "")))
+        evidence = escape(str(item.get("evidence_url", "")))
+        detail = title or evidence or escape(str(item.get("error", "")))
+        rows.append(f"<li><strong>{reason}</strong> {source} ({model}) {detail}</li>")
+    return "<ul>" + "\n".join(rows) + "</ul>"
 
 
 def _list(value: object) -> list[Any]:

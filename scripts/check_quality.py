@@ -23,6 +23,7 @@ from paperworkradar.config_loader import (  # noqa: E402
 )
 from paperworkradar.quality_report import build_quality_report, write_quality_report  # noqa: E402
 from paperworkradar.storage import RadarStorage  # noqa: E402
+from main import _quality_article_limit, _quality_lookback_days  # noqa: E402
 
 
 def _project_path(project_root: Path, raw_path: str | Path) -> Path:
@@ -100,16 +101,28 @@ def generate_quality_artifacts(
     quality_cfg = load_category_quality_config(category_name, categories_dir=categories_dir)
     lookback_days = _lookback_days(_latest_article_date(db_path, category_cfg.category_name))
 
+    freshness_lookback_days = _quality_lookback_days(
+        quality_cfg,
+        sources=category_cfg.sources,
+        minimum_days=lookback_days,
+    )
+
     with RadarStorage(db_path) as storage:
         recent_articles = storage.recent_articles(
             category_cfg.category_name,
             days=lookback_days,
             limit=1000,
         )
+        freshness_articles = storage.recent_articles(
+            category_cfg.category_name,
+            days=freshness_lookback_days,
+            limit=_quality_article_limit(category_cfg.sources),
+        )
 
     report = build_quality_report(
         category=category_cfg,
         articles=recent_articles,
+        freshness_articles=freshness_articles,
         quality_config=quality_cfg,
     )
     paths = write_quality_report(
@@ -153,6 +166,9 @@ def main() -> None:
     print(f"stale_sources={summary['stale_sources']}")
     print(f"missing_sources={summary['missing_sources']}")
     print(f"document_diff_count={summary['document_diff_count']}")
+    print(f"fresh_paperwork_events={summary['fresh_paperwork_events']}")
+    print(f"events_with_evidence_url={summary['events_with_evidence_url']}")
+    print(f"daily_review_item_count={summary['daily_review_item_count']}")
 
 
 if __name__ == "__main__":

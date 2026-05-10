@@ -1,0 +1,140 @@
+{
+  "date": "2026-04-29",
+  "category": "paperwork",
+  "article_count": 12,
+  "source_count": 12,
+  "matched_count": 12,
+  "top_entities": [
+    {
+      "name": "PaperworkGeneral",
+      "count": 342
+    },
+    {
+      "name": "Registration",
+      "count": 12
+    },
+    {
+      "name": "TaxDocs",
+      "count": 10
+    },
+    {
+      "name": "DigitalGov",
+      "count": 6
+    },
+    {
+      "name": "Visa",
+      "count": 5
+    },
+    {
+      "name": "Deadline",
+      "count": 1
+    }
+  ],
+  "sources": {
+    "정부24 서비스": 1,
+    "GSA.gov News": 1,
+    "IRS News Releases": 1,
+    "Reddit LegalAdvice": 1,
+    "Reddit Immigration": 1,
+    "GOV.UK Forms Search": 1,
+    "GOV.UK HMRC": 1,
+    "GOV.UK Home Office": 1,
+    "UK Legislation New": 1,
+    "Reddit IWantOut": 1,
+    "UK Companies House Updates": 1,
+    "UK Visas and Immigration": 1
+  },
+  "generated_at": "2026-04-29T00:02:30.462388+09:00",
+  "articles": [
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.kr/portal/main/nologin"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gsa.gov/about-us/newsroom"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.irs.gov/newsroom"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/groups/construction-forum"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/hmrc-internal-manuals/international-manual"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/publications/asylum-accommodation-at-military-sites-factsheets"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "http://www.legislation.gov.uk/uksi/2026/466/made/data.htm"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/statistics/announcements/incorporated-companies-in-the-uk-january-to-march-2026"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/publications/bangladesh-country-policy-and-information-notes"
+      }
+    }
+  ],
+  "ontology": {
+    "repo": "PaperworkRadar",
+    "category": "paperwork",
+    "ontology_version": "0.1.0",
+    "event_model_ids": [
+      "paperwork.editorial_coverage",
+      "paperwork.filing_deadline",
+      "paperwork.form_revision",
+      "paperwork.portal_service_change"
+    ],
+    "event_model_mappings": {
+      "form_revision": "paperwork.form_revision",
+      "filing_deadline": "paperwork.filing_deadline",
+      "portal_service_change": "paperwork.portal_service_change",
+      "editorial_coverage": "paperwork.editorial_coverage"
+    },
+    "entity_type_hints": [
+      "organization.agency",
+      "evidence.url"
+    ],
+    "source_role_ids": [
+      "community_signal",
+      "context_only",
+      "operational_evidence",
+      "primary_evidence"
+    ],
+    "source_role_mappings": {
+      "Federal Register Documents": "primary_evidence",
+      "Federal Register Forms Focus": "primary_evidence",
+      "GOV.UK Forms Search": "operational_evidence",
+      "GOV.UK HMRC": "operational_evidence",
+      "GOV.UK Government Digital Service": "operational_evidence",
+      "UK Legislation New": "primary_evidence",
+      "UK Statutory Instruments": "primary_evidence",
+      "IRS News Releases": "operational_evidence",
+      "FedScoop": "context_only",
+      "StateScoop": "context_only",
+      "Reddit LegalAdvice": "community_signal"
+    },
+    "evidence_policy_ids": [
+      "traceable_url_required",
+      "official_confirmation_required",
+      "non_authoritative_context_only"
+    ]
+  }
+}

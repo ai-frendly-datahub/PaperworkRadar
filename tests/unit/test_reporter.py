@@ -46,7 +46,11 @@ def test_generate_report_injects_paperwork_quality_panel(tmp_path, monkeypatch) 
             "unique_portal_service_count": 1,
             "changed_document_count": 1,
             "new_document_count": 1,
+            "fresh_paperwork_events": 2,
+            "stale_paperwork_events": 1,
+            "unique_paperwork_event_key_count": 3,
             "events_with_evidence_url": 3,
+            "daily_review_item_count": 1,
         },
         "sources": [
             {
@@ -73,6 +77,8 @@ def test_generate_report_injects_paperwork_quality_panel(tmp_path, monkeypatch) 
                 "event_at": "2026-04-12T09:30:00+00:00",
                 "evidence_url": "https://example.com/forms/i-130",
                 "content_hash": "a" * 64,
+                "event_status": "fresh",
+                "paperwork_event_key": "form-revision:federal-register-forms-focus:updated-immigration-form",
             },
             {
                 "source": "GOV.UK HMRC",
@@ -81,6 +87,9 @@ def test_generate_report_injects_paperwork_quality_panel(tmp_path, monkeypatch) 
                 "event_at": "2026-04-10T09:30:00+00:00",
                 "evidence_url": "https://example.com/deadlines/hmrc",
                 "content_hash": "",
+                "due_date": "2026-04-30",
+                "event_status": "stale",
+                "paperwork_event_key": "filing-deadline:gov-uk-hmrc:2026-04-30",
             },
             {
                 "source": "GOV.UK Government Digital Service",
@@ -90,6 +99,15 @@ def test_generate_report_injects_paperwork_quality_panel(tmp_path, monkeypatch) 
                 "service_name": "Passport service update",
                 "portal_service_key": "gov.uk:UK:apply-renew-passport",
                 "requirement_summary": "Required document list changed.",
+            }
+        ],
+        "daily_review_items": [
+            {
+                "reason": "filing_deadline_missing_due_date",
+                "source": "GOV.UK HMRC",
+                "event_model": "filing_deadline",
+                "title": "HMRC deadline reminder",
+                "evidence_url": "https://example.com/deadlines/hmrc",
             }
         ],
     }
@@ -114,7 +132,10 @@ def test_generate_report_injects_paperwork_quality_panel(tmp_path, monkeypatch) 
         assert "document_diffs" in rendered
         assert "portal_service_change" in rendered
         assert "portal changes" in rendered
+        assert "daily review" in rendered
+        assert "event keys" in rendered
         assert "evidence URLs" in rendered
+        assert "filing_deadline_missing_due_date" in rendered
         assert "https://example.com/forms/i-130" in rendered
         assert "Passport service update" in rendered
         assert "GOV.UK HMRC" in rendered

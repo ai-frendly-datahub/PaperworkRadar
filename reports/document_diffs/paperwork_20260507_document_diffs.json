@@ -1,0 +1,36 @@
+{
+  "category": "paperwork",
+  "generated_at": "2026-05-07T03:35:06.489417+00:00",
+  "documents": [
+    {
+      "source": "GOV.UK Forms Search",
+      "title": "Guidance: Compliance checks: The Human Rights Act and DOTAS penalties — CC/FS57",
+      "document_url": "https://www.gov.uk/government/publications/compliance-checks-the-human-rights-act-and-dotas-penalties-ccfs57",
+      "source_url": "https://www.gov.uk/government/publications/compliance-checks-the-human-rights-act-and-dotas-penalties-ccfs57",
+      "content_hash": "ba188744cfe3f9664fd53bdfeea78930b3c6bfcb632ad080077b38af3c34a1fe",
+      "revision_date": "2026-05-06T14:30:00+00:00",
+      "collected_at": "2026-05-07T03:35:04.448374+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "GOV.UK Home Office",
+      "title": "Official Statistics: Same-sex sexual conviction disregards, June 2023 to March 2026",
+      "document_url": "https://www.gov.uk/government/statistics/announcements/same-sex-sexual-conviction-disregards-june-2023-to-march-2026",
+      "source_url": "https://www.gov.uk/government/statistics/announcements/same-sex-sexual-conviction-disregards-june-2023-to-march-2026",
+      "content_hash": "586f26b8c3b9fb2b8d8857bc93ad093d9489bb83944eb602406df8f21ffd8ae0",
+      "revision_date": "2026-05-06T07:41:43+00:00",
+      "collected_at": "2026-05-07T03:35:04.448374+00:00",
+      "status": "unchanged"
+    },
+    {
+      "source": "UK Visas and Immigration",
+      "title": "Guidance: Iraq: country policy and information notes",
+      "document_url": "https://www.gov.uk/government/publications/iraq-country-policy-and-information-notes",
+      "source_url": "https://www.gov.uk/government/publications/iraq-country-policy-and-information-notes",
+      "content_hash": "94671e6f43dc7271d629290281f544ed23dea64d3113ceb82fa110256124ab7b",
+      "revision_date": "2026-05-06T05:48:43+00:00",
+      "collected_at": "2026-05-07T03:35:04.448374+00:00",
+      "status": "unchanged"
+    }
+  ]
+}

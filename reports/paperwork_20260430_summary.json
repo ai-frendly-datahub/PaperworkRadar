@@ -1,0 +1,141 @@
+{
+  "date": "2026-04-30",
+  "category": "paperwork",
+  "article_count": 17,
+  "source_count": 13,
+  "matched_count": 17,
+  "top_entities": [
+    {
+      "name": "PaperworkGeneral",
+      "count": 450
+    },
+    {
+      "name": "Registration",
+      "count": 14
+    },
+    {
+      "name": "TaxDocs",
+      "count": 10
+    },
+    {
+      "name": "DigitalGov",
+      "count": 7
+    },
+    {
+      "name": "Visa",
+      "count": 7
+    },
+    {
+      "name": "Deadline",
+      "count": 1
+    }
+  ],
+  "sources": {
+    "정부24 서비스": 1,
+    "GSA.gov News": 1,
+    "IRS News Releases": 1,
+    "Reddit LegalAdvice": 3,
+    "Reddit Immigration": 2,
+    "Reddit IWantOut": 1,
+    "StateScoop": 1,
+    "GOV.UK Forms Search": 1,
+    "FedScoop": 1,
+    "GOV.UK Home Office": 2,
+    "GOV.UK Government Digital Service": 1,
+    "UK Legislation New": 1,
+    "UK Statutory Instruments": 1
+  },
+  "generated_at": "2026-04-30T10:37:47.377671+09:00",
+  "articles": [
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.kr/portal/main/nologin"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gsa.gov/about-us/newsroom"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.irs.gov/newsroom"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/publications/hmrc-appropriate-policy-document"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/publications/support-for-people-affected-by-terrorist-attacks-overseas"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/guidance/proving-your-identity-with-the-govuk-one-login-app"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "https://www.gov.uk/government/publications/eu-settlement-scheme-caseworker-guidance"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "http://www.legislation.gov.uk/uksi/2026/473/made/data.htm"
+      }
+    },
+    {
+      "event_model_payload": {
+        "source_url": "http://www.legislation.gov.uk/uksi/2026/476/made/data.htm"
+      }
+    }
+  ],
+  "ontology": {
+    "repo": "PaperworkRadar",
+    "category": "paperwork",
+    "ontology_version": "0.1.0",
+    "event_model_ids": [
+      "paperwork.editorial_coverage",
+      "paperwork.filing_deadline",
+      "paperwork.form_revision",
+      "paperwork.portal_service_change"
+    ],
+    "event_model_mappings": {
+      "form_revision": "paperwork.form_revision",
+      "filing_deadline": "paperwork.filing_deadline",
+      "portal_service_change": "paperwork.portal_service_change",
+      "editorial_coverage": "paperwork.editorial_coverage"
+    },
+    "entity_type_hints": [
+      "organization.agency",
+      "evidence.url"
+    ],
+    "source_role_ids": [
+      "community_signal",
+      "context_only",
+      "operational_evidence",
+      "primary_evidence"
+    ],
+    "source_role_mappings": {
+      "Federal Register Documents": "primary_evidence",
+      "Federal Register Forms Focus": "primary_evidence",
+      "GOV.UK Forms Search": "operational_evidence",
+      "GOV.UK HMRC": "operational_evidence",
+      "GOV.UK Government Digital Service": "operational_evidence",
+      "UK Legislation New": "primary_evidence",
+      "UK Statutory Instruments": "primary_evidence",
+      "IRS News Releases": "operational_evidence",
+      "FedScoop": "context_only",
+      "StateScoop": "context_only",
+      "Reddit LegalAdvice": "community_signal"
+    },
+    "evidence_policy_ids": [
+      "traceable_url_required",
+      "official_confirmation_required",
+      "non_authoritative_context_only"
+    ]
+  }
+}

@@ -184,11 +184,12 @@ sources:
   content_type: portal_service_change
   producer_role: government
   info_purpose: [digital_service, portal_service_change, online_application, operational_event]
-  notes: "온라인 신청·정부 포털 service catalog 변경 후보."
+  notes: "온라인 신청·정부 포털 service catalog 변경 후보. GDS service assessment feed는 비정기 배치로 발행되므로 portal_service_change freshness는 14일 cadence로 추적한다."
   config:
     event_model: portal_service_change
     event_date_field: published
     observed_date_field: collected_at
+    freshness_sla_days: 14
 - name: FedScoop
   type: rss
   url: https://fedscoop.com/feed/
