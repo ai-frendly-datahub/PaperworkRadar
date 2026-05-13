@@ -14,6 +14,15 @@ def reset_structlog() -> object:
     structlog.reset_defaults()
 
 
+@pytest.fixture(autouse=True)
+def isolated_crawl_health(tmp_path, monkeypatch):
+    """Per-test crawl-health DB so disable thresholds don't bleed across
+    tests and the production data/radar_data.duckdb is never touched."""
+    health_db = tmp_path / "_crawl_health.duckdb"
+    monkeypatch.setenv("RADAR_CRAWL_HEALTH_DB_PATH", str(health_db))
+    yield
+
+
 @pytest.fixture
 def sample_source() -> object:
     from paperworkradar.models import Source
