@@ -174,3 +174,8 @@ def handle_top_trends(*, db_path: Path, days: int = 7, limit: int = 10) -> str:
     for entity_name, count in counts.most_common(limit):
         lines.append(f"- {entity_name}: {count}")
     return "\n".join(lines)
+
+
+def handle_price_watch(*, threshold: float = 0.0) -> str:
+    """Stub handler for price watch (template only, not implemented)."""
+    return "Not available in template project."
