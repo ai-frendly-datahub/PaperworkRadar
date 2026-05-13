@@ -366,6 +366,90 @@ def _collect_api_source(
 ) -> list[Article]:
     """Collect articles from API sources (e.g., Gov24 Open API)."""
 
+    if source.name == "Gov24 Open API":
+        # Paginated path: keep calling requests.get with incrementing `page`
+        # until the page returns no rows or we hit the article limit.
+        from urllib.parse import parse_qs, urlsplit, urlunsplit
+
+        parsed = urlsplit(source.url)
+        base_url = urlunsplit((parsed.scheme, parsed.netloc, parsed.path, "", ""))
+        initial_params: dict[str, object] = {}
+        for key, values in parse_qs(parsed.query).items():
+            initial_params[key] = values[0] if len(values) == 1 else values
+
+        per_page = int(initial_params.get("perPage", 100) or 100)
+        page = int(initial_params.get("page", 1) or 1)
+        # Inject GOV24_API_KEY + returnType=JSON if not already in URL.
+        api_key = os.environ.get("GOV24_API_KEY")
+        if api_key and "serviceKey" not in initial_params:
+            initial_params["serviceKey"] = api_key
+        initial_params.setdefault("returnType", "JSON")
+
+        items: list[Article] = []
+        try:
+            while len(items) < limit:
+                params = dict(initial_params)
+                params["page"] = page
+                params["perPage"] = per_page
+                response = requests.get(base_url, params=params, timeout=timeout)
+                response.raise_for_status()
+                body = response.json()
+                if "code" in body and body["code"] != "0000":
+                    message = body.get("message", "Unknown error")
+                    raise SourceError(source.name, f"Gov24 API error: {body['code']} - {message}")
+                rows = body.get("data") or body.get("results") or []
+                if not rows:
+                    break
+
+                for result in rows:
+                    if len(items) >= limit:
+                        break
+                    title = (
+                        result.get("serviceName")
+                        or result.get("serviceNm")
+                        or result.get("title")
+                        or ""
+                    )
+                    if not title:
+                        continue
+                    service_id = result.get("serviceId") or result.get("id") or ""
+                    link = (
+                        f"https://www.gov24.go.kr/main/service/{service_id}"
+                        if service_id
+                        else ""
+                    )
+                    summary = (
+                        result.get("serviceSummary")
+                        or result.get("serviceIntro")
+                        or result.get("summary")
+                        or ""
+                    )
+                    published = None
+                    reg_dt = result.get("regDt") or ""
+                    if reg_dt:
+                        try:
+                            published = datetime.strptime(reg_dt, "%Y%m%d").replace(tzinfo=UTC)
+                        except (ValueError, AttributeError):
+                            pass
+                    items.append(
+                        Article(
+                            title=title,
+                            link=link,
+                            summary=summary,
+                            published=published,
+                            source=source.name,
+                            category=category,
+                        )
+                    )
+
+                if len(rows) < per_page:
+                    break
+                page += 1
+                time.sleep(0.1)
+            return items
+        except requests.exceptions.RequestException as exc:
+            raise NetworkError(f"API request failed for {source.name}: {exc}") from exc
+
     try:
         response = _fetch_url_with_retry(
             source.url,
@@ -378,55 +462,8 @@ def _collect_api_source(
         raise NetworkError(f"API request failed for {source.name}: {exc}") from exc
 
     try:
-        # Verify response code for Gov24 API
-        if source.name == "Gov24 Open API":
-            data = response.json()
-
-            # Check for API error codes
-            if "code" in data:
-                code = data["code"]
-                if code != "0000":
-                    message = data.get("message", "Unknown error")
-                    raise SourceError(source.name, f"Gov24 API error: {code} - {message}")
-
-            # Parse Gov24 response
-            items: list[Article] = []
-            results = data.get("results", [])
-
-            for result in results[:limit]:
-                title = result.get("serviceNm", "")
-                if not title:
-                    continue
-
-                # Build link from service ID
-                service_id = result.get("serviceId", "")
-                link = f"https://www.gov24.go.kr/main/service/{service_id}" if service_id else ""
-
-                # Get description
-                summary = result.get("serviceIntro", "") or ""
-
-                # Extract publish date (if available)
-                published = None
-                reg_dt = result.get("regDt", "")
-                if reg_dt:
-                    try:
-                        # Gov24 date format: YYYYMMDD
-                        published = datetime.strptime(reg_dt, "%Y%m%d").replace(tzinfo=UTC)
-                    except (ValueError, AttributeError):
-                        pass
-
-                items.append(
-                    Article(
-                        title=title,
-                        link=link,
-                        summary=summary,
-                        published=published,
-                        source=source.name,
-                        category=category,
-                    )
-                )
-
-            return items
+        if False:
+            pass
         else:
             # Generic API source handling
             data = response.json()
