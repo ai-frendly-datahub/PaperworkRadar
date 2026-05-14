@@ -1,5 +1,67 @@
 category_name: paperwork
 display_name: 서류/행정 레이더
+data_quality:
+  priority: P1
+  primary_motion: compliance-risk
+  weakest_dimension: traceability
+  quality_outputs:
+    freshness_report: reports/paperwork_quality.json
+    dated_freshness_report_pattern: reports/paperwork_YYYYMMDD_quality.json
+    tracked_event_models:
+    - form_update
+    - application_deadline
+    - eligibility_requirement
+    - digital_service_change
+  event_models:
+    form_update:
+      fields: [agency, form_id, form_title, version_or_revision_date, source_url, collected_at]
+      notes: Government form or filing-instruction changes that affect submission readiness.
+    application_deadline:
+      fields: [agency, program_or_form_id, deadline_date, submission_channel, source_url, collected_at]
+      notes: Filing, visa, registration, tax, or comment-period deadlines.
+    eligibility_requirement:
+      fields: [agency, service_or_form, applicant_type, requirement_text, effective_date, source_url, collected_at]
+      notes: Required documents, applicant eligibility, or evidence burden changes.
+    digital_service_change:
+      fields: [agency, service_name, change_type, effective_date, source_url, collected_at]
+      notes: Portal, digital ID, e-signature, or online application service changes.
+  canonical_keys:
+    form: [agency, form_id, form_title]
+    deadline: [agency, program_or_form_id, deadline_date]
+    requirement: [agency, service_or_form, applicant_type, effective_date]
+  freshness_sla:
+    form_update:
+      max_age_days: 7
+      event_date_field: version_or_revision_date
+      observed_date_field: collected_at
+    application_deadline:
+      max_age_days: 3
+      event_date_field: deadline_date
+      observed_date_field: collected_at
+    eligibility_requirement:
+      max_age_days: 14
+      event_date_field: effective_date
+      observed_date_field: collected_at
+    digital_service_change:
+      max_age_days: 14
+      event_date_field: effective_date
+      observed_date_field: collected_at
+  quality_gates:
+  - Preserve agency, form/service id, effective date, and source URL for traceability.
+  - Preserve collected_at separately from deadline, revision, and effective date fields.
+  - Keep deadline events separate from generic agency news.
+  - Do not promote community advice to canonical requirement evidence without official source confirmation.
+source_backlog:
+  official_candidates:
+  - id: uscis_forms_api_or_fixture
+    name: USCIS forms update replacement
+    activation_gate: 403-safe access path, form id mapping, and official revision date parser.
+  - id: govuk_form_detail_pages
+    name: GOV.UK form detail pages
+    activation_gate: detail parser smoke and service/form canonical key review.
+  - id: irs_forms_and_publications
+    name: IRS forms and publications update feed
+    activation_gate: form number extraction and revision-date freshness SLA.
 sources:
 # NOTE: 2026-04-06 RSS 403 차단 - USCIS 전체 사이트 차단됨으로 비활성화
 # - name: USCIS Forms Updates

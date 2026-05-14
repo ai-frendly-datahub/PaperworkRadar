@@ -22,7 +22,7 @@ PaperworkRadar/
 │   └── mcp_server/               # MCP 서버 (server.py + tools.py)
 ├── config/
 │   ├── config.yaml               # database_path, report_dir, raw_data_dir, search_db_path
-│   └── categories/{domain}.yaml  # 소스 + 엔티티 정의
+│   └── categories/paperwork.yaml  # 소스 + 엔티티 정의
 ├── data/                         # DuckDB, search_index.db, raw/ JSONL
 ├── reports/                      # 생성된 HTML 리포트
 ├── tests/unit/                   # pytest 단위 테스트
@@ -34,14 +34,16 @@ PaperworkRadar/
 
 | Entity | Examples |
 |--------|----------|
-| 주요 엔티티 1 | 예시 1, 예시 2, 예시 3 |
-| 주요 엔티티 2 | 예시 4, 예시 5, 예시 6 |
-| 주요 엔티티 3 | 예시 7, 예시 8, 예시 9 |
+| TaxDocs | tax return, tax form, 세금 신고 |
+| Visa | visa, immigration, permit, 체류 |
+| Registration | registration, license, 민원, 등기 |
+| Deadline | deadline, due date, filing deadline |
 
 ## DEVIATIONS FROM TEMPLATE
 
-- 표준 템플릿 대비 특화 기능 1
-- 표준 템플릿 대비 특화 기능 2
+- 정부 양식, 비자/이민, 세금, 등록/신고 절차를 공식 source 중심으로 수집한다.
+- 마감일과 effective date는 문서/절차 본문과 분리해 추적한다.
+- 전자정부·행정 디지털화 source는 `DigitalGov` 보조 신호로 취급한다.
 
 ## COMMANDS
 
