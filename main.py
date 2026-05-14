@@ -4,6 +4,7 @@ import argparse
 from datetime import UTC
 from pathlib import Path
 from typing import cast
+from radar_core.config_loader import filter_sources
 
 from paperworkradar.analyzer import apply_entity_rules
 from paperworkradar.collector import collect_sources
@@ -83,23 +84,31 @@ def run(
     keep_raw_days: int = 180,
     keep_report_days: int = 90,
     snapshot_db: bool = False,
+    max_sources: int | None = None,
+    exclude_sources: tuple[str, ...] | list[str] = (),
 ) -> Path:
     """Execute the lightweight collect -> analyze -> report pipeline."""
     settings = load_settings(config_path)
     category_cfg = load_category_config(category, categories_dir=categories_dir)
 
+    effective_sources = filter_sources(
+        category_cfg.sources,
+        max_sources=max_sources,
+        exclude_sources=tuple(exclude_sources or ()),
+    )
+
     print(
-        f"[Radar] Collecting '{category_cfg.display_name}' from {len(category_cfg.sources)} sources..."
+        f"[Radar] Collecting '{category_cfg.display_name}' from {len(effective_sources)} sources..."
     )
     collected, errors = collect_sources(
-        category_cfg.sources,
+        effective_sources,
         category=category_cfg.category_name,
         limit_per_source=per_source_limit,
         timeout=timeout,
     )
 
     raw_logger = RawLogger(settings.raw_data_dir)
-    for source in category_cfg.sources:
+    for source in effective_sources:
         source_articles = [article for article in collected if article.source == source.name]
         if source_articles:
             _ = raw_logger.log(source_articles, source_name=source.name)
@@ -131,7 +140,7 @@ def run(
     storage.close()
 
     stats = {
-        "sources": len(category_cfg.sources),
+        "sources": len(effective_sources),
         "collected": len(collected),
         "matched": sum(1 for a in collected if a.matched_entities),
         "validated": len(validated_articles),
@@ -165,7 +174,7 @@ def run(
 
     _send_notifications(
         category_name=category_cfg.category_name,
-        sources_count=len(category_cfg.sources),
+        sources_count=len(effective_sources),
         collected_count=len(collected),
         matched_count=sum(1 for a in collected if a.matched_entities),
         errors_count=len(errors),
@@ -216,6 +225,19 @@ def parse_args() -> argparse.Namespace:
         default=False,
         help="Generate HTML report after collection",
     )
+    _ = parser.add_argument(
+        "--max-sources",
+        type=int,
+        default=None,
+        help="Hard cap on number of sources iterated (after --exclude-source). Default: no cap.",
+    )
+    _ = parser.add_argument(
+        "--exclude-source",
+        action="append",
+        default=[],
+        metavar="ID_OR_NAME",
+        help="Skip this source id or name. May be repeated.",
+    )
     return parser.parse_args()
 
 
@@ -238,6 +260,27 @@ def _to_int(value: object, default: int) -> int:
     return default
 
 
+
+
+def _to_optional_int(value: object) -> int | None:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str):
+        try:
+            return int(value)
+        except ValueError:
+            return None
+    return None
+
+
+def _to_str_list(value: object) -> list[str]:
+    if isinstance(value, list):
+        return [str(item) for item in cast(list[object], value) if isinstance(item, str)]
+    return []
 if __name__ == "__main__":
     args = cast(dict[str, object], vars(parse_args()))
     _ = run(
@@ -251,4 +294,6 @@ if __name__ == "__main__":
         keep_raw_days=_to_int(args.get("keep_raw_days"), 180),
         keep_report_days=_to_int(args.get("keep_report_days"), 90),
         snapshot_db=bool(args.get("snapshot_db", False)),
+        max_sources=_to_optional_int(args.get("max_sources")),
+        exclude_sources=_to_str_list(args.get("exclude_source")),
     )
