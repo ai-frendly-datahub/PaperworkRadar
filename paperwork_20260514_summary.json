@@ -7,15 +7,15 @@
   "top_entities": [
     {
       "name": "PaperworkGeneral",
-      "count": 2767
+      "count": 2741
     },
     {
       "name": "Registration",
-      "count": 224
+      "count": 216
     },
     {
       "name": "TaxDocs",
-      "count": 53
+      "count": 54
     },
     {
       "name": "DigitalGov",
@@ -33,17 +33,17 @@
   "sources": {
     "하이코리아 민원": 1,
     "정부24 서비스": 1,
+    "GOV.UK Forms Search": 34,
+    "GOV.UK HMRC": 34,
     "UK Legislation New": 6,
-    "GOV.UK Forms Search": 31,
     "FedScoop": 5,
     "StateScoop": 3,
-    "GOV.UK HMRC": 33,
     "UK Companies House Updates": 4,
     "GOV.UK Home Office": 10,
     "UK Visas and Immigration": 3,
     "UK Land Registry": 1,
-    "Federal Register Documents": 71,
+    "Federal Register Documents": 67,
     "Federal Register Forms Focus": 31
   },
-  "generated_at": "2026-05-14T11:30:40.393190+09:00"
+  "generated_at": "2026-05-14T16:48:20.832285+09:00"
 }
