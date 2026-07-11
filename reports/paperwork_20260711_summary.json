@@ -1,0 +1,46 @@
+{
+  "date": "2026-07-11",
+  "category": "paperwork",
+  "article_count": 200,
+  "source_count": 10,
+  "matched_count": 200,
+  "top_entities": [
+    {
+      "name": "PaperworkGeneral",
+      "count": 2504
+    },
+    {
+      "name": "Registration",
+      "count": 188
+    },
+    {
+      "name": "DigitalGov",
+      "count": 49
+    },
+    {
+      "name": "TaxDocs",
+      "count": 42
+    },
+    {
+      "name": "Visa",
+      "count": 26
+    },
+    {
+      "name": "Deadline",
+      "count": 15
+    }
+  ],
+  "sources": {
+    "Federal Register Documents": 45,
+    "Federal Register Forms Focus": 37,
+    "GOV.UK Forms Search": 31,
+    "FedScoop": 8,
+    "GOV.UK HMRC": 46,
+    "GOV.UK Home Office": 13,
+    "StateScoop": 3,
+    "UK Legislation New": 12,
+    "UK Visas and Immigration": 3,
+    "UK Companies House Updates": 2
+  },
+  "generated_at": "2026-07-11T17:42:58.338377+09:00"
+}
