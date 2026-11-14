@@ -2,47 +2,46 @@
   "date": "2026-11-14",
   "category": "paperwork",
   "article_count": 200,
-  "source_count": 12,
+  "source_count": 11,
   "matched_count": 200,
   "top_entities": [
     {
       "name": "PaperworkGeneral",
-      "count": 2753
+      "count": 2776
     },
     {
       "name": "Registration",
-      "count": 189
-    },
-    {
-      "name": "DigitalGov",
-      "count": 40
-    },
-    {
-      "name": "TaxDocs",
-      "count": 37
-    },
-    {
-      "name": "Visa",
-      "count": 26
+      "count": 185
     },
     {
       "name": "Deadline",
-      "count": 16
+      "count": 42
+    },
+    {
+      "name": "TaxDocs",
+      "count": 30
+    },
+    {
+      "name": "DigitalGov",
+      "count": 30
+    },
+    {
+      "name": "Visa",
+      "count": 15
     }
   ],
   "sources": {
-    "GOV.UK Forms Search": 22,
-    "GOV.UK Home Office": 14,
-    "UK Visas and Immigration": 5,
-    "GOV.UK HMRC": 38,
-    "UK Legislation New": 10,
-    "Federal Register Documents": 69,
-    "Federal Register Forms Focus": 28,
-    "StateScoop": 3,
-    "FedScoop": 5,
+    "Federal Register Documents": 73,
+    "Federal Register Forms Focus": 32,
+    "GOV.UK Forms Search": 30,
+    "FedScoop": 10,
+    "StateScoop": 5,
+    "GOV.UK HMRC": 30,
+    "UK Legislation New": 9,
+    "UK Visas and Immigration": 2,
+    "GOV.UK Home Office": 5,
     "UK Land Registry": 2,
-    "UK Companies House Updates": 3,
-    "GOV.UK Government Digital Service": 1
+    "UK Companies House Updates": 2
   },
-  "generated_at": "2026-11-13T15:42:17.555293+00:00"
+  "generated_at": "2026-11-14T14:30:30.489700+00:00"
 }
